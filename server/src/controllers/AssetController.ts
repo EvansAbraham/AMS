@@ -49,7 +49,7 @@ export const addAsset = async (req: Request, res: Response): Promise<void> => {
             filterOn, 
             filterInstalledOn, 
             filterExpiryDate, 
-            augmenterCare
+            augmentedCare
         } = req.body;
 
         const asset = await prisma.assetRegister.create({
@@ -69,7 +69,7 @@ export const addAsset = async (req: Request, res: Response): Promise<void> => {
             filterOn, 
             filterInstalledOn, 
             filterExpiryDate, 
-            augmenterCare
+            augmentedCare
             }
         });
 

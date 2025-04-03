@@ -70,10 +70,11 @@ async function main() {
             roomName: data["Room Name"],
             notes: data["Notes"],
             filterNeeded: data["Filter Needed"],
-            filterOn: data["Filters On"],
+            filterOn: data["Filter On"],
             filterInstalledOn: data["Filter Installed on"],
             filterExpiryDate: data["Filter Expiry Date"],
-            augmenterCare: data["Augmented Care"],
+            floorInWords: data["Floor in Words"],
+            augmentedCare: data["Augmented Care"],
           }
         });
       } else if (modelName === "RiskAssessment") {

@@ -18,7 +18,7 @@ export interface Asset {
     filterOn?: string;
     filterInstalledOn?: string;
     filterExpiryDate?: string;
-    augmenterCare?: string;
+    augmentedCare?: string;
 }
 
 export interface NewAsset {
@@ -38,7 +38,7 @@ export interface NewAsset {
     filterOn: string;
     filterInstalledOn: string;
     filterExpiryDate: string;
-    augmenterCare: string;
+    augmentedCare: string;
 }
 
 

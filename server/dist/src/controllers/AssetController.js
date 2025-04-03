@@ -44,7 +44,7 @@ const getAssets = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
 exports.getAssets = getAssets;
 const addAsset = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
-        const { id, assetBarcode, status, assetType, primaryId, secondaryId, wingInShort, room, floorInWords, roomName, notes, filterNeeded, filterOn, filterInstalledOn, filterExpiryDate, augmenterCare } = req.body;
+        const { id, assetBarcode, status, assetType, primaryId, secondaryId, wingInShort, room, floorInWords, roomName, notes, filterNeeded, filterOn, filterInstalledOn, filterExpiryDate, augmentedCare } = req.body;
         const asset = yield prisma.assetRegister.create({
             data: {
                 id,
@@ -62,7 +62,7 @@ const addAsset = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
                 filterOn,
                 filterInstalledOn,
                 filterExpiryDate,
-                augmenterCare
+                augmentedCare
             }
         });
         res.status(201).json(asset);

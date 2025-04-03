@@ -78,7 +78,7 @@ function main() {
                             filterOn: data["Filters On"],
                             filterInstalledOn: data["Filter Installed on"],
                             filterExpiryDate: data["Filter Expiry Date"],
-                            augmenterCare: data["Augmented Care"],
+                            augmentedCare: data["Augmented Care"],
                         }
                     });
                 }

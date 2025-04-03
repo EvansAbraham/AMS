@@ -35,7 +35,7 @@ model AssetRegister {
   filterOn          String? @map("Filter On")
   filterInstalledOn String? @map("Filter Installed on")
   filterExpiryDate  String? @map("Filter Expiry Date")
-  augmenterCare     String? @map("Augmenter Care")
+  augmentedCare     String? @map("augmented Care")
 }
 
 model LAPADB {
