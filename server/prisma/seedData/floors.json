@@ -1,0 +1,527 @@
+[
+  {
+    "id": "floor01_wing_AIT",
+    "wingInShort": "AIT",
+    "floorName": "Ground Floor"
+  },
+  {
+    "id": "floor02_wing_AIT",
+    "wingInShort": "AIT",
+    "floorName": "First Floor"
+  },
+  {
+    "id": "floor03_wing_AIT",
+    "wingInShort": "AIT",
+    "floorName": "Second Floor"
+  },
+  {
+    "id": "floor04_wing_AIT",
+    "wingInShort": "AIT",
+    "floorName": "Third Floor"
+  },
+  {
+    "id": "floor05_wing_AIT",
+    "wingInShort": "AIT",
+    "floorName": "Fourth Floor"
+  },
+  {
+    "id": "floor06_wing_AIT",
+    "wingInShort": "AIT",
+    "floorName": "Fifth Floor"
+  },
+  {
+    "id": "floor07_wing_AIT",
+    "wingInShort": "AIT",
+    "floorName": "Mezzanine Floor"
+  },
+  {
+    "id": "floor01_wing_ALT",
+    "wingInShort": "ALT",
+    "floorName": "Ground Floor"
+  },
+  {
+    "id": "floor02_wing_ALT",
+    "wingInShort": "ALT",
+    "floorName": "First Floor"
+  },
+  {
+    "id": "floor03_wing_ALT",
+    "wingInShort": "ALT",
+    "floorName": "Second Floor"
+  },
+  {
+    "id": "floor04_wing_ALT",
+    "wingInShort": "ALT",
+    "floorName": "Third Floor"
+  },
+  {
+    "id": "floor05_wing_ALT",
+    "wingInShort": "ALT",
+    "floorName": "Fourth Floor"
+  },
+  {
+    "id": "floor06_wing_ALT",
+    "wingInShort": "ALT",
+    "floorName": "Fifth Floor"
+  },
+  {
+    "id": "floor07_wing_ALT",
+    "wingInShort": "ALT",
+    "floorName": "Mezzanine Floor"
+  },
+  {
+    "id": "floor01_wing_DDK",
+    "wingInShort": "DDK",
+    "floorName": "Ground Floor"
+  },
+  {
+    "id": "floor02_wing_DDK",
+    "wingInShort": "DDK",
+    "floorName": "First Floor"
+  },
+  {
+    "id": "floor03_wing_DDK",
+    "wingInShort": "DDK",
+    "floorName": "Second Floor"
+  },
+  {
+    "id": "floor04_wing_DDK",
+    "wingInShort": "DDK",
+    "floorName": "Third Floor"
+  },
+  {
+    "id": "floor05_wing_DDK",
+    "wingInShort": "DDK",
+    "floorName": "Fourth Floor"
+  },
+  {
+    "id": "floor06_wing_DDK",
+    "wingInShort": "DDK",
+    "floorName": "Fifth Floor"
+  },
+  {
+    "id": "floor07_wing_DDK",
+    "wingInShort": "DDK",
+    "floorName": "Mezzanine Floor"
+  },
+  {
+    "id": "floor01_wing_DSE",
+    "wingInShort": "DSE",
+    "floorName": "Ground Floor"
+  },
+  {
+    "id": "floor02_wing_DSE",
+    "wingInShort": "DSE",
+    "floorName": "First Floor"
+  },
+  {
+    "id": "floor03_wing_DSE",
+    "wingInShort": "DSE",
+    "floorName": "Second Floor"
+  },
+  {
+    "id": "floor04_wing_DSE",
+    "wingInShort": "DSE",
+    "floorName": "Third Floor"
+  },
+  {
+    "id": "floor05_wing_DSE",
+    "wingInShort": "DSE",
+    "floorName": "Fourth Floor"
+  },
+  {
+    "id": "floor06_wing_DSE",
+    "wingInShort": "DSE",
+    "floorName": "Fifth Floor"
+  },
+  {
+    "id": "floor07_wing_DSE",
+    "wingInShort": "DSE",
+    "floorName": "Mezzanine Floor"
+  },
+  {
+    "id": "floor01_wing_FJH",
+    "wingInShort": "FJH",
+    "floorName": "Ground Floor"
+  },
+  {
+    "id": "floor02_wing_FJH",
+    "wingInShort": "FJH",
+    "floorName": "First Floor"
+  },
+  {
+    "id": "floor03_wing_FJH",
+    "wingInShort": "FJH",
+    "floorName": "Second Floor"
+  },
+  {
+    "id": "floor04_wing_FJH",
+    "wingInShort": "FJH",
+    "floorName": "Third Floor"
+  },
+  {
+    "id": "floor05_wing_FJH",
+    "wingInShort": "FJH",
+    "floorName": "Fourth Floor"
+  },
+  {
+    "id": "floor06_wing_FJH",
+    "wingInShort": "FJH",
+    "floorName": "Fifth Floor"
+  },
+  {
+    "id": "floor07_wing_FJH",
+    "wingInShort": "FJH",
+    "floorName": "Mezzanine Floor"
+  },
+  {
+    "id": "floor01_wing_GJH",
+    "wingInShort": "GJH",
+    "floorName": "Ground Floor"
+  },
+  {
+    "id": "floor02_wing_GJH",
+    "wingInShort": "GJH",
+    "floorName": "First Floor"
+  },
+  {
+    "id": "floor03_wing_GJH",
+    "wingInShort": "GJH",
+    "floorName": "Second Floor"
+  },
+  {
+    "id": "floor04_wing_GJH",
+    "wingInShort": "GJH",
+    "floorName": "Third Floor"
+  },
+  {
+    "id": "floor05_wing_GJH",
+    "wingInShort": "GJH",
+    "floorName": "Fourth Floor"
+  },
+  {
+    "id": "floor06_wing_GJH",
+    "wingInShort": "GJH",
+    "floorName": "Fifth Floor"
+  },
+  {
+    "id": "floor07_wing_GJH",
+    "wingInShort": "GJH",
+    "floorName": "Mezzanine Floor"
+  },
+  {
+    "id": "floor01_wing_LPO",
+    "wingInShort": "LPO",
+    "floorName": "Ground Floor"
+  },
+  {
+    "id": "floor02_wing_LPO",
+    "wingInShort": "LPO",
+    "floorName": "First Floor"
+  },
+  {
+    "id": "floor03_wing_LPO",
+    "wingInShort": "LPO",
+    "floorName": "Second Floor"
+  },
+  {
+    "id": "floor04_wing_LPO",
+    "wingInShort": "LPO",
+    "floorName": "Third Floor"
+  },
+  {
+    "id": "floor05_wing_LPO",
+    "wingInShort": "LPO",
+    "floorName": "Fourth Floor"
+  },
+  {
+    "id": "floor06_wing_LPO",
+    "wingInShort": "LPO",
+    "floorName": "Fifth Floor"
+  },
+  {
+    "id": "floor07_wing_LPO",
+    "wingInShort": "LPO",
+    "floorName": "Mezzanine Floor"
+  },
+  {
+    "id": "floor01_wing_MNA",
+    "wingInShort": "MNA",
+    "floorName": "Ground Floor"
+  },
+  {
+    "id": "floor02_wing_MNA",
+    "wingInShort": "MNA",
+    "floorName": "First Floor"
+  },
+  {
+    "id": "floor03_wing_MNA",
+    "wingInShort": "MNA",
+    "floorName": "Second Floor"
+  },
+  {
+    "id": "floor04_wing_MNA",
+    "wingInShort": "MNA",
+    "floorName": "Third Floor"
+  },
+  {
+    "id": "floor05_wing_MNA",
+    "wingInShort": "MNA",
+    "floorName": "Fourth Floor"
+  },
+  {
+    "id": "floor06_wing_MNA",
+    "wingInShort": "MNA",
+    "floorName": "Fifth Floor"
+  },
+  {
+    "id": "floor07_wing_MNA",
+    "wingInShort": "MNA",
+    "floorName": "Mezzanine Floor"
+  },
+  {
+    "id": "floor01_wing_OLQ",
+    "wingInShort": "OLQ",
+    "floorName": "Ground Floor"
+  },
+  {
+    "id": "floor02_wing_OLQ",
+    "wingInShort": "OLQ",
+    "floorName": "First Floor"
+  },
+  {
+    "id": "floor03_wing_OLQ",
+    "wingInShort": "OLQ",
+    "floorName": "Second Floor"
+  },
+  {
+    "id": "floor04_wing_OLQ",
+    "wingInShort": "OLQ",
+    "floorName": "Third Floor"
+  },
+  {
+    "id": "floor05_wing_OLQ",
+    "wingInShort": "OLQ",
+    "floorName": "Fourth Floor"
+  },
+  {
+    "id": "floor06_wing_OLQ",
+    "wingInShort": "OLQ",
+    "floorName": "Fifth Floor"
+  },
+  {
+    "id": "floor07_wing_OLQ",
+    "wingInShort": "OLQ",
+    "floorName": "Mezzanine Floor"
+  },
+  {
+    "id": "floor01_wing_RXP",
+    "wingInShort": "RXP",
+    "floorName": "Ground Floor"
+  },
+  {
+    "id": "floor02_wing_RXP",
+    "wingInShort": "RXP",
+    "floorName": "First Floor"
+  },
+  {
+    "id": "floor03_wing_RXP",
+    "wingInShort": "RXP",
+    "floorName": "Second Floor"
+  },
+  {
+    "id": "floor04_wing_RXP",
+    "wingInShort": "RXP",
+    "floorName": "Third Floor"
+  },
+  {
+    "id": "floor05_wing_RXP",
+    "wingInShort": "RXP",
+    "floorName": "Fourth Floor"
+  },
+  {
+    "id": "floor06_wing_RXP",
+    "wingInShort": "RXP",
+    "floorName": "Fifth Floor"
+  },
+  {
+    "id": "floor07_wing_RXP",
+    "wingInShort": "RXP",
+    "floorName": "Mezzanine Floor"
+  },
+  {
+    "id": "floor01_wing_UCN",
+    "wingInShort": "UCN",
+    "floorName": "Ground Floor"
+  },
+  {
+    "id": "floor02_wing_UCN",
+    "wingInShort": "UCN",
+    "floorName": "First Floor"
+  },
+  {
+    "id": "floor03_wing_UCN",
+    "wingInShort": "UCN",
+    "floorName": "Second Floor"
+  },
+  {
+    "id": "floor04_wing_UCN",
+    "wingInShort": "UCN",
+    "floorName": "Third Floor"
+  },
+  {
+    "id": "floor05_wing_UCN",
+    "wingInShort": "UCN",
+    "floorName": "Fourth Floor"
+  },
+  {
+    "id": "floor06_wing_UCN",
+    "wingInShort": "UCN",
+    "floorName": "Fifth Floor"
+  },
+  {
+    "id": "floor07_wing_UCN",
+    "wingInShort": "UCN",
+    "floorName": "Mezzanine Floor"
+  },
+  {
+    "id": "floor01_wing_URA",
+    "wingInShort": "URA",
+    "floorName": "Ground Floor"
+  },
+  {
+    "id": "floor02_wing_URA",
+    "wingInShort": "URA",
+    "floorName": "First Floor"
+  },
+  {
+    "id": "floor03_wing_URA",
+    "wingInShort": "URA",
+    "floorName": "Second Floor"
+  },
+  {
+    "id": "floor04_wing_URA",
+    "wingInShort": "URA",
+    "floorName": "Third Floor"
+  },
+  {
+    "id": "floor05_wing_URA",
+    "wingInShort": "URA",
+    "floorName": "Fourth Floor"
+  },
+  {
+    "id": "floor06_wing_URA",
+    "wingInShort": "URA",
+    "floorName": "Fifth Floor"
+  },
+  {
+    "id": "floor07_wing_URA",
+    "wingInShort": "URA",
+    "floorName": "Mezzanine Floor"
+  },
+  {
+    "id": "floor01_wing_WXQ",
+    "wingInShort": "WXQ",
+    "floorName": "Ground Floor"
+  },
+  {
+    "id": "floor02_wing_WXQ",
+    "wingInShort": "WXQ",
+    "floorName": "First Floor"
+  },
+  {
+    "id": "floor03_wing_WXQ",
+    "wingInShort": "WXQ",
+    "floorName": "Second Floor"
+  },
+  {
+    "id": "floor04_wing_WXQ",
+    "wingInShort": "WXQ",
+    "floorName": "Third Floor"
+  },
+  {
+    "id": "floor05_wing_WXQ",
+    "wingInShort": "WXQ",
+    "floorName": "Fourth Floor"
+  },
+  {
+    "id": "floor06_wing_WXQ",
+    "wingInShort": "WXQ",
+    "floorName": "Fifth Floor"
+  },
+  {
+    "id": "floor07_wing_WXQ",
+    "wingInShort": "WXQ",
+    "floorName": "Mezzanine Floor"
+  },
+  {
+    "id": "floor01_wing_WYC",
+    "wingInShort": "WYC",
+    "floorName": "Ground Floor"
+  },
+  {
+    "id": "floor02_wing_WYC",
+    "wingInShort": "WYC",
+    "floorName": "First Floor"
+  },
+  {
+    "id": "floor03_wing_WYC",
+    "wingInShort": "WYC",
+    "floorName": "Second Floor"
+  },
+  {
+    "id": "floor04_wing_WYC",
+    "wingInShort": "WYC",
+    "floorName": "Third Floor"
+  },
+  {
+    "id": "floor05_wing_WYC",
+    "wingInShort": "WYC",
+    "floorName": "Fourth Floor"
+  },
+  {
+    "id": "floor06_wing_WYC",
+    "wingInShort": "WYC",
+    "floorName": "Fifth Floor"
+  },
+  {
+    "id": "floor07_wing_WYC",
+    "wingInShort": "WYC",
+    "floorName": "Mezzanine Floor"
+  },
+  {
+    "id": "floor01_wing_XMW",
+    "wingInShort": "XMW",
+    "floorName": "Ground Floor"
+  },
+  {
+    "id": "floor02_wing_XMW",
+    "wingInShort": "XMW",
+    "floorName": "First Floor"
+  },
+  {
+    "id": "floor03_wing_XMW",
+    "wingInShort": "XMW",
+    "floorName": "Second Floor"
+  },
+  {
+    "id": "floor04_wing_XMW",
+    "wingInShort": "XMW",
+    "floorName": "Third Floor"
+  },
+  {
+    "id": "floor05_wing_XMW",
+    "wingInShort": "XMW",
+    "floorName": "Fourth Floor"
+  },
+  {
+    "id": "floor06_wing_XMW",
+    "wingInShort": "XMW",
+    "floorName": "Fifth Floor"
+  },
+  {
+    "id": "floor07_wing_XMW",
+    "wingInShort": "XMW",
+    "floorName": "Mezzanine Floor"
+  }
+]

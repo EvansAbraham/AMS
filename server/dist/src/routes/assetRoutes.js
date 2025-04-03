@@ -1,0 +1,14 @@
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+const express_1 = require("express");
+const AssetController_1 = require("../controllers/AssetController");
+const WingController_1 = require("../controllers/WingController");
+const FloorController_1 = require("../controllers/FloorController");
+const router = (0, express_1.Router)();
+router.get("/", AssetController_1.getAssets);
+router.post("/", AssetController_1.addAsset);
+router.get("/:id", AssetController_1.getAssetById);
+router.patch("/:id", AssetController_1.updateAsset);
+router.get("/wings", WingController_1.getWings);
+router.get("/floors/:wingId", FloorController_1.getFloors);
+exports.default = router;

@@ -1,0 +1,13 @@
+-- AlterTable
+ALTER TABLE "LAPADB" ALTER COLUMN "Risk Assessment WO No" SET DATA TYPE TEXT,
+ALTER COLUMN "Remedial WO No" SET DATA TYPE TEXT,
+ALTER COLUMN "System Contamination Score" SET DATA TYPE TEXT,
+ALTER COLUMN "Managed Mitigation Score" SET DATA TYPE TEXT,
+ALTER COLUMN "Overall Risk Score" SET DATA TYPE TEXT;
+
+-- AlterTable
+ALTER TABLE "RiskAssessment" ALTER COLUMN "Risk Assessment WO No" SET DATA TYPE TEXT,
+ALTER COLUMN "Remedial WO No" SET DATA TYPE TEXT,
+ALTER COLUMN "System Contamination Score" SET DATA TYPE TEXT,
+ALTER COLUMN "Managed Mitigation Score" SET DATA TYPE TEXT,
+ALTER COLUMN "Overall Risk Score" SET DATA TYPE TEXT;

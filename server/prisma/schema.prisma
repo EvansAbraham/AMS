@@ -1,0 +1,119 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model Wing {
+  wingInShort String   @id @map("Wing in Short")
+  floorName   Floors[]
+}
+
+model Floors {
+  id          String @id
+  floorName   String @map("Floor in Words")
+  wingInShort String @map("Wing in Short")
+  wing        Wing   @relation(fields: [wingInShort], references: [wingInShort])
+}
+
+model AssetRegister {
+  id                String  @id @default(cuid())
+  assetBarcode      String? @unique @map("Asset Barcode")
+  status            String? @map("Status")
+  assetType         String? @map("Asset Type")
+  primaryId         String? @map("Primary Identifier")
+  secondaryId       String? @map("Secondary Identifier")
+  wingInShort       String? @map("Wing in Short")
+  room              String? @map("Room")
+  floorInWords      String? @map("Floor in Words")
+  roomName          String? @map("Room Name")
+  notes             String? @map("Notes")
+  filterNeeded      String? @map("Filter Needed")
+  filterOn          String? @map("Filter On")
+  filterInstalledOn String? @map("Filter Installed on")
+  filterExpiryDate  String? @map("Filter Expiry Date")
+  augmenterCare     String? @map("Augmenter Care")
+}
+
+model LAPADB {
+  assetBarcode             String  @id @map("Asset Barcode")
+  status                   String? @map("Status")
+  wing                     String? @map("Wing")
+  location                 String? @map("Location")
+  riskAssessmentWoNo       String? @map("Risk Assessment WO No")
+  riskAssessmentWoDate     String? @map("Risk Assessment WO Date")
+  room                     String? @map("Room")
+  labName                  String? @map("Lab Name")
+  sample                   String? @map("Sample(Original or Resample)")
+  certificateNo            String? @map("Certificate No")
+  lApA                     String? @map("LA_PA")
+  bacteriaVariant          String? @map("Bacteria Variant")
+  resultPre                String? @map("Result(Pre)")
+  resultPost               String? @map("Result(Post)")
+  reportTemplate           String? @map("Report Temp")
+  sampleOn                 String? @map("Sample On")
+  nextSampleDate           String? @map("Next Sample Date")
+  notifiedOn               String? @map("Notified On")
+  temperatureHot           String? @map("Temperature(Hot)")
+  temperatureCold          String? @map("Temperature(Cold)")
+  remedialWoNo             String? @map("Remedial WO No")
+  remedialCompletedOn      String? @map("Remedial Completed On")
+  comments                 String? @map("Comments")
+  processNo                String? @map("Process No")
+  systemContamination      String? @map("System Contamination")
+  systemContaminationScore String? @map("System Contamination Score")
+  managedMitigation        String? @map("Managed Mitigation")
+  managedMitigationScore   String? @map("Managed Mitigation Score")
+  overallRiskScore         String? @map("Overall Risk Score")
+  assessedRisk             String? @map("Assessed Risk")
+  additionalComments       String? @map("Additional Comments")
+  agreedActions            String? @map("Agreed Actions")
+  raCompletedBy            String? @map("RA Completed By")
+  remedialActions          String? @map("Remedial Actions")
+  remedialCompletedBy      String? @map("Remedial Completed By")
+  raCompletedOn            String? @map("RA Completed On")
+  remedialDoneOn           String? @map("Remedial Done On")
+}
+
+model RiskAssessment {
+  assetBarcode             String  @id @map("Asset Barcode")
+  status                   String? @map("Status")
+  wing                     String? @map("Wing")
+  location                 String? @map("Location")
+  riskAssessmentWoNo       String? @map("Risk Assessment WO No")
+  riskAssessmentWoDate     String? @map("Risk Assessment WO Date")
+  room                     String? @map("Room")
+  labName                  String? @map("Lab Name")
+  sample                   String? @map("Sample(Original or Resample)")
+  certificateNo            String? @map("Certificate No")
+  lApA                     String? @map("LA_PA")
+  bacteriaVariant          String? @map("Bacteria Variant")
+  resultPre                String? @map("Result(Pre)")
+  resultPost               String? @map("Result(Post)")
+  reportTemplate           String? @map("Report Temp")
+  sampleOn                 String? @map("Sample On")
+  nextSampleDate           String? @map("Next Sample Date")
+  notifiedOn               String? @map("Notified On")
+  temperatureHot           String? @map("Temperature(Hot)")
+  temperatureCold          String? @map("Temperature(Cold)")
+  remedialWoNo             String? @map("Remedial WO No")
+  remedialCompletedOn      String? @map("Remedial Completed On")
+  comments                 String? @map("Comments")
+  processNo                String? @map("Process No")
+  systemContamination      String? @map("System Contamination")
+  systemContaminationScore String? @map("System Contamination Score")
+  managedMitigation        String? @map("Managed Mitigation")
+  managedMitigationScore   String? @map("Managed Mitigation Score")
+  overallRiskScore         String? @map("Overall Risk Score")
+  assessedRisk             String? @map("Assessed Risk")
+  additionalComments       String? @map("Additional Comments")
+  agreedActions            String? @map("Agreed Actions")
+  raCompletedBy            String? @map("RA Completed By")
+  remedialActions          String? @map("Remedial Actions")
+  remedialCompletedBy      String? @map("Remedial Completed By")
+  raCompletedOn            String? @map("RA Completed On")
+  remedialDoneOn           String? @map("Remedial Done On")
+}
