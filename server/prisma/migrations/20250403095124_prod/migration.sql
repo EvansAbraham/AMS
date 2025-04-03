@@ -31,7 +31,7 @@ CREATE TABLE "AssetRegister" (
     "Filter On" TEXT,
     "Filter Installed on" TEXT,
     "Filter Expiry Date" TEXT,
-    "augmented Care" TEXT,
+    "Augmented Care" TEXT,
 
     CONSTRAINT "AssetRegister_pkey" PRIMARY KEY ("id")
 );

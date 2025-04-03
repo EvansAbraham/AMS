@@ -2,526 +2,526 @@
   {
     "id": "floor01_wing_AIT",
     "wingInShort": "AIT",
-    "floorName": "Ground Floor"
+    "floorInWords": "Ground Floor"
   },
   {
     "id": "floor02_wing_AIT",
     "wingInShort": "AIT",
-    "floorName": "First Floor"
+    "floorInWords": "First Floor"
   },
   {
     "id": "floor03_wing_AIT",
     "wingInShort": "AIT",
-    "floorName": "Second Floor"
+    "floorInWords": "Second Floor"
   },
   {
     "id": "floor04_wing_AIT",
     "wingInShort": "AIT",
-    "floorName": "Third Floor"
+    "floorInWords": "Third Floor"
   },
   {
     "id": "floor05_wing_AIT",
     "wingInShort": "AIT",
-    "floorName": "Fourth Floor"
+    "floorInWords": "Fourth Floor"
   },
   {
     "id": "floor06_wing_AIT",
     "wingInShort": "AIT",
-    "floorName": "Fifth Floor"
+    "floorInWords": "Fifth Floor"
   },
   {
     "id": "floor07_wing_AIT",
     "wingInShort": "AIT",
-    "floorName": "Mezzanine Floor"
+    "floorInWords": "Mezzanine Floor"
   },
   {
     "id": "floor01_wing_ALT",
     "wingInShort": "ALT",
-    "floorName": "Ground Floor"
+    "floorInWords": "Ground Floor"
   },
   {
     "id": "floor02_wing_ALT",
     "wingInShort": "ALT",
-    "floorName": "First Floor"
+    "floorInWords": "First Floor"
   },
   {
     "id": "floor03_wing_ALT",
     "wingInShort": "ALT",
-    "floorName": "Second Floor"
+    "floorInWords": "Second Floor"
   },
   {
     "id": "floor04_wing_ALT",
     "wingInShort": "ALT",
-    "floorName": "Third Floor"
+    "floorInWords": "Third Floor"
   },
   {
     "id": "floor05_wing_ALT",
     "wingInShort": "ALT",
-    "floorName": "Fourth Floor"
+    "floorInWords": "Fourth Floor"
   },
   {
     "id": "floor06_wing_ALT",
     "wingInShort": "ALT",
-    "floorName": "Fifth Floor"
+    "floorInWords": "Fifth Floor"
   },
   {
     "id": "floor07_wing_ALT",
     "wingInShort": "ALT",
-    "floorName": "Mezzanine Floor"
+    "floorInWords": "Mezzanine Floor"
   },
   {
     "id": "floor01_wing_DDK",
     "wingInShort": "DDK",
-    "floorName": "Ground Floor"
+    "floorInWords": "Ground Floor"
   },
   {
     "id": "floor02_wing_DDK",
     "wingInShort": "DDK",
-    "floorName": "First Floor"
+    "floorInWords": "First Floor"
   },
   {
     "id": "floor03_wing_DDK",
     "wingInShort": "DDK",
-    "floorName": "Second Floor"
+    "floorInWords": "Second Floor"
   },
   {
     "id": "floor04_wing_DDK",
     "wingInShort": "DDK",
-    "floorName": "Third Floor"
+    "floorInWords": "Third Floor"
   },
   {
     "id": "floor05_wing_DDK",
     "wingInShort": "DDK",
-    "floorName": "Fourth Floor"
+    "floorInWords": "Fourth Floor"
   },
   {
     "id": "floor06_wing_DDK",
     "wingInShort": "DDK",
-    "floorName": "Fifth Floor"
+    "floorInWords": "Fifth Floor"
   },
   {
     "id": "floor07_wing_DDK",
     "wingInShort": "DDK",
-    "floorName": "Mezzanine Floor"
+    "floorInWords": "Mezzanine Floor"
   },
   {
     "id": "floor01_wing_DSE",
     "wingInShort": "DSE",
-    "floorName": "Ground Floor"
+    "floorInWords": "Ground Floor"
   },
   {
     "id": "floor02_wing_DSE",
     "wingInShort": "DSE",
-    "floorName": "First Floor"
+    "floorInWords": "First Floor"
   },
   {
     "id": "floor03_wing_DSE",
     "wingInShort": "DSE",
-    "floorName": "Second Floor"
+    "floorInWords": "Second Floor"
   },
   {
     "id": "floor04_wing_DSE",
     "wingInShort": "DSE",
-    "floorName": "Third Floor"
+    "floorInWords": "Third Floor"
   },
   {
     "id": "floor05_wing_DSE",
     "wingInShort": "DSE",
-    "floorName": "Fourth Floor"
+    "floorInWords": "Fourth Floor"
   },
   {
     "id": "floor06_wing_DSE",
     "wingInShort": "DSE",
-    "floorName": "Fifth Floor"
+    "floorInWords": "Fifth Floor"
   },
   {
     "id": "floor07_wing_DSE",
     "wingInShort": "DSE",
-    "floorName": "Mezzanine Floor"
+    "floorInWords": "Mezzanine Floor"
   },
   {
     "id": "floor01_wing_FJH",
     "wingInShort": "FJH",
-    "floorName": "Ground Floor"
+    "floorInWords": "Ground Floor"
   },
   {
     "id": "floor02_wing_FJH",
     "wingInShort": "FJH",
-    "floorName": "First Floor"
+    "floorInWords": "First Floor"
   },
   {
     "id": "floor03_wing_FJH",
     "wingInShort": "FJH",
-    "floorName": "Second Floor"
+    "floorInWords": "Second Floor"
   },
   {
     "id": "floor04_wing_FJH",
     "wingInShort": "FJH",
-    "floorName": "Third Floor"
+    "floorInWords": "Third Floor"
   },
   {
     "id": "floor05_wing_FJH",
     "wingInShort": "FJH",
-    "floorName": "Fourth Floor"
+    "floorInWords": "Fourth Floor"
   },
   {
     "id": "floor06_wing_FJH",
     "wingInShort": "FJH",
-    "floorName": "Fifth Floor"
+    "floorInWords": "Fifth Floor"
   },
   {
     "id": "floor07_wing_FJH",
     "wingInShort": "FJH",
-    "floorName": "Mezzanine Floor"
+    "floorInWords": "Mezzanine Floor"
   },
   {
     "id": "floor01_wing_GJH",
     "wingInShort": "GJH",
-    "floorName": "Ground Floor"
+    "floorInWords": "Ground Floor"
   },
   {
     "id": "floor02_wing_GJH",
     "wingInShort": "GJH",
-    "floorName": "First Floor"
+    "floorInWords": "First Floor"
   },
   {
     "id": "floor03_wing_GJH",
     "wingInShort": "GJH",
-    "floorName": "Second Floor"
+    "floorInWords": "Second Floor"
   },
   {
     "id": "floor04_wing_GJH",
     "wingInShort": "GJH",
-    "floorName": "Third Floor"
+    "floorInWords": "Third Floor"
   },
   {
     "id": "floor05_wing_GJH",
     "wingInShort": "GJH",
-    "floorName": "Fourth Floor"
+    "floorInWords": "Fourth Floor"
   },
   {
     "id": "floor06_wing_GJH",
     "wingInShort": "GJH",
-    "floorName": "Fifth Floor"
+    "floorInWords": "Fifth Floor"
   },
   {
     "id": "floor07_wing_GJH",
     "wingInShort": "GJH",
-    "floorName": "Mezzanine Floor"
+    "floorInWords": "Mezzanine Floor"
   },
   {
     "id": "floor01_wing_LPO",
     "wingInShort": "LPO",
-    "floorName": "Ground Floor"
+    "floorInWords": "Ground Floor"
   },
   {
     "id": "floor02_wing_LPO",
     "wingInShort": "LPO",
-    "floorName": "First Floor"
+    "floorInWords": "First Floor"
   },
   {
     "id": "floor03_wing_LPO",
     "wingInShort": "LPO",
-    "floorName": "Second Floor"
+    "floorInWords": "Second Floor"
   },
   {
     "id": "floor04_wing_LPO",
     "wingInShort": "LPO",
-    "floorName": "Third Floor"
+    "floorInWords": "Third Floor"
   },
   {
     "id": "floor05_wing_LPO",
     "wingInShort": "LPO",
-    "floorName": "Fourth Floor"
+    "floorInWords": "Fourth Floor"
   },
   {
     "id": "floor06_wing_LPO",
     "wingInShort": "LPO",
-    "floorName": "Fifth Floor"
+    "floorInWords": "Fifth Floor"
   },
   {
     "id": "floor07_wing_LPO",
     "wingInShort": "LPO",
-    "floorName": "Mezzanine Floor"
+    "floorInWords": "Mezzanine Floor"
   },
   {
     "id": "floor01_wing_MNA",
     "wingInShort": "MNA",
-    "floorName": "Ground Floor"
+    "floorInWords": "Ground Floor"
   },
   {
     "id": "floor02_wing_MNA",
     "wingInShort": "MNA",
-    "floorName": "First Floor"
+    "floorInWords": "First Floor"
   },
   {
     "id": "floor03_wing_MNA",
     "wingInShort": "MNA",
-    "floorName": "Second Floor"
+    "floorInWords": "Second Floor"
   },
   {
     "id": "floor04_wing_MNA",
     "wingInShort": "MNA",
-    "floorName": "Third Floor"
+    "floorInWords": "Third Floor"
   },
   {
     "id": "floor05_wing_MNA",
     "wingInShort": "MNA",
-    "floorName": "Fourth Floor"
+    "floorInWords": "Fourth Floor"
   },
   {
     "id": "floor06_wing_MNA",
     "wingInShort": "MNA",
-    "floorName": "Fifth Floor"
+    "floorInWords": "Fifth Floor"
   },
   {
     "id": "floor07_wing_MNA",
     "wingInShort": "MNA",
-    "floorName": "Mezzanine Floor"
+    "floorInWords": "Mezzanine Floor"
   },
   {
     "id": "floor01_wing_OLQ",
     "wingInShort": "OLQ",
-    "floorName": "Ground Floor"
+    "floorInWords": "Ground Floor"
   },
   {
     "id": "floor02_wing_OLQ",
     "wingInShort": "OLQ",
-    "floorName": "First Floor"
+    "floorInWords": "First Floor"
   },
   {
     "id": "floor03_wing_OLQ",
     "wingInShort": "OLQ",
-    "floorName": "Second Floor"
+    "floorInWords": "Second Floor"
   },
   {
     "id": "floor04_wing_OLQ",
     "wingInShort": "OLQ",
-    "floorName": "Third Floor"
+    "floorInWords": "Third Floor"
   },
   {
     "id": "floor05_wing_OLQ",
     "wingInShort": "OLQ",
-    "floorName": "Fourth Floor"
+    "floorInWords": "Fourth Floor"
   },
   {
     "id": "floor06_wing_OLQ",
     "wingInShort": "OLQ",
-    "floorName": "Fifth Floor"
+    "floorInWords": "Fifth Floor"
   },
   {
     "id": "floor07_wing_OLQ",
     "wingInShort": "OLQ",
-    "floorName": "Mezzanine Floor"
+    "floorInWords": "Mezzanine Floor"
   },
   {
     "id": "floor01_wing_RXP",
     "wingInShort": "RXP",
-    "floorName": "Ground Floor"
+    "floorInWords": "Ground Floor"
   },
   {
     "id": "floor02_wing_RXP",
     "wingInShort": "RXP",
-    "floorName": "First Floor"
+    "floorInWords": "First Floor"
   },
   {
     "id": "floor03_wing_RXP",
     "wingInShort": "RXP",
-    "floorName": "Second Floor"
+    "floorInWords": "Second Floor"
   },
   {
     "id": "floor04_wing_RXP",
     "wingInShort": "RXP",
-    "floorName": "Third Floor"
+    "floorInWords": "Third Floor"
   },
   {
     "id": "floor05_wing_RXP",
     "wingInShort": "RXP",
-    "floorName": "Fourth Floor"
+    "floorInWords": "Fourth Floor"
   },
   {
     "id": "floor06_wing_RXP",
     "wingInShort": "RXP",
-    "floorName": "Fifth Floor"
+    "floorInWords": "Fifth Floor"
   },
   {
     "id": "floor07_wing_RXP",
     "wingInShort": "RXP",
-    "floorName": "Mezzanine Floor"
+    "floorInWords": "Mezzanine Floor"
   },
   {
     "id": "floor01_wing_UCN",
     "wingInShort": "UCN",
-    "floorName": "Ground Floor"
+    "floorInWords": "Ground Floor"
   },
   {
     "id": "floor02_wing_UCN",
     "wingInShort": "UCN",
-    "floorName": "First Floor"
+    "floorInWords": "First Floor"
   },
   {
     "id": "floor03_wing_UCN",
     "wingInShort": "UCN",
-    "floorName": "Second Floor"
+    "floorInWords": "Second Floor"
   },
   {
     "id": "floor04_wing_UCN",
     "wingInShort": "UCN",
-    "floorName": "Third Floor"
+    "floorInWords": "Third Floor"
   },
   {
     "id": "floor05_wing_UCN",
     "wingInShort": "UCN",
-    "floorName": "Fourth Floor"
+    "floorInWords": "Fourth Floor"
   },
   {
     "id": "floor06_wing_UCN",
     "wingInShort": "UCN",
-    "floorName": "Fifth Floor"
+    "floorInWords": "Fifth Floor"
   },
   {
     "id": "floor07_wing_UCN",
     "wingInShort": "UCN",
-    "floorName": "Mezzanine Floor"
+    "floorInWords": "Mezzanine Floor"
   },
   {
     "id": "floor01_wing_URA",
     "wingInShort": "URA",
-    "floorName": "Ground Floor"
+    "floorInWords": "Ground Floor"
   },
   {
     "id": "floor02_wing_URA",
     "wingInShort": "URA",
-    "floorName": "First Floor"
+    "floorInWords": "First Floor"
   },
   {
     "id": "floor03_wing_URA",
     "wingInShort": "URA",
-    "floorName": "Second Floor"
+    "floorInWords": "Second Floor"
   },
   {
     "id": "floor04_wing_URA",
     "wingInShort": "URA",
-    "floorName": "Third Floor"
+    "floorInWords": "Third Floor"
   },
   {
     "id": "floor05_wing_URA",
     "wingInShort": "URA",
-    "floorName": "Fourth Floor"
+    "floorInWords": "Fourth Floor"
   },
   {
     "id": "floor06_wing_URA",
     "wingInShort": "URA",
-    "floorName": "Fifth Floor"
+    "floorInWords": "Fifth Floor"
   },
   {
     "id": "floor07_wing_URA",
     "wingInShort": "URA",
-    "floorName": "Mezzanine Floor"
+    "floorInWords": "Mezzanine Floor"
   },
   {
     "id": "floor01_wing_WXQ",
     "wingInShort": "WXQ",
-    "floorName": "Ground Floor"
+    "floorInWords": "Ground Floor"
   },
   {
     "id": "floor02_wing_WXQ",
     "wingInShort": "WXQ",
-    "floorName": "First Floor"
+    "floorInWords": "First Floor"
   },
   {
     "id": "floor03_wing_WXQ",
     "wingInShort": "WXQ",
-    "floorName": "Second Floor"
+    "floorInWords": "Second Floor"
   },
   {
     "id": "floor04_wing_WXQ",
     "wingInShort": "WXQ",
-    "floorName": "Third Floor"
+    "floorInWords": "Third Floor"
   },
   {
     "id": "floor05_wing_WXQ",
     "wingInShort": "WXQ",
-    "floorName": "Fourth Floor"
+    "floorInWords": "Fourth Floor"
   },
   {
     "id": "floor06_wing_WXQ",
     "wingInShort": "WXQ",
-    "floorName": "Fifth Floor"
+    "floorInWords": "Fifth Floor"
   },
   {
     "id": "floor07_wing_WXQ",
     "wingInShort": "WXQ",
-    "floorName": "Mezzanine Floor"
+    "floorInWords": "Mezzanine Floor"
   },
   {
     "id": "floor01_wing_WYC",
     "wingInShort": "WYC",
-    "floorName": "Ground Floor"
+    "floorInWords": "Ground Floor"
   },
   {
     "id": "floor02_wing_WYC",
     "wingInShort": "WYC",
-    "floorName": "First Floor"
+    "floorInWords": "First Floor"
   },
   {
     "id": "floor03_wing_WYC",
     "wingInShort": "WYC",
-    "floorName": "Second Floor"
+    "floorInWords": "Second Floor"
   },
   {
     "id": "floor04_wing_WYC",
     "wingInShort": "WYC",
-    "floorName": "Third Floor"
+    "floorInWords": "Third Floor"
   },
   {
     "id": "floor05_wing_WYC",
     "wingInShort": "WYC",
-    "floorName": "Fourth Floor"
+    "floorInWords": "Fourth Floor"
   },
   {
     "id": "floor06_wing_WYC",
     "wingInShort": "WYC",
-    "floorName": "Fifth Floor"
+    "floorInWords": "Fifth Floor"
   },
   {
     "id": "floor07_wing_WYC",
     "wingInShort": "WYC",
-    "floorName": "Mezzanine Floor"
+    "floorInWords": "Mezzanine Floor"
   },
   {
     "id": "floor01_wing_XMW",
     "wingInShort": "XMW",
-    "floorName": "Ground Floor"
+    "floorInWords": "Ground Floor"
   },
   {
     "id": "floor02_wing_XMW",
     "wingInShort": "XMW",
-    "floorName": "First Floor"
+    "floorInWords": "First Floor"
   },
   {
     "id": "floor03_wing_XMW",
     "wingInShort": "XMW",
-    "floorName": "Second Floor"
+    "floorInWords": "Second Floor"
   },
   {
     "id": "floor04_wing_XMW",
     "wingInShort": "XMW",
-    "floorName": "Third Floor"
+    "floorInWords": "Third Floor"
   },
   {
     "id": "floor05_wing_XMW",
     "wingInShort": "XMW",
-    "floorName": "Fourth Floor"
+    "floorInWords": "Fourth Floor"
   },
   {
     "id": "floor06_wing_XMW",
     "wingInShort": "XMW",
-    "floorName": "Fifth Floor"
+    "floorInWords": "Fifth Floor"
   },
   {
     "id": "floor07_wing_XMW",
     "wingInShort": "XMW",
-    "floorName": "Mezzanine Floor"
+    "floorInWords": "Mezzanine Floor"
   }
 ]

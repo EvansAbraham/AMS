@@ -4,7 +4,7 @@ import LapaRight from './_components/lapaRight'
 
 const LaPa = () => {
   return (
-    <div>
+    <div className='flex h-screen w-full overflow-hidden'>
       <LapaLeft/>
       <LapaRight/>
     </div>
