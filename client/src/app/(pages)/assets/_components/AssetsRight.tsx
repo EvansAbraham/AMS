@@ -10,7 +10,6 @@ import { DatePicker } from '@/components/datepicker'
 import {
   Table,
   TableBody,
-  TableCaption,
   TableCell,
   TableFooter,
   TableHead,
@@ -216,13 +215,12 @@ const AssetsRight = () => {
               <Input id='attachments' type='file' className='bg-white my-2 w-sm'/>
             </div>
             <div className='py-2'>
-              <Label htmlFor='riskAssessment' className='text-red-500'>Risk Assessment WO</Label>
+              <Label htmlFor='riskAssessment' className='text-[#071487]'>Risk Assessment WO</Label>
               <Accordion type='single' collapsible className="bg-white h-9 rounded-sm border border-gray-200 shadow-xs p-1.5 text-sm w-sm my-2">
                 <AccordionItem value='table'>
                   <AccordionTrigger>Click to view the Logs</AccordionTrigger>
                   <AccordionContent>
                   <Table>
-                    <TableCaption>A list of your recent invoices.</TableCaption>
                     <TableHeader>
                       <TableRow>
                         <TableHead className="w-[100px]">Invoice</TableHead>
