@@ -16,8 +16,7 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table"
-import { Accordion, AccordionContent } from '@/components/ui/accordion'
-import { AccordionItem, AccordionTrigger } from '@radix-ui/react-accordion'
+import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '@/components/ui/accordion'
 import { Textarea } from '@/components/ui/textarea'
 
 

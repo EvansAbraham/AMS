@@ -75,9 +75,10 @@ function main() {
                             roomName: data["Room Name"],
                             notes: data["Notes"],
                             filterNeeded: data["Filter Needed"],
-                            filterOn: data["Filters On"],
+                            filterOn: data["Filter On"],
                             filterInstalledOn: data["Filter Installed on"],
                             filterExpiryDate: data["Filter Expiry Date"],
+                            floorInWords: data["Floor in Words"],
                             augmentedCare: data["Augmented Care"],
                         }
                     });
@@ -111,6 +112,10 @@ function main() {
                             processNo: data["Process No"],
                             systemContamination: data["System Contamination"],
                             systemContaminationScore: data["System Contamination Score"],
+                            patientSusceptibility: data["Patient Susceptibility"],
+                            patientSusceptibilityScore: data["Patient Susceptibility Score"],
+                            systemOperationalConditions: data["System Operational Conditions"],
+                            systemOperationalConditionsScore: data["System Operational Conditions Score"],
                             managedMitigation: data["Managed Mitigation"],
                             managedMitigationScore: data["Managed Mitigation Score"],
                             overallRiskScore: data["Overall Risk Score"],
