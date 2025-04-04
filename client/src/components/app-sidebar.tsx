@@ -1,4 +1,4 @@
-import { Clipboard, FileSearch, LayoutDashboard } from "lucide-react"
+import { Clipboard, FileSearch, LayoutDashboard } from "lucide-react";
 
 import {
   Sidebar,
@@ -10,10 +10,9 @@ import {
   SidebarMenuButton,
   SidebarMenuItem,
   SidebarTrigger,
-} from "@/components/ui/sidebar"
-import { Separator } from "./ui/separator"
+} from "@/components/ui/sidebar";
+import { Separator } from "./ui/separator";
 
-// Menu items.
 const items = [
   {
     title: "Dashboard",
@@ -30,7 +29,7 @@ const items = [
     url: "/lapa",
     icon: FileSearch,
   },
-]
+];
 
 export function AppSidebar() {
   return (
@@ -39,10 +38,12 @@ export function AppSidebar() {
         <SidebarGroup>
           <SidebarGroupContent>
             <div className="flex">
-              <SidebarTrigger className="mx-0.5"/>
-              <SidebarGroupLabel className="text-sm font-bold">Assetra</SidebarGroupLabel>
+              <SidebarTrigger className="mx-0.5" />
+              <SidebarGroupLabel className="text-sm font-bold">
+                Assetra
+              </SidebarGroupLabel>
             </div>
-            <Separator className=""/>
+            <Separator className="" />
             <SidebarMenu>
               {items.map((item) => (
                 <SidebarMenuItem key={item.title}>
@@ -59,5 +60,5 @@ export function AppSidebar() {
         </SidebarGroup>
       </SidebarContent>
     </Sidebar>
-  )
+  );
 }

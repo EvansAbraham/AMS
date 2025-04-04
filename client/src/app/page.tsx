@@ -1,7 +1,5 @@
-import DashBoard from "./(pages)/dashboard/page";
+import { redirect } from "next/navigation";
 
 export default function Home() {
-  return (
-    <DashBoard/>
-  );
+  redirect("/auth");
 }
