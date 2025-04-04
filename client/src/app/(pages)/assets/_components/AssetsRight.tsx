@@ -215,9 +215,9 @@ const AssetsRight = () => {
             </div>
             <div className='py-2'>
               <Label htmlFor='riskAssessment' className='text-[#071487]'>Risk Assessment WO</Label>
-              <Accordion type='single' collapsible className="bg-white h-9 rounded-sm border border-gray-200 shadow-xs p-1.5 text-sm w-sm my-2">
+              <Accordion type='single' collapsible className="bg-white h-9 rounded-sm border border-gray-200 shadow-xs my-2 text-sm w-sm">
                 <AccordionItem value='table'>
-                  <AccordionTrigger>Click to view the Logs</AccordionTrigger>
+                  <AccordionTrigger className='p-2'>Click to view the Logs</AccordionTrigger>
                   <AccordionContent>
                   <Table>
                     <TableHeader>
