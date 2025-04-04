@@ -1,0 +1,527 @@
+[
+  {
+    "id": "floor01_wing_AIT",
+    "wingInShort": "AIT",
+    "floorInWords": "Ground Floor"
+  },
+  {
+    "id": "floor02_wing_AIT",
+    "wingInShort": "AIT",
+    "floorInWords": "First Floor"
+  },
+  {
+    "id": "floor03_wing_AIT",
+    "wingInShort": "AIT",
+    "floorInWords": "Second Floor"
+  },
+  {
+    "id": "floor04_wing_AIT",
+    "wingInShort": "AIT",
+    "floorInWords": "Third Floor"
+  },
+  {
+    "id": "floor05_wing_AIT",
+    "wingInShort": "AIT",
+    "floorInWords": "Fourth Floor"
+  },
+  {
+    "id": "floor06_wing_AIT",
+    "wingInShort": "AIT",
+    "floorInWords": "Fifth Floor"
+  },
+  {
+    "id": "floor07_wing_AIT",
+    "wingInShort": "AIT",
+    "floorInWords": "Mezzanine Floor"
+  },
+  {
+    "id": "floor01_wing_ALT",
+    "wingInShort": "ALT",
+    "floorInWords": "Ground Floor"
+  },
+  {
+    "id": "floor02_wing_ALT",
+    "wingInShort": "ALT",
+    "floorInWords": "First Floor"
+  },
+  {
+    "id": "floor03_wing_ALT",
+    "wingInShort": "ALT",
+    "floorInWords": "Second Floor"
+  },
+  {
+    "id": "floor04_wing_ALT",
+    "wingInShort": "ALT",
+    "floorInWords": "Third Floor"
+  },
+  {
+    "id": "floor05_wing_ALT",
+    "wingInShort": "ALT",
+    "floorInWords": "Fourth Floor"
+  },
+  {
+    "id": "floor06_wing_ALT",
+    "wingInShort": "ALT",
+    "floorInWords": "Fifth Floor"
+  },
+  {
+    "id": "floor07_wing_ALT",
+    "wingInShort": "ALT",
+    "floorInWords": "Mezzanine Floor"
+  },
+  {
+    "id": "floor01_wing_DDK",
+    "wingInShort": "DDK",
+    "floorInWords": "Ground Floor"
+  },
+  {
+    "id": "floor02_wing_DDK",
+    "wingInShort": "DDK",
+    "floorInWords": "First Floor"
+  },
+  {
+    "id": "floor03_wing_DDK",
+    "wingInShort": "DDK",
+    "floorInWords": "Second Floor"
+  },
+  {
+    "id": "floor04_wing_DDK",
+    "wingInShort": "DDK",
+    "floorInWords": "Third Floor"
+  },
+  {
+    "id": "floor05_wing_DDK",
+    "wingInShort": "DDK",
+    "floorInWords": "Fourth Floor"
+  },
+  {
+    "id": "floor06_wing_DDK",
+    "wingInShort": "DDK",
+    "floorInWords": "Fifth Floor"
+  },
+  {
+    "id": "floor07_wing_DDK",
+    "wingInShort": "DDK",
+    "floorInWords": "Mezzanine Floor"
+  },
+  {
+    "id": "floor01_wing_DSE",
+    "wingInShort": "DSE",
+    "floorInWords": "Ground Floor"
+  },
+  {
+    "id": "floor02_wing_DSE",
+    "wingInShort": "DSE",
+    "floorInWords": "First Floor"
+  },
+  {
+    "id": "floor03_wing_DSE",
+    "wingInShort": "DSE",
+    "floorInWords": "Second Floor"
+  },
+  {
+    "id": "floor04_wing_DSE",
+    "wingInShort": "DSE",
+    "floorInWords": "Third Floor"
+  },
+  {
+    "id": "floor05_wing_DSE",
+    "wingInShort": "DSE",
+    "floorInWords": "Fourth Floor"
+  },
+  {
+    "id": "floor06_wing_DSE",
+    "wingInShort": "DSE",
+    "floorInWords": "Fifth Floor"
+  },
+  {
+    "id": "floor07_wing_DSE",
+    "wingInShort": "DSE",
+    "floorInWords": "Mezzanine Floor"
+  },
+  {
+    "id": "floor01_wing_FJH",
+    "wingInShort": "FJH",
+    "floorInWords": "Ground Floor"
+  },
+  {
+    "id": "floor02_wing_FJH",
+    "wingInShort": "FJH",
+    "floorInWords": "First Floor"
+  },
+  {
+    "id": "floor03_wing_FJH",
+    "wingInShort": "FJH",
+    "floorInWords": "Second Floor"
+  },
+  {
+    "id": "floor04_wing_FJH",
+    "wingInShort": "FJH",
+    "floorInWords": "Third Floor"
+  },
+  {
+    "id": "floor05_wing_FJH",
+    "wingInShort": "FJH",
+    "floorInWords": "Fourth Floor"
+  },
+  {
+    "id": "floor06_wing_FJH",
+    "wingInShort": "FJH",
+    "floorInWords": "Fifth Floor"
+  },
+  {
+    "id": "floor07_wing_FJH",
+    "wingInShort": "FJH",
+    "floorInWords": "Mezzanine Floor"
+  },
+  {
+    "id": "floor01_wing_GJH",
+    "wingInShort": "GJH",
+    "floorInWords": "Ground Floor"
+  },
+  {
+    "id": "floor02_wing_GJH",
+    "wingInShort": "GJH",
+    "floorInWords": "First Floor"
+  },
+  {
+    "id": "floor03_wing_GJH",
+    "wingInShort": "GJH",
+    "floorInWords": "Second Floor"
+  },
+  {
+    "id": "floor04_wing_GJH",
+    "wingInShort": "GJH",
+    "floorInWords": "Third Floor"
+  },
+  {
+    "id": "floor05_wing_GJH",
+    "wingInShort": "GJH",
+    "floorInWords": "Fourth Floor"
+  },
+  {
+    "id": "floor06_wing_GJH",
+    "wingInShort": "GJH",
+    "floorInWords": "Fifth Floor"
+  },
+  {
+    "id": "floor07_wing_GJH",
+    "wingInShort": "GJH",
+    "floorInWords": "Mezzanine Floor"
+  },
+  {
+    "id": "floor01_wing_LPO",
+    "wingInShort": "LPO",
+    "floorInWords": "Ground Floor"
+  },
+  {
+    "id": "floor02_wing_LPO",
+    "wingInShort": "LPO",
+    "floorInWords": "First Floor"
+  },
+  {
+    "id": "floor03_wing_LPO",
+    "wingInShort": "LPO",
+    "floorInWords": "Second Floor"
+  },
+  {
+    "id": "floor04_wing_LPO",
+    "wingInShort": "LPO",
+    "floorInWords": "Third Floor"
+  },
+  {
+    "id": "floor05_wing_LPO",
+    "wingInShort": "LPO",
+    "floorInWords": "Fourth Floor"
+  },
+  {
+    "id": "floor06_wing_LPO",
+    "wingInShort": "LPO",
+    "floorInWords": "Fifth Floor"
+  },
+  {
+    "id": "floor07_wing_LPO",
+    "wingInShort": "LPO",
+    "floorInWords": "Mezzanine Floor"
+  },
+  {
+    "id": "floor01_wing_MNA",
+    "wingInShort": "MNA",
+    "floorInWords": "Ground Floor"
+  },
+  {
+    "id": "floor02_wing_MNA",
+    "wingInShort": "MNA",
+    "floorInWords": "First Floor"
+  },
+  {
+    "id": "floor03_wing_MNA",
+    "wingInShort": "MNA",
+    "floorInWords": "Second Floor"
+  },
+  {
+    "id": "floor04_wing_MNA",
+    "wingInShort": "MNA",
+    "floorInWords": "Third Floor"
+  },
+  {
+    "id": "floor05_wing_MNA",
+    "wingInShort": "MNA",
+    "floorInWords": "Fourth Floor"
+  },
+  {
+    "id": "floor06_wing_MNA",
+    "wingInShort": "MNA",
+    "floorInWords": "Fifth Floor"
+  },
+  {
+    "id": "floor07_wing_MNA",
+    "wingInShort": "MNA",
+    "floorInWords": "Mezzanine Floor"
+  },
+  {
+    "id": "floor01_wing_OLQ",
+    "wingInShort": "OLQ",
+    "floorInWords": "Ground Floor"
+  },
+  {
+    "id": "floor02_wing_OLQ",
+    "wingInShort": "OLQ",
+    "floorInWords": "First Floor"
+  },
+  {
+    "id": "floor03_wing_OLQ",
+    "wingInShort": "OLQ",
+    "floorInWords": "Second Floor"
+  },
+  {
+    "id": "floor04_wing_OLQ",
+    "wingInShort": "OLQ",
+    "floorInWords": "Third Floor"
+  },
+  {
+    "id": "floor05_wing_OLQ",
+    "wingInShort": "OLQ",
+    "floorInWords": "Fourth Floor"
+  },
+  {
+    "id": "floor06_wing_OLQ",
+    "wingInShort": "OLQ",
+    "floorInWords": "Fifth Floor"
+  },
+  {
+    "id": "floor07_wing_OLQ",
+    "wingInShort": "OLQ",
+    "floorInWords": "Mezzanine Floor"
+  },
+  {
+    "id": "floor01_wing_RXP",
+    "wingInShort": "RXP",
+    "floorInWords": "Ground Floor"
+  },
+  {
+    "id": "floor02_wing_RXP",
+    "wingInShort": "RXP",
+    "floorInWords": "First Floor"
+  },
+  {
+    "id": "floor03_wing_RXP",
+    "wingInShort": "RXP",
+    "floorInWords": "Second Floor"
+  },
+  {
+    "id": "floor04_wing_RXP",
+    "wingInShort": "RXP",
+    "floorInWords": "Third Floor"
+  },
+  {
+    "id": "floor05_wing_RXP",
+    "wingInShort": "RXP",
+    "floorInWords": "Fourth Floor"
+  },
+  {
+    "id": "floor06_wing_RXP",
+    "wingInShort": "RXP",
+    "floorInWords": "Fifth Floor"
+  },
+  {
+    "id": "floor07_wing_RXP",
+    "wingInShort": "RXP",
+    "floorInWords": "Mezzanine Floor"
+  },
+  {
+    "id": "floor01_wing_UCN",
+    "wingInShort": "UCN",
+    "floorInWords": "Ground Floor"
+  },
+  {
+    "id": "floor02_wing_UCN",
+    "wingInShort": "UCN",
+    "floorInWords": "First Floor"
+  },
+  {
+    "id": "floor03_wing_UCN",
+    "wingInShort": "UCN",
+    "floorInWords": "Second Floor"
+  },
+  {
+    "id": "floor04_wing_UCN",
+    "wingInShort": "UCN",
+    "floorInWords": "Third Floor"
+  },
+  {
+    "id": "floor05_wing_UCN",
+    "wingInShort": "UCN",
+    "floorInWords": "Fourth Floor"
+  },
+  {
+    "id": "floor06_wing_UCN",
+    "wingInShort": "UCN",
+    "floorInWords": "Fifth Floor"
+  },
+  {
+    "id": "floor07_wing_UCN",
+    "wingInShort": "UCN",
+    "floorInWords": "Mezzanine Floor"
+  },
+  {
+    "id": "floor01_wing_URA",
+    "wingInShort": "URA",
+    "floorInWords": "Ground Floor"
+  },
+  {
+    "id": "floor02_wing_URA",
+    "wingInShort": "URA",
+    "floorInWords": "First Floor"
+  },
+  {
+    "id": "floor03_wing_URA",
+    "wingInShort": "URA",
+    "floorInWords": "Second Floor"
+  },
+  {
+    "id": "floor04_wing_URA",
+    "wingInShort": "URA",
+    "floorInWords": "Third Floor"
+  },
+  {
+    "id": "floor05_wing_URA",
+    "wingInShort": "URA",
+    "floorInWords": "Fourth Floor"
+  },
+  {
+    "id": "floor06_wing_URA",
+    "wingInShort": "URA",
+    "floorInWords": "Fifth Floor"
+  },
+  {
+    "id": "floor07_wing_URA",
+    "wingInShort": "URA",
+    "floorInWords": "Mezzanine Floor"
+  },
+  {
+    "id": "floor01_wing_WXQ",
+    "wingInShort": "WXQ",
+    "floorInWords": "Ground Floor"
+  },
+  {
+    "id": "floor02_wing_WXQ",
+    "wingInShort": "WXQ",
+    "floorInWords": "First Floor"
+  },
+  {
+    "id": "floor03_wing_WXQ",
+    "wingInShort": "WXQ",
+    "floorInWords": "Second Floor"
+  },
+  {
+    "id": "floor04_wing_WXQ",
+    "wingInShort": "WXQ",
+    "floorInWords": "Third Floor"
+  },
+  {
+    "id": "floor05_wing_WXQ",
+    "wingInShort": "WXQ",
+    "floorInWords": "Fourth Floor"
+  },
+  {
+    "id": "floor06_wing_WXQ",
+    "wingInShort": "WXQ",
+    "floorInWords": "Fifth Floor"
+  },
+  {
+    "id": "floor07_wing_WXQ",
+    "wingInShort": "WXQ",
+    "floorInWords": "Mezzanine Floor"
+  },
+  {
+    "id": "floor01_wing_WYC",
+    "wingInShort": "WYC",
+    "floorInWords": "Ground Floor"
+  },
+  {
+    "id": "floor02_wing_WYC",
+    "wingInShort": "WYC",
+    "floorInWords": "First Floor"
+  },
+  {
+    "id": "floor03_wing_WYC",
+    "wingInShort": "WYC",
+    "floorInWords": "Second Floor"
+  },
+  {
+    "id": "floor04_wing_WYC",
+    "wingInShort": "WYC",
+    "floorInWords": "Third Floor"
+  },
+  {
+    "id": "floor05_wing_WYC",
+    "wingInShort": "WYC",
+    "floorInWords": "Fourth Floor"
+  },
+  {
+    "id": "floor06_wing_WYC",
+    "wingInShort": "WYC",
+    "floorInWords": "Fifth Floor"
+  },
+  {
+    "id": "floor07_wing_WYC",
+    "wingInShort": "WYC",
+    "floorInWords": "Mezzanine Floor"
+  },
+  {
+    "id": "floor01_wing_XMW",
+    "wingInShort": "XMW",
+    "floorInWords": "Ground Floor"
+  },
+  {
+    "id": "floor02_wing_XMW",
+    "wingInShort": "XMW",
+    "floorInWords": "First Floor"
+  },
+  {
+    "id": "floor03_wing_XMW",
+    "wingInShort": "XMW",
+    "floorInWords": "Second Floor"
+  },
+  {
+    "id": "floor04_wing_XMW",
+    "wingInShort": "XMW",
+    "floorInWords": "Third Floor"
+  },
+  {
+    "id": "floor05_wing_XMW",
+    "wingInShort": "XMW",
+    "floorInWords": "Fourth Floor"
+  },
+  {
+    "id": "floor06_wing_XMW",
+    "wingInShort": "XMW",
+    "floorInWords": "Fifth Floor"
+  },
+  {
+    "id": "floor07_wing_XMW",
+    "wingInShort": "XMW",
+    "floorInWords": "Mezzanine Floor"
+  }
+]
