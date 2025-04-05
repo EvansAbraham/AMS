@@ -2,7 +2,14 @@ import React from "react";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Button } from "@/components/ui/button";
-import { Select } from "./select";
+import {
+  Select,
+  SelectValue,
+  SelectContent,
+  SelectGroup,
+  SelectItem,
+  SelectTrigger,
+} from "@/components/ui/select";
 import { DatePicker } from "@/components/datepicker";
 
 const AssetForm = () => {
@@ -67,16 +74,30 @@ const AssetForm = () => {
         <div className="space-y-2">
           <Label htmlFor="filtersOn">Filters On</Label>
           <Select>
-            <option value="no">No</option>
-            <option value="yes">Yes</option>
+            <SelectTrigger className="w-full bg-white">
+              <SelectValue placeholder="Select option" />
+            </SelectTrigger>
+            <SelectContent>
+              <SelectGroup>
+                <SelectItem value="no">No</SelectItem>
+                <SelectItem value="yes">Yes</SelectItem>
+              </SelectGroup>
+            </SelectContent>
           </Select>
         </div>
 
         <div className="space-y-2">
           <Label htmlFor="filtersNeeded">Filters Needed</Label>
           <Select>
-            <option value="no">No</option>
-            <option value="yes">Yes</option>
+            <SelectTrigger className="w-full bg-white">
+              <SelectValue placeholder="Select option" />
+            </SelectTrigger>
+            <SelectContent>
+              <SelectGroup>
+                <SelectItem value="no">No</SelectItem>
+                <SelectItem value="yes">Yes</SelectItem>
+              </SelectGroup>
+            </SelectContent>
           </Select>
         </div>
 
@@ -116,12 +137,13 @@ const AssetForm = () => {
         </div>
       </div>
 
-     
       <div className="col-span-1 md:col-span-2 flex justify-end gap-4 mt-6">
         <Button type="button" variant="outline">
           Cancel
         </Button>
-        <Button type="submit" className="bg-[#071487]">Save Asset</Button>
+        <Button type="submit" className="bg-[#071487]">
+          Save Asset
+        </Button>
       </div>
     </form>
   );
