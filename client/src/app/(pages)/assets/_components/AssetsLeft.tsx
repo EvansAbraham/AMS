@@ -1,16 +1,22 @@
+// AssetsLeft.tsx
+import React, { useState } from 'react';
 import { Card, CardContent, CardTitle } from '@/components/ui/card';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { ScrollArea } from '@/components/ui/scroll-area';
 import { ArrowRight, ChevronRight, PlusCircle } from 'lucide-react';
-import React, { useState } from 'react';
 import { Button } from '@/components/ui/button';
 import AssetForm from './AssetForm';
 import Modal from './modal';
-// import Link from 'next/link'; uncomment it when the button is being uncommented
+import { useGetAssetsQuery } from '@/app/state/api'; // Adjust the path if needed
+import { useAsset } from '@/context/AssetContext'; // Import the context
+import { Asset } from '@/app/state/api';
 
-const AssetsLeft = () => {
+const AssetsLeft: React.FC = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const { data: assets = [], isLoading, error } = useGetAssetsQuery();
+  const { setSelectedAsset } = useAsset(); // Use the context
+
   return (
     <div className="parent h-screen w-full md:w-1/3 lg:w-1/4 bg-white shadow-md flex flex-col px-4 flex-shrink-0">
       {/* Title */}
@@ -21,27 +27,21 @@ const AssetsLeft = () => {
       </div>
 
       {/* Search Bar */}
-      <div className="p-1">
-        <Input 
-          placeholder="Search..."
-        />
+      <div className="p-1 mb-2">
+        <Input placeholder="Search..." />
       </div>
 
       {/* Menu Bar */}
-      <div className="flex justify-between items-center p-1 my-2">
-        <Button variant={"custom_outline"} onClick={() => setIsModalOpen(true)}>
+      <div className="flex justify-between items-center p-1 mb-2">
+        <Button variant="custom_outline" onClick={() => setIsModalOpen(true)}>
           <PlusCircle size={20} />
           New
         </Button>
-
-        <p className="text-gray-500 text-sm text-center">Count: 1</p>
-
-        <Button variant="custom">
-          POU Exp
-        </Button>
+        <p className="text-gray-500 text-sm text-center">Count: {assets.length}</p>
+        <Button variant="custom">POU Exp</Button>
       </div>
 
-      {/* Scroll Area */}
+      {/* Modal */}
       <Modal
         isOpen={isModalOpen}
         onClose={() => setIsModalOpen(false)}
@@ -49,26 +49,31 @@ const AssetsLeft = () => {
       >
         <AssetForm />
       </Modal>
-      <ScrollArea className='w-full flex-grow'>
-        <Card className='p-5'>
-          <div className='flex justify-between items-center'>
-            <CardTitle className='text-[#071487]'>Asset Barcode</CardTitle>
-            <div className='flex space-x-2'>
-              <Button variant={"card_button"} className='h-6 w-6 hidden md:flex items-center justify-center'><ArrowRight/></Button>
-              {/* Commented the below button just to ignore the error when integrating
-               it can be uncommented also uncomment the import too
-               <Button variant={"card_button"} className='h-6 w-6 flex md:hidden items-center justify-center'>
-                <Link href={`/assets/${asset.id}`}>
-                  <ArrowRight/>
-                </Link>
-              </Button> */}
-            </div>
-          </div>
-          <CardContent className='p-0'>
-            <p>Wing Name: Room name</p>
-            <p>Lapa Detections</p>
-          </CardContent>
-        </Card>
+
+      {/* Scroll Area with Asset Cards */}
+      <ScrollArea className="w-full flex-grow overflow-y-auto space-y-2">
+        {isLoading && <p className="text-sm text-gray-500">Loading...</p>}
+        {error && <p className="text-sm text-red-500">Failed to load assets.</p>}
+
+        {!isLoading &&
+          assets.map((asset: Asset) => (
+            <Card key={asset.id} className="p-5 mb-4" onClick={() => setSelectedAsset(asset)}>
+              <div className="flex justify-between items-center mb-2">
+                <CardTitle className="text-[#071487]">
+                  {asset.assetBarcode || 'No Barcode'}
+                </CardTitle>
+                <div className="flex space-x-2">
+                  <Button variant="card_button" className="h-6 w-6 hidden md:flex items-center justify-center">
+                    <ArrowRight />
+                  </Button>
+                </div>
+              </div>
+              <CardContent className="p-0">
+                <p>Wing: {asset.wingInShort || 'N/A'} | Room: {asset.roomName || 'N/A'}</p>
+                <p>Status: {asset.status || 'N/A'}</p>
+              </CardContent>
+            </Card>
+          ))}
       </ScrollArea>
     </div>
   );

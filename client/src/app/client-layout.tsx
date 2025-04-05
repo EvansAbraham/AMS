@@ -5,6 +5,9 @@ import { AuthProvider } from "@/context/AuthContext";
 import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
 import { SessionProvider } from "next-auth/react";
+import { Provider } from 'react-redux';
+import { store } from '@/app/store'; // Adjust this import path based on where you create your store
+import { AssetProvider } from "@/context/AssetContext";
 
 export default function ClientLayout({
   children,
@@ -32,17 +35,22 @@ export default function ClientLayout({
   }
 
   return (
-    <SessionProvider>
-      <AuthProvider>
-        {isAuthPage ? (
-          children
-        ) : (
-          <SidebarProvider>
-            <AppSidebar />
-            {children}
-          </SidebarProvider>
-        )}
-      </AuthProvider>
-    </SessionProvider>
+    <Provider store={store}>
+
+      <SessionProvider>
+        <AuthProvider>
+          <AssetProvider>
+            {isAuthPage ? (
+              children
+            ) : (
+              <SidebarProvider>
+                <AppSidebar />
+                {children}
+              </SidebarProvider>
+            )}
+          </AssetProvider>
+        </AuthProvider>
+      </SessionProvider>
+    </Provider>
   );
 }
