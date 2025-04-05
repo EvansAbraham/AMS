@@ -3,6 +3,7 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Button } from "@/components/ui/button";
 import { Select } from "./select";
+import { DatePicker } from "@/components/datepicker";
 
 const AssetForm = () => {
   return (
@@ -19,9 +20,9 @@ const AssetForm = () => {
           <Input id="status" placeholder="Active" />
         </div>
 
-        <div className="space-y-2">
+        <div className="space-y-2 mb-6">
           <Label htmlFor="filterInstalled">Filter Installed on</Label>
-          <Input id="filterInstalled" type="date" />
+          <DatePicker id="filterInstalled" />
         </div>
 
         <div className="space-y-2">
@@ -79,9 +80,9 @@ const AssetForm = () => {
           </Select>
         </div>
 
-        <div className="space-y-2">
+        <div className="space-y-2 mb-6">
           <Label htmlFor="filtersExpiry">Filters Expiry Date</Label>
-          <Input id="filtersExpiry" type="date" />
+          <DatePicker id="filtersExpiry" />
         </div>
 
         <div className="space-y-2">
@@ -115,12 +116,12 @@ const AssetForm = () => {
         </div>
       </div>
 
-      {/* Form Actions */}
+     
       <div className="col-span-1 md:col-span-2 flex justify-end gap-4 mt-6">
         <Button type="button" variant="outline">
           Cancel
         </Button>
-        <Button type="submit">Save Asset</Button>
+        <Button type="submit" className="bg-[#071487]">Save Asset</Button>
       </div>
     </form>
   );
