@@ -1,12 +1,12 @@
 import { NextResponse } from "next/server";
 import type { NextRequest } from "next/server";
 
-export function middleware(request: NextRequest) {
+export async function middleware(request: NextRequest) {
   const path = request.nextUrl.pathname;
 
   const isAuthenticated =
     request.cookies.has("isAuthenticated") ||
-    request.headers.get("x-is-authenticated") === "true";
+    (await request.headers.get("x-is-authenticated")) === "true";
 
   const publicRoutes = ["/auth"];
   const isPublicRoute = publicRoutes.includes(path);
