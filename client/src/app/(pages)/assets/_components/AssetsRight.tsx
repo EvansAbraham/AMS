@@ -84,6 +84,10 @@ const AssetsRight = () => {
         <Label htmlFor='changeOrInstall' className='text-[#071487]'>Change / Install</Label>
         <Switch id='changeOrInstall'/>
       </div>
+      {/* Things to add */}
+      {/* Once the toggle is enabled reason should be asked and then the date fields should be enabled
+       */}
+       {/* Change filter date */}
       {/* Fields and Content */}
       <ScrollArea className='h-[calc(100vh-100px)] w-full overflow-hidden'>
         <div className='grid grid-cols-1 md:grid-cols-2 gap-x-4'>
