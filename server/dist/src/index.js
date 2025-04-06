@@ -30,7 +30,7 @@ app.use("/wings", wingRoutes_1.default); // WINGS ROUTES
 app.use("/floors", floorRoutes_1.default); // FLOORS ROUTES
 app.use("/lapa", lapaRoutes_1.default); //LAPA ROUTES
 // SERVER
-const port = process.env.PORT || 3000;
-app.listen(port, () => {
+const port = Number(process.env.PORT) || 3000;
+app.listen(port, "0.0.0.0", () => {
     console.log(`Server is running on port ${port}`);
 });
