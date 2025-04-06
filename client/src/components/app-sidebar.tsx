@@ -1,4 +1,4 @@
-import { Clipboard, FileSearch, LayoutDashboard } from "lucide-react";
+import { Clipboard, FileSearch, LayoutDashboard, Upload, UserPlus } from "lucide-react";
 
 import {
   Sidebar,
@@ -28,6 +28,16 @@ const items = [
     title: "LA/PA",
     url: "/lapa",
     icon: FileSearch,
+  },
+  {
+    title: "Add Engineer",
+    url: "/addengineer",
+    icon: UserPlus,
+  },
+  {
+    title: "Upload Master Data",
+    url: "/uploaddata",
+    icon: Upload,
   },
 ];
 
