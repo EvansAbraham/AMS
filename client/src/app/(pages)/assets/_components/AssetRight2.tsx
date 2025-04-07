@@ -167,12 +167,14 @@ const AssetsRight2: React.FC = () => {
                     </div>
                     <div className='py-2'>
                         <Label htmlFor='FilterInstallationDate'>Filter Installation Date</Label>
-                        <DatePicker
+                        <div className="w-sm">
+                          <DatePicker
                             id='FilterInstallationDate'
                             selected={selectedAsset.filterInstalledOn ? new Date(selectedAsset.filterInstalledOn) : undefined}
                             onChange={(date) => setSelectedAsset({ ...selectedAsset, filterInstalledOn: date?.toISOString() })}
                             disabled={!isEditing}
-                        />
+                            className="[&>div>button]:w-full [&>div>button]:bg-white [&>div>button]:h-10 [&>div>button]:my-2"
+                          />
                     </div>
                     <div className='py-2'>
                         <Label htmlFor='FilterExpireDate' className='text-[#071487]'>Filter Expiry Date</Label>
