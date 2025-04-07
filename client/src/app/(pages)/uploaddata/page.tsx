@@ -2,7 +2,7 @@ import React from 'react'
 
 const UploadData = () => {
   return (
-    <div>UploadData</div>
+    <div className="flex pt-16 md:pt-0" >UploadData</div>
   )
 }
 
