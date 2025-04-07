@@ -96,7 +96,12 @@ const LapaRight = () => {
             <Label htmlFor="riskAssessmentWODate">
               Risk Assessment WO Date
             </Label>
-            <DatePicker id="riskAssessmentWODate" />
+           <div className="w-sm">
+              <DatePicker 
+                id="riskAssessmentWODate"
+                className="[&>div>button]:w-full [&>div>button]:bg-white [&>div>button]:h-10 [&>div>button]:my-2"
+              />
+            </div>
           </div>
           <div className="py-2">
             <Label htmlFor="sample">Sample ( Original or Resample )</Label>
@@ -124,7 +129,12 @@ const LapaRight = () => {
           </div>
           <div className="py-2">
             <Label htmlFor="remedialCompletedOn">Remedial Completed On</Label>
-            <DatePicker id="remedialCompletedOn" />
+            <div className="w-sm">
+              <DatePicker 
+                id="remedialCompletedOn"
+                className="[&>div>button]:w-full [&>div>button]:bg-white [&>div>button]:h-10 [&>div>button]:my-2"
+              />
+            </div>
           </div>
           <div className="py-2">
             <Label htmlFor="resultPost">Result (Post)</Label>
