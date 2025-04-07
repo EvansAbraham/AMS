@@ -35,7 +35,12 @@ const LapaForm = () => {
 
         <div className="space-y-2">
           <Label htmlFor="riskAssessmentWODate">Risk Assessment WO Date</Label>
-          <DatePicker id="riskAssessmentWODate" />
+          <div className="relative w-full">
+            <DatePicker 
+              id="riskAssessmentWODate"
+              className="[&>div>button]:w-full [&>div>button]:justify-between [&>div>button]:bg-white [&>div>button]:h-10"
+            />
+          </div>
         </div>
 
         <div className="space-y-2">
@@ -45,7 +50,12 @@ const LapaForm = () => {
 
         <div className="space-y-2">
           <Label htmlFor="remedialCompletedOn">Remedial Completed On</Label>
-          <DatePicker id="remedialCompletedOn" />
+          <div className="relative w-full">
+            <DatePicker 
+              id="remedialCompletedOn"
+              className="[&>div>button]:w-full [&>div>button]:justify-between [&>div>button]:bg-white [&>div>button]:h-10"
+            />
+          </div>
         </div>
 
         <div className="space-y-2">
@@ -55,7 +65,12 @@ const LapaForm = () => {
 
         <div className="space-y-2">
           <Label htmlFor="sampleOn">Sample On</Label>
-          <DatePicker id="sampleOn" />
+          <div className="relative w-full">
+            <DatePicker 
+              id="sampleOn"
+              className="[&>div>button]:w-full [&>div>button]:justify-between [&>div>button]:bg-white [&>div>button]:h-10"
+            />
+          </div>
         </div>
 
         <div className="space-y-2">
@@ -132,7 +147,12 @@ const LapaForm = () => {
 
         <div className="space-y-2">
           <Label htmlFor="receivedOn">Received On</Label>
-          <DatePicker id="receivedOn" />
+          <div className="relative w-full">
+            <DatePicker 
+              id="receivedOn"
+              className="[&>div>button]:w-full [&>div>button]:justify-between [&>div>button]:bg-white [&>div>button]:h-10"
+            />
+          </div>
         </div>
 
         <div className="space-y-2">
