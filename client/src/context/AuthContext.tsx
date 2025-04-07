@@ -3,11 +3,9 @@ import React, {
   createContext,
   useContext,
   useState,
-  useEffect,
   ReactNode,
 } from "react";
 import { useRouter } from "next/navigation";
-import { Session } from "next-auth";
 import { signIn, signOut, useSession } from "next-auth/react";
 
 interface AuthContextType {

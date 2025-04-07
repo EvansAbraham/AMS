@@ -6,20 +6,18 @@ import { useAuth } from "@/context/AuthContext";
 import { useRouter } from "next/navigation";
 
 const DashBoard = () => {
-  const { isAuthenticated, status } = useAuth();
+  const { isAuthenticated } = useAuth();
   const router = useRouter();
 
   useEffect(() => {
     // If not authenticated, redirect to auth page
-    if (status !== "loading" && !isAuthenticated) {
+    if (!isAuthenticated) {
       router.push("/auth");
     }
   }, [isAuthenticated, router, status]);
 
   // Show loading state or protected content
-  if (status === "loading") {
-    return <div>Loading...</div>;
-  }
+  // Add a loading state if needed, or remove this block if unnecessary
 
   if (!isAuthenticated) {
     return null; // Will redirect via useEffect

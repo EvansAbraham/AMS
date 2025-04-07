@@ -21,6 +21,7 @@ export const getAssets = async (req: Request, res: Response): Promise<void> => {
                     ]
                 }
             });
+
             res.json(assets);
             return;
         }
@@ -33,43 +34,43 @@ export const getAssets = async (req: Request, res: Response): Promise<void> => {
 
 export const addAsset = async (req: Request, res: Response): Promise<void> => {
     try {
-        const { 
-            id, 
-            assetBarcode, 
-            status, 
-            assetType, 
-            primaryId, 
-            secondaryId, 
-            wingInShort, 
-            room, 
+        const {
+            id,
+            assetBarcode,
+            status,
+            assetType,
+            primaryId,
+            secondaryId,
+            wingInShort,
+            room,
             floorInWords,
-            roomName, 
-            notes, 
-            filterNeeded, 
-            filterOn, 
-            filterInstalledOn, 
-            filterExpiryDate, 
+            roomName,
+            notes,
+            filterNeeded,
+            filterOn,
+            filterInstalledOn,
+            filterExpiryDate,
             augmentedCare
         } = req.body;
 
         const asset = await prisma.assetRegister.create({
-            data: { 
-                id, 
-            assetBarcode, 
-            status, 
-            assetType, 
-            primaryId, 
-            secondaryId, 
-            wingInShort, 
-            room, 
-            floorInWords,
-            roomName, 
-            notes, 
-            filterNeeded, 
-            filterOn, 
-            filterInstalledOn, 
-            filterExpiryDate, 
-            augmentedCare
+            data: {
+                id,
+                assetBarcode,
+                status,
+                assetType,
+                primaryId,
+                secondaryId,
+                wingInShort,
+                room,
+                floorInWords,
+                roomName,
+                notes,
+                filterNeeded,
+                filterOn,
+                filterInstalledOn,
+                filterExpiryDate,
+                augmentedCare
             }
         });
 

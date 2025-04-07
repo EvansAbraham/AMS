@@ -12,7 +12,6 @@ import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '@/
 import { Textarea } from '@/components/ui/textarea';
 import { useAsset } from '@/context/AssetContext'; // Import the context
 import { useUpdateAssetMutation } from '@/app/state/api'; // Import the mutation hook
-import { Asset } from '@/app/state/api';
 import {
     Table,
     TableBody,
