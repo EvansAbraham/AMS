@@ -5,7 +5,7 @@ import AssetsLeft from './_components/AssetsLeft'
 const Assets = () => {
 
   return (
-    <div className='flex h-screen w-full overflow-hidden'>
+    <div className='flex h-screen w-full overflow-hidden pt-15 md:pt-0'>
       <AssetsLeft />
       {/* <AssetsRight /> */}
       <AssetsRight2 />
