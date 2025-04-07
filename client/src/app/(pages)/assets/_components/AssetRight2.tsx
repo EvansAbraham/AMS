@@ -25,48 +25,48 @@ import {
 
 const invoices = [
     {
-      invoice: "INV001",
-      paymentStatus: "Paid",
-      totalAmount: "$250.00",
-      paymentMethod: "Credit Card",
+        invoice: "INV001",
+        paymentStatus: "Paid",
+        totalAmount: "$250.00",
+        paymentMethod: "Credit Card",
     },
     {
-      invoice: "INV002",
-      paymentStatus: "Pending",
-      totalAmount: "$150.00",
-      paymentMethod: "PayPal",
+        invoice: "INV002",
+        paymentStatus: "Pending",
+        totalAmount: "$150.00",
+        paymentMethod: "PayPal",
     },
     {
-      invoice: "INV003",
-      paymentStatus: "Unpaid",
-      totalAmount: "$350.00",
-      paymentMethod: "Bank Transfer",
+        invoice: "INV003",
+        paymentStatus: "Unpaid",
+        totalAmount: "$350.00",
+        paymentMethod: "Bank Transfer",
     },
     {
-      invoice: "INV004",
-      paymentStatus: "Paid",
-      totalAmount: "$450.00",
-      paymentMethod: "Credit Card",
+        invoice: "INV004",
+        paymentStatus: "Paid",
+        totalAmount: "$450.00",
+        paymentMethod: "Credit Card",
     },
     {
-      invoice: "INV005",
-      paymentStatus: "Paid",
-      totalAmount: "$550.00",
-      paymentMethod: "PayPal",
+        invoice: "INV005",
+        paymentStatus: "Paid",
+        totalAmount: "$550.00",
+        paymentMethod: "PayPal",
     },
     {
-      invoice: "INV006",
-      paymentStatus: "Pending",
-      totalAmount: "$200.00",
-      paymentMethod: "Bank Transfer",
+        invoice: "INV006",
+        paymentStatus: "Pending",
+        totalAmount: "$200.00",
+        paymentMethod: "Bank Transfer",
     },
     {
-      invoice: "INV007",
-      paymentStatus: "Unpaid",
-      totalAmount: "$300.00",
-      paymentMethod: "Credit Card",
+        invoice: "INV007",
+        paymentStatus: "Unpaid",
+        totalAmount: "$300.00",
+        paymentMethod: "Credit Card",
     },
-  ]
+]
 
 const AssetsRight2: React.FC = () => {
     const { selectedAsset, setSelectedAsset } = useAsset(); // Use the context
@@ -168,13 +168,15 @@ const AssetsRight2: React.FC = () => {
                     <div className='py-2'>
                         <Label htmlFor='FilterInstallationDate'>Filter Installation Date</Label>
                         <div className="w-sm">
-                          <DatePicker
-                            id='FilterInstallationDate'
-                            selected={selectedAsset.filterInstalledOn ? new Date(selectedAsset.filterInstalledOn) : undefined}
-                            onChange={(date) => setSelectedAsset({ ...selectedAsset, filterInstalledOn: date?.toISOString() })}
-                            disabled={!isEditing}
-                            className="[&>div>button]:w-full [&>div>button]:bg-white [&>div>button]:h-10 [&>div>button]:my-2"
-                          />
+                            <div className="[&>div>button]:w-full [&>div>button]:bg-white [&>div>button]:h-10 [&>div>button]:my-2">
+                                <DatePicker
+                                    id='FilterInstallationDate'
+                                    selected={selectedAsset.filterInstalledOn ? new Date(selectedAsset.filterInstalledOn) : undefined}
+                                    onChange={(date) => setSelectedAsset({ ...selectedAsset, filterInstalledOn: date?.toISOString() })}
+                                    disabled={!isEditing}
+                                />
+                            </div>
+                        </div>
                     </div>
                     <div className='py-2'>
                         <Label htmlFor='FilterExpireDate' className='text-[#071487]'>Filter Expiry Date</Label>

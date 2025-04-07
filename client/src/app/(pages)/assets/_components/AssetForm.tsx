@@ -29,11 +29,10 @@ const AssetForm = () => {
 
         <div className="space-y-2 mb-6">
           <Label htmlFor="filterInstalled">Filter Installed on</Label>
-         <div className="relative w-full">
-            <DatePicker 
-              id="filterInstalled"
-              className="[&>div>button]:w-full [&>div>button]:justify-between [&>div>button]:bg-white [&>div>button]:h-10"
-            />
+          <div className="relative w-full">
+            <div className="relative w-full [&>div>button]:w-full [&>div>button]:justify-start [&>div>button]:bg-white [&>div>button]:h-10">
+              <DatePicker id="filterInstalled" />
+            </div>
           </div>
         </div>
 

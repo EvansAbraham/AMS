@@ -36,10 +36,9 @@ const LapaForm = () => {
         <div className="space-y-2">
           <Label htmlFor="riskAssessmentWODate">Risk Assessment WO Date</Label>
           <div className="relative w-full">
-            <DatePicker 
-              id="riskAssessmentWODate"
-              className="[&>div>button]:w-full [&>div>button]:justify-between [&>div>button]:bg-white [&>div>button]:h-10"
-            />
+            <div className="[&>div>button]:w-full [&>div>button]:justify-start [&>div>button]:bg-white [&>div>button]:h-10">
+              <DatePicker id="riskAssessmentWODate" />
+            </div>
           </div>
         </div>
 
@@ -51,10 +50,9 @@ const LapaForm = () => {
         <div className="space-y-2">
           <Label htmlFor="remedialCompletedOn">Remedial Completed On</Label>
           <div className="relative w-full">
-            <DatePicker 
-              id="remedialCompletedOn"
-              className="[&>div>button]:w-full [&>div>button]:justify-between [&>div>button]:bg-white [&>div>button]:h-10"
-            />
+            <div className="[&>div>button]:w-full [&>div>button]:justify-start [&>div>button]:bg-white [&>div>button]:h-10">
+              <DatePicker id="remedialCompletedOn" />
+            </div>
           </div>
         </div>
 
@@ -66,10 +64,9 @@ const LapaForm = () => {
         <div className="space-y-2">
           <Label htmlFor="sampleOn">Sample On</Label>
           <div className="relative w-full">
-            <DatePicker 
-              id="sampleOn"
-              className="[&>div>button]:w-full [&>div>button]:justify-between [&>div>button]:bg-white [&>div>button]:h-10"
-            />
+            <div className="[&>div>button]:w-full [&>div>button]:justify-start [&>div>button]:bg-white [&>div>button]:h-10">
+              <DatePicker id="sampleOn" />
+            </div>
           </div>
         </div>
 
@@ -85,10 +82,10 @@ const LapaForm = () => {
 
         <div className="space-y-2">
           <Label htmlFor="filterDetails">Filter Details</Label>
-          <Textarea 
-            id="filterDetails" 
-            placeholder="Filter Details" 
-            className="bg-white h-24" 
+          <Textarea
+            id="filterDetails"
+            placeholder="Filter Details"
+            className="bg-white h-24"
           />
         </div>
       </div>
@@ -148,10 +145,9 @@ const LapaForm = () => {
         <div className="space-y-2">
           <Label htmlFor="receivedOn">Received On</Label>
           <div className="relative w-full">
-            <DatePicker 
-              id="receivedOn"
-              className="[&>div>button]:w-full [&>div>button]:justify-between [&>div>button]:bg-white [&>div>button]:h-10"
-            />
+            <div className="[&>div>button]:w-full [&>div>button]:justify-start [&>div>button]:bg-white [&>div>button]:h-10">
+              <DatePicker id="receivedOn" />
+            </div>
           </div>
         </div>
 
@@ -162,10 +158,10 @@ const LapaForm = () => {
 
         <div className="space-y-2">
           <Label htmlFor="comments">Comments</Label>
-          <Textarea 
-            id="comments" 
-            placeholder="Comments" 
-            className="bg-white h-24" 
+          <Textarea
+            id="comments"
+            placeholder="Comments"
+            className="bg-white h-24"
           />
         </div>
       </div>
