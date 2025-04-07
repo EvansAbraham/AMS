@@ -24,7 +24,7 @@ const DashBoard = () => {
   }
 
   return (
-    <div className="flex">
+    <div className="flex pt-16 md:pt-0">
       <DashboardLeft />
       <DashboardRight />
     </div>
