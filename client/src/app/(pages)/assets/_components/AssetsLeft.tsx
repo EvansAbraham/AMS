@@ -11,11 +11,21 @@ import Modal from './modal';
 import { useGetAssetsQuery } from '@/app/state/api'; // Adjust the path if needed
 import { useAsset } from '@/context/AssetContext'; // Import the context
 import { Asset } from '@/app/state/api';
+import { useRouter } from 'next/navigation';
 
 const AssetsLeft: React.FC = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const { data: assets = [], isLoading, error } = useGetAssetsQuery();
   const { setSelectedAsset } = useAsset(); // Use the context
+  const router = useRouter();
+
+  const handleCardClick = (asset: Asset) => {
+    setSelectedAsset(asset);
+    
+    if (window.innerWidth < 640) {
+      router.push(`/assets/${asset.id}`);
+    }
+  };
 
   return (
     <div className="parent h-screen w-full md:w-1/3 lg:w-1/4 bg-white shadow-md flex flex-col px-4 flex-shrink-0">
@@ -57,7 +67,11 @@ const AssetsLeft: React.FC = () => {
 
         {!isLoading &&
           assets.map((asset: Asset) => (
-            <Card key={asset.id} className="p-5 mb-4" onClick={() => setSelectedAsset(asset)}>
+            <Card 
+              key={asset.id} 
+              className="p-5 mb-4 cursor-pointer hover:bg-gray-50" 
+              onClick={() => handleCardClick(asset)}
+            >
               <div className="flex justify-between items-center mb-2">
                 <CardTitle className="text-[#071487]">
                   {asset.assetBarcode || 'No Barcode'}
