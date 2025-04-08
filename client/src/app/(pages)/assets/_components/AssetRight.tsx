@@ -68,7 +68,7 @@ const invoices = [
     },
 ]
 
-const AssetsRight2: React.FC = () => {
+const AssetsRight: React.FC = () => {
     const { selectedAsset, setSelectedAsset } = useAsset(); // Use the context
     const [isEditing, setIsEditing] = useState(false);
     const [updateAsset] = useUpdateAssetMutation(); // Use the mutation hook
@@ -369,4 +369,4 @@ const AssetsRight2: React.FC = () => {
     );
 };
 
-export default AssetsRight2;
+export default AssetsRight;
