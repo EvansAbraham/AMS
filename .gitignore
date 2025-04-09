@@ -10,3 +10,8 @@ server/dist/
 client/.env/
 server/.env/
 client/.next/
+server/.next/
+client/node_modules/
+server/node_modules/
+client/yarn.lock
+server/yarn.lock

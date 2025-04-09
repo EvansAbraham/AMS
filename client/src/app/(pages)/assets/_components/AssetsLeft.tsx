@@ -11,6 +11,7 @@ import Modal from './modal';
 import { useGetAssetsQuery } from '@/app/state/api'; // Adjust the path if needed
 import { useAsset } from '@/context/AssetContext'; // Import the context
 import { Asset } from '@/app/state/api';
+import { useRouter } from 'next/navigation';
 
 
 
@@ -19,6 +20,15 @@ const AssetsLeft: React.FC = () => {
   const [searchQuery, setSearchQuery] = useState(''); // State for search query
   const { data: assets = [], isLoading, error } = useGetAssetsQuery();
   const { setSelectedAsset } = useAsset(); // Use the context
+  const router = useRouter();
+
+  const handleCardClick = (asset: Asset) => {
+    setSelectedAsset(asset);
+
+    if (window.innerWidth < 640) {
+      router.push(`/assets/${asset.id}`);
+    }
+  };
 
   // Filter assets based on the search query
   const filteredAssets = assets.filter((asset: Asset) =>
