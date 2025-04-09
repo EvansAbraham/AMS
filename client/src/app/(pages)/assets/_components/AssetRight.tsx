@@ -230,23 +230,35 @@ const AssetsRight: React.FC = () => {
                     </div>
                     <div className='py-2'>
                         <Label htmlFor='wingInShort'>Wing in Short</Label>
-                        <Input
-                            id='wingInShort'
-                            value={selectedAsset.wingInShort || ''}
-                            onChange={(e) => setSelectedAsset({ ...selectedAsset, wingInShort: e.target.value })}
-                            className='bg-white my-2 w-sm'
-                            readOnly={!isEditing}
-                        />
+                        <Select>
+                            <SelectTrigger className="w-sm bg-white my-2">
+                                <SelectValue placeholder={selectedAsset.wingInShort || 'Choose an Option'} />
+                            </SelectTrigger>
+                            <SelectContent>
+                                <SelectGroup>
+                                    <SelectItem value="north">Wing A</SelectItem>
+                                    <SelectItem value="south">Wing B</SelectItem>
+                                    <SelectItem value="east">Wing C</SelectItem>
+                                    <SelectItem value="west">Wing D</SelectItem>
+                                </SelectGroup>
+                            </SelectContent>
+                        </Select>
                     </div>
                     <div className='py-2'>
                         <Label htmlFor='Floor'>Floor</Label>
-                        <Input
-                            id='Floor'
-                            value={selectedAsset.floorInWords || ''}
-                            onChange={(e) => setSelectedAsset({ ...selectedAsset, floorInWords: e.target.value })}
-                            className='bg-white my-2 w-sm'
-                            readOnly={!isEditing}
-                        />
+                        <Select>
+                            <SelectTrigger className="w-sm bg-white my-2">
+                                <SelectValue placeholder={selectedAsset.floorInWords || 'Choose an Option'} />
+                            </SelectTrigger>
+                            <SelectContent>
+                                <SelectGroup>
+                                    <SelectItem value="north">Floor 1</SelectItem>
+                                    <SelectItem value="south">Floor 2</SelectItem>
+                                    <SelectItem value="east">Floor 3</SelectItem>
+                                    <SelectItem value="west">Floor 4</SelectItem>
+                                </SelectGroup>
+                            </SelectContent>
+                        </Select>
                     </div>
                     <div className='py-2'>
                         <Label htmlFor='room'>Room</Label>

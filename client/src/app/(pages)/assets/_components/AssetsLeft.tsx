@@ -12,10 +12,20 @@ import { useGetAssetsQuery } from '@/app/state/api'; // Adjust the path if neede
 import { useAsset } from '@/context/AssetContext'; // Import the context
 import { Asset } from '@/app/state/api';
 
+
+
 const AssetsLeft: React.FC = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [searchQuery, setSearchQuery] = useState(''); // State for search query
   const { data: assets = [], isLoading, error } = useGetAssetsQuery();
   const { setSelectedAsset } = useAsset(); // Use the context
+
+  // Filter assets based on the search query
+  const filteredAssets = assets.filter((asset: Asset) =>
+    asset.assetBarcode?.toLowerCase().includes(searchQuery.toLowerCase()) ||
+    asset.roomName?.toLowerCase().includes(searchQuery.toLowerCase()) ||
+    asset.wingInShort?.toLowerCase().includes(searchQuery.toLowerCase())
+  );
 
   return (
     <div className="parent h-screen w-full md:w-1/3 lg:w-1/4 bg-white shadow-md flex flex-col px-4 flex-shrink-0">
@@ -28,7 +38,11 @@ const AssetsLeft: React.FC = () => {
 
       {/* Search Bar */}
       <div className="p-1 mb-2">
-        <Input placeholder="Search..." />
+        <Input
+          placeholder="Search..."
+          value={searchQuery}
+          onChange={(e) => setSearchQuery(e.target.value)} // Update search query
+        />
       </div>
 
       {/* Menu Bar */}
@@ -37,7 +51,7 @@ const AssetsLeft: React.FC = () => {
           <PlusCircle size={20} />
           New
         </Button>
-        <p className="text-gray-500 text-sm text-center">Count: {assets.length}</p>
+        <p className="text-gray-500 text-sm text-center">Count: {filteredAssets.length}</p>
         <Button variant="custom">POU Exp</Button>
       </div>
 
@@ -56,7 +70,7 @@ const AssetsLeft: React.FC = () => {
         {error && <p className="text-sm text-red-500">Failed to load assets.</p>}
 
         {!isLoading &&
-          assets.map((asset: Asset) => (
+          filteredAssets.map((asset: Asset) => (
             <Card key={asset.id} className="p-5 mb-4" onClick={() => setSelectedAsset(asset)}>
               <div className="flex justify-between items-center mb-2">
                 <CardTitle className="text-[#071487]">
