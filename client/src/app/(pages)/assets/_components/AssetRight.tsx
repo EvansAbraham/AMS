@@ -1,5 +1,5 @@
 // AssetsRight2.tsx
-import React, { useState } from 'react';
+import React, { useEffect, useMemo, useState } from 'react';
 import { Button } from '@/components/ui/button';
 import { Label } from '@/components/ui/label';
 import { Switch } from '@/components/ui/switch';
@@ -11,7 +11,7 @@ import { DatePicker } from '@/components/datepicker';
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '@/components/ui/accordion';
 import { Textarea } from '@/components/ui/textarea';
 import { useAsset } from '@/context/AssetContext'; // Import the context
-import { useUpdateAssetMutation } from '@/app/state/api'; // Import the mutation hook
+import { Asset, useUpdateAssetMutation } from '@/app/state/api'; // Import the mutation hook
 import {
     Table,
     TableBody,
@@ -69,9 +69,32 @@ const invoices = [
 ]
 
 const AssetsRight: React.FC = () => {
-    const { selectedAsset, setSelectedAsset } = useAsset(); // Use the context
+    const { selectedAsset, setSelectedAsset, uniqueWings, allAssets } = useAsset();
     const [isEditing, setIsEditing] = useState(false);
-    const [updateAsset] = useUpdateAssetMutation(); // Use the mutation hook
+    const [updateAsset] = useUpdateAssetMutation();
+    const [localWing, setLocalWing] = useState<string | null>(null);
+
+    // Initialize localWing when selectedAsset changes
+    useEffect(() => {
+        if (selectedAsset?.wingInShort) {
+            setLocalWing(selectedAsset.wingInShort);
+        }
+    }, [selectedAsset?.id]); // Only run when asset ID changes, not on every selectedAsset change
+
+    // Get unique floors based on the currently selected wing
+    const uniqueFloors = useMemo(() => {
+        const floors = new Set<string>();
+
+        allAssets.forEach((asset: Asset) => {
+            if (asset.wingInShort === (localWing || selectedAsset?.wingInShort)) {
+                if (asset.floorInWords) {
+                    floors.add(asset.floorInWords);
+                }
+            }
+        });
+
+        return Array.from(floors);
+    }, [allAssets, localWing, selectedAsset?.wingInShort]);
 
     const handleEdit = () => {
         setIsEditing(true);
@@ -85,6 +108,35 @@ const AssetsRight: React.FC = () => {
             } catch (error) {
                 console.error('Failed to update asset:', error);
             }
+        }
+    };
+
+    const handleWingChange = (wing: string) => {
+        setLocalWing(wing);
+        if (selectedAsset && isEditing) {
+            setSelectedAsset({
+                ...selectedAsset,
+                wingInShort: wing,
+                floorInWords: '' // Reset floor when wing changes
+            });
+        }
+    };
+
+    const handleFloorChange = (floor: string) => {
+        if (selectedAsset && isEditing) {
+            setSelectedAsset({
+                ...selectedAsset,
+                floorInWords: floor
+            });
+        }
+    };
+
+    const handleAssetBarcodeChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+        if (selectedAsset && isEditing) {
+            setSelectedAsset({
+                ...selectedAsset,
+                assetBarcode: e.target.value
+            });
         }
     };
 
@@ -230,36 +282,48 @@ const AssetsRight: React.FC = () => {
                     </div>
                     <div className='py-2'>
                         <Label htmlFor='wingInShort'>Wing in Short</Label>
-                        <Select>
+                        <Select
+                            disabled={!isEditing}
+                            value={selectedAsset.wingInShort || ''}
+                            onValueChange={handleWingChange}
+                        >
                             <SelectTrigger className="w-sm bg-white my-2">
-                                <SelectValue placeholder={selectedAsset.wingInShort || 'Choose an Option'} />
+                                <SelectValue placeholder="Choose an Option" />
                             </SelectTrigger>
                             <SelectContent>
                                 <SelectGroup>
-                                    <SelectItem value="north">Wing A</SelectItem>
-                                    <SelectItem value="south">Wing B</SelectItem>
-                                    <SelectItem value="east">Wing C</SelectItem>
-                                    <SelectItem value="west">Wing D</SelectItem>
+                                    {uniqueWings.map((wing: string) => (
+                                        <SelectItem key={wing} value={wing}>
+                                            {wing}
+                                        </SelectItem>
+                                    ))}
                                 </SelectGroup>
                             </SelectContent>
                         </Select>
                     </div>
+
                     <div className='py-2'>
                         <Label htmlFor='Floor'>Floor</Label>
-                        <Select>
+                        <Select
+                            disabled={!isEditing || !selectedAsset.wingInShort}
+                            value={selectedAsset.floorInWords || ''}
+                            onValueChange={handleFloorChange}
+                        >
                             <SelectTrigger className="w-sm bg-white my-2">
-                                <SelectValue placeholder={selectedAsset.floorInWords || 'Choose an Option'} />
+                                <SelectValue placeholder="Choose an Option" />
                             </SelectTrigger>
                             <SelectContent>
                                 <SelectGroup>
-                                    <SelectItem value="north">Floor 1</SelectItem>
-                                    <SelectItem value="south">Floor 2</SelectItem>
-                                    <SelectItem value="east">Floor 3</SelectItem>
-                                    <SelectItem value="west">Floor 4</SelectItem>
+                                    {uniqueFloors.map((floor: string) => (
+                                        <SelectItem key={floor} value={floor}>
+                                            {floor}
+                                        </SelectItem>
+                                    ))}
                                 </SelectGroup>
                             </SelectContent>
                         </Select>
                     </div>
+                    
                     <div className='py-2'>
                         <Label htmlFor='room'>Room</Label>
                         <Input
