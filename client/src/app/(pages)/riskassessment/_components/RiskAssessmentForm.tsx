@@ -13,10 +13,10 @@ import {
   SelectTrigger,
 } from "@/components/ui/select";
 
-const LapaForm = () => {
+const RiskAssessmentForm = () => {
   return (
     <form className="grid grid-cols-1 md:grid-cols-2 gap-6">
-      {/* Left Column */}
+      {/* Left Column - Basic Information */}
       <div className="space-y-4">
         <div className="space-y-2">
           <Label htmlFor="assetBarcode">Asset Barcode</Label>
@@ -49,17 +49,13 @@ const LapaForm = () => {
         </div>
 
         <div className="space-y-2">
-          <Label htmlFor="certificateNo">Certificate No</Label>
-          <Input
-            id="certificateNo"
-            placeholder="Certificate No"
-            className="bg-white"
-          />
+          <Label htmlFor="location">Location</Label>
+          <Input id="location" placeholder="Location" className="bg-white" />
         </div>
 
         <div className="space-y-2">
-          <Label htmlFor="processNo">Process No</Label>
-          <Input id="processNo" placeholder="Process No" className="bg-white" />
+          <Label htmlFor="room">Room</Label>
+          <Input id="room" placeholder="Room" className="bg-white" />
         </div>
 
         <div className="space-y-2">
@@ -81,21 +77,40 @@ const LapaForm = () => {
         </div>
 
         <div className="space-y-2">
-          <Label htmlFor="remedialWONo">Remedial WO No.</Label>
+          <Label htmlFor="certificateNo">Certificate No</Label>
           <Input
-            id="remedialWONo"
-            placeholder="Remedial WO No."
+            id="certificateNo"
+            placeholder="Certificate No"
             className="bg-white"
           />
         </div>
 
         <div className="space-y-2">
-          <Label htmlFor="remedialCompletedOn">Remedial Completed On</Label>
-          <div className="relative w-full">
-            <div className="[&>div>button]:w-full [&>div>button]:justify-start [&>div>button]:bg-white [&>div>button]:h-10">
-              <DatePicker id="remedialCompletedOn" />
-            </div>
-          </div>
+          <Label htmlFor="processNo">Process No</Label>
+          <Input id="processNo" placeholder="Process No" className="bg-white" />
+        </div>
+
+        <div className="space-y-2">
+          <Label htmlFor="labName">Lab Name</Label>
+          <Input id="labName" placeholder="Lab Name" className="bg-white" />
+        </div>
+
+        <div className="space-y-2">
+          <Label htmlFor="filterDetails">Filter Details</Label>
+          <Textarea
+            id="filterDetails"
+            placeholder="Filter Details"
+            className="bg-white h-24"
+          />
+        </div>
+
+        <div className="space-y-2">
+          <Label htmlFor="sample">Sample (Original or Resample)</Label>
+          <Input
+            id="sample"
+            placeholder="Original/Resample"
+            className="bg-white"
+          />
         </div>
 
         <div className="space-y-2">
@@ -126,13 +141,93 @@ const LapaForm = () => {
         </div>
 
         <div className="space-y-2">
-          <Label htmlFor="room">Room</Label>
-          <Input id="room" placeholder="Room" className="bg-white" />
+          <Label htmlFor="remedialWONo">Remedial WO No.</Label>
+          <Input
+            id="remedialWONo"
+            placeholder="Remedial WO No."
+            className="bg-white"
+          />
         </div>
 
         <div className="space-y-2">
-          <Label htmlFor="location">Location</Label>
-          <Input id="location" placeholder="Location" className="bg-white" />
+          <Label htmlFor="remedialCompletedOn">Remedial Completed On</Label>
+          <div className="relative w-full">
+            <div className="[&>div>button]:w-full [&>div>button]:justify-start [&>div>button]:bg-white [&>div>button]:h-10">
+              <DatePicker id="remedialCompletedOn" />
+            </div>
+          </div>
+        </div>
+
+        <div className="space-y-2">
+          <Label htmlFor="raCompletedBy">RA Completed By</Label>
+          <Input
+            id="raCompletedBy"
+            placeholder="RA Completed By"
+            className="bg-white"
+          />
+        </div>
+
+        <div className="space-y-2">
+          <Label htmlFor="raCompletedOn">RA Completed On</Label>
+          <div className="relative w-full">
+            <div className="[&>div>button]:w-full [&>div>button]:justify-start [&>div>button]:bg-white [&>div>button]:h-10">
+              <DatePicker id="raCompletedOn" />
+            </div>
+          </div>
+        </div>
+
+        <div className="space-y-2">
+          <Label htmlFor="laPA">LA/PA</Label>
+          <Select>
+            <SelectTrigger className="w-full bg-white">
+              <SelectValue placeholder="Choose an Option" />
+            </SelectTrigger>
+            <SelectContent>
+              <SelectGroup>
+                <SelectItem value="la">LA</SelectItem>
+                <SelectItem value="pa">PA</SelectItem>
+              </SelectGroup>
+            </SelectContent>
+          </Select>
+        </div>
+
+        <div className="space-y-2">
+          <Label htmlFor="bacteriaVariant">Bacteria Variant</Label>
+          <Input
+            id="bacteriaVariant"
+            placeholder="Bacteria Variant"
+            className="bg-white"
+          />
+        </div>
+
+        <div className="space-y-2">
+          <Label htmlFor="resultPre">Result (Pre)</Label>
+          <Input
+            id="resultPre"
+            placeholder="Result (Pre)"
+            className="bg-white"
+          />
+        </div>
+
+        <div className="space-y-2">
+          <Label htmlFor="resultPost">Result (Post)</Label>
+          <Input
+            id="resultPost"
+            placeholder="Result (Post)"
+            className="bg-white"
+          />
+        </div>
+      </div>
+
+      {/* Right Column - Assessment Details */}
+      <div className="space-y-4">
+        <div className="space-y-2">
+          <Label htmlFor="reportTemp">Report Temp</Label>
+          <Input
+            id="reportTemp"
+            placeholder="Report Temp"
+            className="bg-white"
+          />
         </div>
 
         <div className="space-y-2">
@@ -154,83 +249,6 @@ const LapaForm = () => {
         </div>
 
         <div className="space-y-2">
-          <Label htmlFor="reportTemp">Report Temp</Label>
-          <Input
-            id="reportTemp"
-            placeholder="Report Temp"
-            className="bg-white"
-          />
-        </div>
-
-        <div className="space-y-2">
-          <Label htmlFor="laPA">LA/PA</Label>
-          <Select>
-            <SelectTrigger className="w-full bg-white">
-              <SelectValue placeholder="Choose an Option" />
-            </SelectTrigger>
-            <SelectContent>
-              <SelectGroup>
-                <SelectItem value="la">LA</SelectItem>
-                <SelectItem value="pa">PA</SelectItem>
-              </SelectGroup>
-            </SelectContent>
-          </Select>
-        </div>
-
-        <div className="space-y-2">
-          <Label htmlFor="sample">Sample (Original or Resample)</Label>
-          <Input
-            id="sample"
-            placeholder="Original/Resample"
-            className="bg-white"
-          />
-        </div>
-
-        <div className="space-y-2">
-          <Label htmlFor="resultPre">Result (Pre)</Label>
-          <Input
-            id="resultPre"
-            placeholder="Result (Pre)"
-            className="bg-white"
-          />
-        </div>
-
-        <div className="space-y-2">
-          <Label htmlFor="filterDetails">Filter Details</Label>
-          <Textarea
-            id="filterDetails"
-            placeholder="Filter Details"
-            className="bg-white h-24"
-          />
-        </div>
-      </div>
-
-      {/* Right Column */}
-      <div className="space-y-4">
-        <div className="space-y-2">
-          <Label htmlFor="resultPost">Result (Post)</Label>
-          <Input
-            id="resultPost"
-            placeholder="Result (Post)"
-            className="bg-white"
-          />
-        </div>
-
-        <div className="space-y-2">
-          <Label htmlFor="labName">Lab Name</Label>
-          <Input id="labName" placeholder="Lab Name" className="bg-white" />
-        </div>
-
-        <div className="space-y-2">
-          <Label htmlFor="bacteriaVariant">Bacteria Variant</Label>
-          <Input
-            id="bacteriaVariant"
-            placeholder="Bacteria Variant"
-            className="bg-white"
-          />
-        </div>
-
-        <div className="space-y-2">
           <Label htmlFor="receivedOn">Received On</Label>
           <div className="relative w-full">
             <div className="[&>div>button]:w-full [&>div>button]:justify-start [&>div>button]:bg-white [&>div>button]:h-10">
@@ -240,7 +258,7 @@ const LapaForm = () => {
         </div>
 
         <div className="space-y-2">
-          <Label htmlFor="notifiedOn">Notified On</Label>
+          <Label htmlFor="notifiedOn">Notified on</Label>
           <div className="relative w-full">
             <div className="[&>div>button]:w-full [&>div>button]:justify-start [&>div>button]:bg-white [&>div>button]:h-10">
               <DatePicker id="notifiedOn" />
@@ -248,7 +266,25 @@ const LapaForm = () => {
           </div>
         </div>
 
-        {/* Risk Assessment Scores */}
+        <div className="space-y-2">
+          <Label htmlFor="remedialCompletedBy">Remedial Completed by</Label>
+          <Input
+            id="remedialCompletedBy"
+            placeholder="Remedial Completed by"
+            className="bg-white"
+          />
+        </div>
+
+        <div className="space-y-2">
+          <Label htmlFor="remedialDoneOn">Remedial Done On</Label>
+          <div className="relative w-full">
+            <div className="[&>div>button]:w-full [&>div>button]:justify-start [&>div>button]:bg-white [&>div>button]:h-10">
+              <DatePicker id="remedialDoneOn" />
+            </div>
+          </div>
+        </div>
+
+        {/* Risk Assessment Section */}
         <div className="space-y-2">
           <Label htmlFor="systemContamination">System Contamination</Label>
           <Input
@@ -357,11 +393,6 @@ const LapaForm = () => {
         </div>
 
         <div className="space-y-2">
-          <Label htmlFor="attachments">Attachments</Label>
-          <Input id="attachments" type="file" className="bg-white" />
-        </div>
-
-        <div className="space-y-2">
           <Label htmlFor="assessedRisk">Assessed Risk</Label>
           <Textarea
             id="assessedRisk"
@@ -405,6 +436,29 @@ const LapaForm = () => {
             className="bg-white h-24"
           />
         </div>
+
+        <div className="space-y-2">
+          <Label htmlFor="additionalComments">Additional Comments</Label>
+          <Textarea
+            id="additionalComments"
+            placeholder="Additional Comments"
+            className="bg-white h-24"
+          />
+        </div>
+
+        <div className="space-y-2">
+          <Label htmlFor="comments">Comments</Label>
+          <Textarea
+            id="comments"
+            placeholder="Comments"
+            className="bg-white h-24"
+          />
+        </div>
+
+        <div className="space-y-2">
+          <Label htmlFor="attachments">Attachments</Label>
+          <Input id="attachments" type="file" className="bg-white" />
+        </div>
       </div>
 
       {/* Form Actions */}
@@ -420,4 +474,4 @@ const LapaForm = () => {
   );
 };
 
-export default LapaForm;
+export default RiskAssessmentForm;

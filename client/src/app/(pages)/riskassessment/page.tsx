@@ -4,7 +4,7 @@ import RiskAssessmentRight from './_components/riskassessmentRight'
 
 const RiskAssessment = () => {
   return (
-    <div className="flex pt-16 md:pt-0" >
+    <div className="flex h-screen w-full overflow-hidden  pt-15 md:pt-0" >
       <RiskAssessmentLeft/>
       <RiskAssessmentRight/>
     </div>
