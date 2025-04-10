@@ -13,6 +13,7 @@ import { useAsset } from '@/context/AssetContext';
 import { Asset } from '@/app/state/api';
 import { useRouter } from 'next/navigation';
 import { Select, SelectValue, SelectContent, SelectGroup, SelectItem, SelectTrigger } from '@/components/ui/select';
+import { calculateDaysUntilExpiry, isDateInSelectedPeriod } from '@/lib/utils';
 
 const AssetsLeft: React.FC = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -23,6 +24,8 @@ const AssetsLeft: React.FC = () => {
   const router = useRouter();
   const [selectedWing, setSelectedWing] = useState<string | null>(null);
   const [selectedFloor, setSelectedFloor] = useState<string | null>(null);
+  const [selectedPeriod, setSelectedPeriod] = useState<string | null>(null);
+
 
   // Calculate unique wings once
   const uniqueWings = useMemo(() => {
@@ -61,6 +64,7 @@ const AssetsLeft: React.FC = () => {
     if (showSortAndFilter) {
       setSelectedWing(null);
       setSelectedFloor(null);
+      setSelectedPeriod(null);
     }
     setShowSortAndFilter((prev) => !prev);
   };
@@ -86,8 +90,9 @@ const AssetsLeft: React.FC = () => {
 
       const matchesWing = selectedWing ? asset.wingInShort === selectedWing : true;
       const matchesFloor = selectedFloor ? asset.floorInWords === selectedFloor : true;
+      const matchesPeriod = isDateInSelectedPeriod(asset.filterExpiryDate || '', selectedPeriod);
 
-      return matchesSearch && matchesWing && matchesFloor;
+      return matchesSearch && matchesWing && matchesFloor && matchesPeriod;
     });
 
   return (
@@ -157,7 +162,7 @@ const AssetsLeft: React.FC = () => {
           </div>
 
           {/* Period */}
-          <Select>
+          <Select onValueChange={(value) => setSelectedPeriod(value)}>
             <SelectTrigger className="w-full bg-white">
               <SelectValue placeholder="Select Period" />
             </SelectTrigger>
@@ -169,10 +174,10 @@ const AssetsLeft: React.FC = () => {
                 <SelectItem value="previous-week">Previous Week</SelectItem>
                 <SelectItem value="this-week">This Week</SelectItem>
                 <SelectItem value="next-week">Next Week</SelectItem>
-                <SelectItem value="expired">Expired</SelectItem>
               </SelectGroup>
             </SelectContent>
           </Select>
+
         </div>
       )}
 
@@ -206,6 +211,17 @@ const AssetsLeft: React.FC = () => {
               <CardContent className="p-0">
                 <p>Wing: {asset.wingInShort || 'N/A'} | Room: {asset.roomName || 'N/A'}</p>
                 <p>Status: {asset.status || 'N/A'}</p>
+                {showSortAndFilter && (
+                  <p className="text-sm text-red-600">
+                    {(() => {
+                      const dates = calculateDaysUntilExpiry(asset.filterExpiryDate);
+                      if (asset.filterExpiryDate && dates) {
+                        return dates < 1 ? 'Expired' : `Expires in ${dates} day(s)`;
+                      }
+                      return 'No expiry date available';
+                    })()}
+                  </p>
+                )}
               </CardContent>
             </Card>
           ))}
