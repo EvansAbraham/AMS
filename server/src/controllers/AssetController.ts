@@ -81,10 +81,10 @@ export const addAsset = async (req: Request, res: Response): Promise<void> => {
 };
 
 export const updateAsset = async (req: Request, res: Response): Promise<void> => {
+
     try {
         const { id } = req.params;
         const updatedData = req.body;
-
         console.log("Updated data:", updatedData);
         if (!updatedData || Object.keys(updatedData).length === 0) {
             res.status(400).json({ message: "No data provided to update!" });
