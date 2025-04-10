@@ -2,7 +2,7 @@ import React, { useEffect, useMemo, useState } from 'react';
 import { Button } from '@/components/ui/button';
 import { Label } from '@/components/ui/label';
 import { Switch } from '@/components/ui/switch';
-import { Pen, X } from 'lucide-react';
+import { Loader2, Pen, X } from 'lucide-react';
 import { Input } from '@/components/ui/input';
 import { Select, SelectValue, SelectContent, SelectGroup, SelectItem, SelectTrigger } from '@/components/ui/select';
 import { ScrollArea } from '@/components/ui/scroll-area';
@@ -20,6 +20,7 @@ import {
     TableHeader,
     TableRow,
 } from "@/components/ui/table"
+import { calculateExpiryDate, convertDateToReadableFormat, formatDateToString, parseDateString } from '@/lib/utils';
 
 
 const invoices = [
@@ -70,9 +71,12 @@ const invoices = [
 const AssetsRight: React.FC = () => {
     const { selectedAsset, setSelectedAsset, uniqueWings, allAssets } = useAsset();
     const [isEditing, setIsEditing] = useState(false);
+    const [isChangeOrInstall, setIsChangeOrInstall] = useState(false);
     const [updateAsset] = useUpdateAssetMutation();
     const [localWing, setLocalWing] = useState<string | null>(null);
     const [originalAsset, setOriginalAsset] = useState<Asset | null>(null);
+    const [isSubmitting, setIsSubmitting] = useState(false);
+
 
     // Initialize localWing when selectedAsset changes
     useEffect(() => {
@@ -96,23 +100,77 @@ const AssetsRight: React.FC = () => {
         return Array.from(floors);
     }, [allAssets, localWing, selectedAsset?.wingInShort]);
 
+
+
+    const handleFilterInstallationDateChange = (date: Date | undefined) => {
+        if (date && isEditing && selectedAsset) {
+            const expiryDate = calculateExpiryDate(date);
+            setSelectedAsset({
+                ...selectedAsset,
+                filterInstalledOn: formatDateToString(date),
+                filterExpiryDate: expiryDate,
+                id: selectedAsset.id, // Ensure id is included and is a string
+                assetBarcode: selectedAsset.assetBarcode || '', // Provide default values if necessary
+                status: selectedAsset.status || '',
+                assetType: selectedAsset.assetType || '',
+                primaryId: selectedAsset.primaryId || '',
+                secondaryId: selectedAsset.secondaryId || '',
+                wingInShort: selectedAsset.wingInShort || '',
+                room: selectedAsset.room || '',
+                floorInWords: selectedAsset.floorInWords || '',
+                roomName: selectedAsset.roomName || '',
+                notes: selectedAsset.notes || '',
+                filterNeeded: selectedAsset.filterNeeded || '',
+                filterOn: selectedAsset.filterOn || '',
+                augmentedCare: selectedAsset.augmentedCare || ''
+            });
+        }
+    };
+
+
     const handleEdit = () => {
         // Store the original asset state for potential cancellation
         setOriginalAsset(selectedAsset ? { ...selectedAsset } : null);
         setIsEditing(true);
     };
 
+
     const handleSubmit = async () => {
         if (selectedAsset) {
+            setIsSubmitting(true);
             try {
-                await updateAsset(selectedAsset).unwrap();
+                const updateData = {
+                    id: selectedAsset.id,
+                    assetBarcode: selectedAsset.assetBarcode,
+                    status: selectedAsset.status,
+                    assetType: selectedAsset.assetType,
+                    primaryId: selectedAsset.primaryId,
+                    secondaryId: selectedAsset.secondaryId,
+                    wingInShort: selectedAsset.wingInShort,
+                    room: selectedAsset.room,
+                    floorInWords: selectedAsset.floorInWords,
+                    roomName: selectedAsset.roomName,
+                    notes: selectedAsset.notes,
+                    filterNeeded: selectedAsset.filterNeeded,
+                    filterOn: selectedAsset.filterOn,
+                    filterInstalledOn: selectedAsset.filterInstalledOn,
+                    filterExpiryDate: selectedAsset.filterExpiryDate,
+                    augmentedCare: selectedAsset.augmentedCare
+                };
+
+                await updateAsset(updateData).unwrap();
+
                 setIsEditing(false);
+                setIsSubmitting(false);
+                setIsChangeOrInstall(false);
                 setOriginalAsset(null);
             } catch (error) {
+                setIsSubmitting(false);
                 console.error('Failed to update asset:', error);
             }
         }
     };
+
 
     const handleCancel = () => {
         // Restore the original asset state
@@ -120,6 +178,7 @@ const AssetsRight: React.FC = () => {
             setSelectedAsset(originalAsset);
         }
         setIsEditing(false);
+        setIsChangeOrInstall(false);
         setOriginalAsset(null);
     };
 
@@ -147,7 +206,8 @@ const AssetsRight: React.FC = () => {
         if (selectedAsset && isEditing) {
             setSelectedAsset({
                 ...selectedAsset,
-                assetBarcode: e.target.value
+                assetBarcode: e.target.value,
+                id: selectedAsset.id  // Maintain the original ID
             });
         }
     };
@@ -167,7 +227,7 @@ const AssetsRight: React.FC = () => {
                 <div className='flex gap-2 my-2'>
                     {isEditing ? (
                         <>
-                            <Button variant={"custom"} onClick={handleSubmit}>Submit</Button>
+                            <Button disabled={isSubmitting ? true : false} variant={"custom"} onClick={handleSubmit}>{isSubmitting && <Loader2 className='animate-spin' />} Submit</Button>
                             <Button variant={"outline"} onClick={handleCancel}><X size={16} /> Cancel</Button>
                         </>
                     ) : (
@@ -179,23 +239,58 @@ const AssetsRight: React.FC = () => {
             {isEditing && (
                 <div className='flex gap-3'>
                     <Label htmlFor='changeOrInstall' className='text-[#071487]'>Change / Install</Label>
-                    <Switch id='changeOrInstall' />
+                    <Switch
+                        id='changeOrInstall'
+                        checked={isChangeOrInstall}
+                        onCheckedChange={(checked) => setIsChangeOrInstall(checked)}
+                    />
                 </div>
             )}
             {/* Fields and Content */}
-            <ScrollArea className='h-[calc(100vh-100px)] w-full overflow-hidden'>
-                <div className='grid grid-cols-1 md:grid-cols-2 gap-x-4'>
-                    <div className='py-2'>
-                        <Label htmlFor='assetBarcode'>Asset Barcode</Label>
-                        <Input
-                            id='assetBarcode'
-                            value={selectedAsset.assetBarcode || ''}
-                            onChange={isEditing ? (e) => setSelectedAsset({ ...selectedAsset, assetBarcode: e.target.value }) : undefined}
-                            className='bg-white my-2 w-sm'
-                            readOnly={!isEditing}
-                            disabled={true}
-                        />
+            <ScrollArea className='h-[calc(100vh-100px)] w-full pt-4 overflow-hidden'>
+
+                {isChangeOrInstall && (
+                    <div className='grid grid-cols-1 md:grid-cols-2 gap-x-4'>
+                        <div className='py-2'>
+                            <Label htmlFor='changeAssetBarcode'>Change Asset Barcode</Label>
+                            <Input
+                                id='changeAssetBarcode'
+                                value={selectedAsset.assetBarcode || ''}
+                                onChange={(e) => { handleAssetBarcodeChange(e) }}
+                                className='bg-white my-2 w-sm'
+                                readOnly={!isEditing}
+                            />
+                        </div>
+
+
+                        <div className='py-2'>
+                            <Label htmlFor='FilterInstallationDate'>Filter Installation Date</Label>
+                            <div className="w-sm">
+                                <div className="[&>div>button]:w-full [&>div>button]:bg-white [&>div>button]:h-10 [&>div>button]:my-2">
+                                    <DatePicker
+                                        id='FilterInstallationDate'
+                                        selected={selectedAsset.filterInstalledOn ? parseDateString(selectedAsset.filterInstalledOn) : undefined}
+                                        onChange={isEditing ? handleFilterInstallationDateChange : undefined}
+                                        disabled={!isEditing}
+                                    />
+                                </div>
+                            </div>
+                        </div>
+                        <div className='py-2'>
+                            <Label htmlFor='FilterExpireDate' className='text-[#071487]'>Filter Expiry Date</Label>
+                            <Input
+                                id='FilterExpireDate'
+                                value={(convertDateToReadableFormat(selectedAsset.filterExpiryDate)?.toString() || '')}
+                                onChange={isEditing ? (e) => setSelectedAsset({ ...selectedAsset, filterExpiryDate: e.target.value }) : undefined}
+                                className='bg-white my-2 w-sm'
+                                readOnly={!isEditing}
+                                disabled={true}
+                            />
+                        </div>
                     </div>
+                )}
+
+                <div className='grid grid-cols-1 md:grid-cols-2 gap-x-4'>
                     <div className='py-2'>
                         <Label htmlFor='filterOn'>Filter On</Label>
                         <Select disabled={!isEditing}>
@@ -238,30 +333,7 @@ const AssetsRight: React.FC = () => {
                             </SelectContent>
                         </Select>
                     </div>
-                    <div className='py-2'>
-                        <Label htmlFor='FilterInstallationDate'>Filter Installation Date</Label>
-                        <div className="w-sm">
-                            <div className="[&>div>button]:w-full [&>div>button]:bg-white [&>div>button]:h-10 [&>div>button]:my-2">
-                                <DatePicker
-                                    id='FilterInstallationDate'
-                                    selected={selectedAsset.filterInstalledOn ? new Date(selectedAsset.filterInstalledOn) : undefined}
-                                    onChange={isEditing ? (date) => setSelectedAsset({ ...selectedAsset, filterInstalledOn: date?.toISOString() }) : undefined}
-                                    disabled={!isEditing}
-                                />
-                            </div>
-                        </div>
-                    </div>
-                    <div className='py-2'>
-                        <Label htmlFor='FilterExpireDate' className='text-[#071487]'>Filter Expiry Date</Label>
-                        <Input
-                            id='FilterExpireDate'
-                            value={selectedAsset.filterExpiryDate || ''}
-                            onChange={isEditing ? (e) => setSelectedAsset({ ...selectedAsset, filterExpiryDate: e.target.value }) : undefined}
-                            className='bg-white my-2 w-sm'
-                            readOnly={!isEditing}
-                            disabled={!isEditing}
-                        />
-                    </div>
+
                     <div className='py-2'>
                         <Label htmlFor='assetType'>Asset Type</Label>
                         <Input

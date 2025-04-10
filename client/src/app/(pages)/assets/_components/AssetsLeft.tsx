@@ -74,18 +74,21 @@ const AssetsLeft: React.FC = () => {
     }
   };
 
-  // Filter assets based on the search query and selected wing/floor
-  const filteredAssets = assets.filter((asset: Asset) => {
-    const matchesSearch =
-      asset.assetBarcode?.toLowerCase().includes(searchQuery.toLowerCase()) ||
-      asset.roomName?.toLowerCase().includes(searchQuery.toLowerCase()) ||
-      asset.wingInShort?.toLowerCase().includes(searchQuery.toLowerCase());
+  // Sort and filter assets based on the search query and selected wing/floor
+  const filteredAssets = assets
+    .slice() // Create a shallow copy to avoid mutating the original array
+    .sort((a: Asset, b: Asset) => (a.assetBarcode || '').localeCompare(b.assetBarcode || '')) // Sort by assetBarcode
+    .filter((asset: Asset) => {
+      const matchesSearch =
+        asset.assetBarcode?.toLowerCase().includes(searchQuery.toLowerCase()) ||
+        asset.roomName?.toLowerCase().includes(searchQuery.toLowerCase()) ||
+        asset.wingInShort?.toLowerCase().includes(searchQuery.toLowerCase());
 
-    const matchesWing = selectedWing ? asset.wingInShort === selectedWing : true;
-    const matchesFloor = selectedFloor ? asset.floorInWords === selectedFloor : true;
+      const matchesWing = selectedWing ? asset.wingInShort === selectedWing : true;
+      const matchesFloor = selectedFloor ? asset.floorInWords === selectedFloor : true;
 
-    return matchesSearch && matchesWing && matchesFloor;
-  });
+      return matchesSearch && matchesWing && matchesFloor;
+    });
 
   return (
     <div className="parent h-screen w-full md:w-1/3 lg:w-1/4 bg-white shadow-md flex flex-col px-4 flex-shrink-0">
