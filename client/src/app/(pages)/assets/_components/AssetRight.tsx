@@ -626,8 +626,7 @@ const AssetsRight: React.FC = () => {
                         <Textarea
                             id='additionalNotes'
                             readOnly
-                            placeholder='Add any extra notes here...'
-                            value={selectedAsset.notes || ''}
+                            value={selectedAsset.notes || 'No Notes Available'}
                             className='bg-white my-2 w-sm text-neutral-500'
                         />
 
