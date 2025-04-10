@@ -120,7 +120,7 @@ const AssetsRight: React.FC = () => {
                 floorInWords: selectedAsset.floorInWords || '',
                 roomName: selectedAsset.roomName || '',
                 notes: selectedAsset.notes || '',
-                filterNeeded: selectedAsset.filterNeeded || '',
+                filterNeeded: 'No',
                 filterOn: selectedAsset.filterOn || '',
                 augmentedCare: selectedAsset.augmentedCare || ''
             });
@@ -321,14 +321,18 @@ const AssetsRight: React.FC = () => {
                     </div>
                     <div className='py-2'>
                         <Label htmlFor='filterNeeded'>Filter Needed</Label>
-                        <Select disabled={!isEditing}>
+                        <Select
+                            disabled={!isEditing}
+                            value={selectedAsset.filterNeeded || ''}
+                            onValueChange={isEditing ? (value) => setSelectedAsset({ ...selectedAsset, filterNeeded: value }) : undefined}
+                        >
                             <SelectTrigger className="w-sm bg-white my-2">
                                 <SelectValue placeholder={selectedAsset.filterNeeded || 'Choose an Option'} />
                             </SelectTrigger>
                             <SelectContent>
                                 <SelectGroup>
-                                    <SelectItem value="yes">Yes</SelectItem>
-                                    <SelectItem value="no">No</SelectItem>
+                                    <SelectItem value="Yes">Yes</SelectItem>
+                                    <SelectItem value="No">No</SelectItem>
                                 </SelectGroup>
                             </SelectContent>
                         </Select>
