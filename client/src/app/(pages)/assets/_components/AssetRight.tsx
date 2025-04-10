@@ -1,9 +1,8 @@
-// AssetsRight2.tsx
 import React, { useEffect, useMemo, useState } from 'react';
 import { Button } from '@/components/ui/button';
 import { Label } from '@/components/ui/label';
 import { Switch } from '@/components/ui/switch';
-import { Pen } from 'lucide-react';
+import { Pen, X } from 'lucide-react';
 import { Input } from '@/components/ui/input';
 import { Select, SelectValue, SelectContent, SelectGroup, SelectItem, SelectTrigger } from '@/components/ui/select';
 import { ScrollArea } from '@/components/ui/scroll-area';
@@ -73,6 +72,7 @@ const AssetsRight: React.FC = () => {
     const [isEditing, setIsEditing] = useState(false);
     const [updateAsset] = useUpdateAssetMutation();
     const [localWing, setLocalWing] = useState<string | null>(null);
+    const [originalAsset, setOriginalAsset] = useState<Asset | null>(null);
 
     // Initialize localWing when selectedAsset changes
     useEffect(() => {
@@ -97,6 +97,8 @@ const AssetsRight: React.FC = () => {
     }, [allAssets, localWing, selectedAsset?.wingInShort]);
 
     const handleEdit = () => {
+        // Store the original asset state for potential cancellation
+        setOriginalAsset(selectedAsset ? { ...selectedAsset } : null);
         setIsEditing(true);
     };
 
@@ -105,10 +107,20 @@ const AssetsRight: React.FC = () => {
             try {
                 await updateAsset(selectedAsset).unwrap();
                 setIsEditing(false);
+                setOriginalAsset(null);
             } catch (error) {
                 console.error('Failed to update asset:', error);
             }
         }
+    };
+
+    const handleCancel = () => {
+        // Restore the original asset state
+        if (originalAsset) {
+            setSelectedAsset(originalAsset);
+        }
+        setIsEditing(false);
+        setOriginalAsset(null);
     };
 
     const handleWingChange = (wing: string) => {
@@ -153,15 +165,23 @@ const AssetsRight: React.FC = () => {
                     <p className='text-2xl font-bold'>{selectedAsset.assetBarcode}</p>
                 </div>
                 <div className='flex gap-2 my-2'>
-                    <Button variant={"custom"} onClick={handleSubmit} disabled={!isEditing}>Submit</Button>
-                    <Button variant={"outline"} onClick={handleEdit}><Pen /> Edit</Button>
+                    {isEditing ? (
+                        <>
+                            <Button variant={"custom"} onClick={handleSubmit}>Submit</Button>
+                            <Button variant={"outline"} onClick={handleCancel}><X size={16} /> Cancel</Button>
+                        </>
+                    ) : (
+                        <Button variant={"outline"} onClick={handleEdit}><Pen /> Edit</Button>
+                    )}
                 </div>
             </div>
-            {/* Switch Button */}
-            <div className='flex gap-3'>
-                <Label htmlFor='changeOrInstall' className='text-[#071487]'>Change / Install</Label>
-                <Switch id='changeOrInstall' disabled={!isEditing} />
-            </div>
+            {/* Switch Button - Only visible in edit mode */}
+            {isEditing && (
+                <div className='flex gap-3'>
+                    <Label htmlFor='changeOrInstall' className='text-[#071487]'>Change / Install</Label>
+                    <Switch id='changeOrInstall' />
+                </div>
+            )}
             {/* Fields and Content */}
             <ScrollArea className='h-[calc(100vh-100px)] w-full overflow-hidden'>
                 <div className='grid grid-cols-1 md:grid-cols-2 gap-x-4'>
@@ -170,14 +190,15 @@ const AssetsRight: React.FC = () => {
                         <Input
                             id='assetBarcode'
                             value={selectedAsset.assetBarcode || ''}
-                            onChange={(e) => setSelectedAsset({ ...selectedAsset, assetBarcode: e.target.value })}
+                            onChange={isEditing ? (e) => setSelectedAsset({ ...selectedAsset, assetBarcode: e.target.value }) : undefined}
                             className='bg-white my-2 w-sm'
                             readOnly={!isEditing}
+                            disabled={true}
                         />
                     </div>
                     <div className='py-2'>
                         <Label htmlFor='filterOn'>Filter On</Label>
-                        <Select>
+                        <Select disabled={!isEditing}>
                             <SelectTrigger className="w-sm bg-white my-2">
                                 <SelectValue placeholder={selectedAsset.filterOn || 'Choose an Option'} />
                             </SelectTrigger>
@@ -191,7 +212,7 @@ const AssetsRight: React.FC = () => {
                     </div>
                     <div className='py-2'>
                         <Label htmlFor='status'>Status</Label>
-                        <Select>
+                        <Select disabled={!isEditing}>
                             <SelectTrigger className="w-sm bg-white my-2">
                                 <SelectValue placeholder={selectedAsset.status || 'Choose an Option'} />
                             </SelectTrigger>
@@ -205,7 +226,7 @@ const AssetsRight: React.FC = () => {
                     </div>
                     <div className='py-2'>
                         <Label htmlFor='filterNeeded'>Filter Needed</Label>
-                        <Select>
+                        <Select disabled={!isEditing}>
                             <SelectTrigger className="w-sm bg-white my-2">
                                 <SelectValue placeholder={selectedAsset.filterNeeded || 'Choose an Option'} />
                             </SelectTrigger>
@@ -224,7 +245,7 @@ const AssetsRight: React.FC = () => {
                                 <DatePicker
                                     id='FilterInstallationDate'
                                     selected={selectedAsset.filterInstalledOn ? new Date(selectedAsset.filterInstalledOn) : undefined}
-                                    onChange={(date) => setSelectedAsset({ ...selectedAsset, filterInstalledOn: date?.toISOString() })}
+                                    onChange={isEditing ? (date) => setSelectedAsset({ ...selectedAsset, filterInstalledOn: date?.toISOString() }) : undefined}
                                     disabled={!isEditing}
                                 />
                             </div>
@@ -235,9 +256,10 @@ const AssetsRight: React.FC = () => {
                         <Input
                             id='FilterExpireDate'
                             value={selectedAsset.filterExpiryDate || ''}
-                            onChange={(e) => setSelectedAsset({ ...selectedAsset, filterExpiryDate: e.target.value })}
+                            onChange={isEditing ? (e) => setSelectedAsset({ ...selectedAsset, filterExpiryDate: e.target.value }) : undefined}
                             className='bg-white my-2 w-sm'
                             readOnly={!isEditing}
+                            disabled={!isEditing}
                         />
                     </div>
                     <div className='py-2'>
@@ -245,9 +267,10 @@ const AssetsRight: React.FC = () => {
                         <Input
                             id='assetType'
                             value={selectedAsset.assetType || ''}
-                            onChange={(e) => setSelectedAsset({ ...selectedAsset, assetType: e.target.value })}
+                            onChange={isEditing ? (e) => setSelectedAsset({ ...selectedAsset, assetType: e.target.value }) : undefined}
                             className='bg-white my-2 w-sm'
                             readOnly={!isEditing}
+                            disabled={!isEditing}
                         />
                     </div>
                     <div className='py-2'>
@@ -255,9 +278,10 @@ const AssetsRight: React.FC = () => {
                         <Input
                             id='roomName'
                             value={selectedAsset.roomName || ''}
-                            onChange={(e) => setSelectedAsset({ ...selectedAsset, roomName: e.target.value })}
+                            onChange={isEditing ? (e) => setSelectedAsset({ ...selectedAsset, roomName: e.target.value }) : undefined}
                             className='bg-white my-2 w-sm'
                             readOnly={!isEditing}
+                            disabled={!isEditing}
                         />
                     </div>
                     <div className='py-2'>
@@ -265,9 +289,10 @@ const AssetsRight: React.FC = () => {
                         <Input
                             id='primaryIdentifier'
                             value={selectedAsset.primaryId || ''}
-                            onChange={(e) => setSelectedAsset({ ...selectedAsset, primaryId: e.target.value })}
+                            onChange={isEditing ? (e) => setSelectedAsset({ ...selectedAsset, primaryId: e.target.value }) : undefined}
                             className='bg-white my-2 w-sm'
                             readOnly={!isEditing}
+                            disabled={!isEditing}
                         />
                     </div>
                     <div className='py-2'>
@@ -275,9 +300,10 @@ const AssetsRight: React.FC = () => {
                         <Input
                             id='secondaryIdentifier'
                             value={selectedAsset.secondaryId || ''}
-                            onChange={(e) => setSelectedAsset({ ...selectedAsset, secondaryId: e.target.value })}
+                            onChange={isEditing ? (e) => setSelectedAsset({ ...selectedAsset, secondaryId: e.target.value }) : undefined}
                             className='bg-white my-2 w-sm'
                             readOnly={!isEditing}
+                            disabled={!isEditing}
                         />
                     </div>
                     <div className='py-2'>
@@ -285,7 +311,7 @@ const AssetsRight: React.FC = () => {
                         <Select
                             disabled={!isEditing}
                             value={selectedAsset.wingInShort || ''}
-                            onValueChange={handleWingChange}
+                            onValueChange={isEditing ? handleWingChange : undefined}
                         >
                             <SelectTrigger className="w-sm bg-white my-2">
                                 <SelectValue placeholder="Choose an Option" />
@@ -307,7 +333,7 @@ const AssetsRight: React.FC = () => {
                         <Select
                             disabled={!isEditing || !selectedAsset.wingInShort}
                             value={selectedAsset.floorInWords || ''}
-                            onValueChange={handleFloorChange}
+                            onValueChange={isEditing ? handleFloorChange : undefined}
                         >
                             <SelectTrigger className="w-sm bg-white my-2">
                                 <SelectValue placeholder="Choose an Option" />
@@ -323,15 +349,16 @@ const AssetsRight: React.FC = () => {
                             </SelectContent>
                         </Select>
                     </div>
-                    
+
                     <div className='py-2'>
                         <Label htmlFor='room'>Room</Label>
                         <Input
                             id='room'
                             value={selectedAsset.room || ''}
-                            onChange={(e) => setSelectedAsset({ ...selectedAsset, room: e.target.value })}
+                            onChange={isEditing ? (e) => setSelectedAsset({ ...selectedAsset, room: e.target.value }) : undefined}
                             className='bg-white my-2 w-sm'
                             readOnly={!isEditing}
+                            disabled={!isEditing}
                         />
                     </div>
                     <div className='py-2'>
@@ -339,9 +366,10 @@ const AssetsRight: React.FC = () => {
                         <Input
                             id='roomNo'
                             value={selectedAsset.roomName || ''}
-                            onChange={(e) => setSelectedAsset({ ...selectedAsset, roomName: e.target.value })}
+                            onChange={isEditing ? (e) => setSelectedAsset({ ...selectedAsset, roomName: e.target.value }) : undefined}
                             className='bg-white my-2 w-sm'
                             readOnly={!isEditing}
+                            disabled={!isEditing}
                         />
                     </div>
                     <div className='py-2'>
@@ -349,9 +377,10 @@ const AssetsRight: React.FC = () => {
                         <Input
                             id='filterType'
                             value={selectedAsset.filterNeeded || ''}
-                            onChange={(e) => setSelectedAsset({ ...selectedAsset, filterNeeded: e.target.value })}
+                            onChange={isEditing ? (e) => setSelectedAsset({ ...selectedAsset, filterNeeded: e.target.value }) : undefined}
                             className='bg-white my-2 w-sm'
                             readOnly={!isEditing}
+                            disabled={!isEditing}
                         />
                     </div>
                     <div className='py-2'>
@@ -359,9 +388,10 @@ const AssetsRight: React.FC = () => {
                         <Input
                             id='patientStaffArea'
                             value={selectedAsset.notes || ''}
-                            onChange={(e) => setSelectedAsset({ ...selectedAsset, notes: e.target.value })}
+                            onChange={isEditing ? (e) => setSelectedAsset({ ...selectedAsset, notes: e.target.value }) : undefined}
                             className='bg-white my-2 w-sm'
                             readOnly={!isEditing}
+                            disabled={!isEditing}
                         />
                     </div>
                     <div className='py-2'>
@@ -369,9 +399,10 @@ const AssetsRight: React.FC = () => {
                         <Input
                             id='augmentedCare'
                             value={selectedAsset.augmentedCare || ''}
-                            onChange={(e) => setSelectedAsset({ ...selectedAsset, augmentedCare: e.target.value })}
+                            onChange={isEditing ? (e) => setSelectedAsset({ ...selectedAsset, augmentedCare: e.target.value }) : undefined}
                             className='bg-white my-2 w-sm'
                             readOnly={!isEditing}
+                            disabled={!isEditing}
                         />
                     </div>
                     <div className='py-2'>
@@ -379,9 +410,10 @@ const AssetsRight: React.FC = () => {
                         <Input
                             id='filterMake'
                             value={selectedAsset.filterNeeded || ''}
-                            onChange={(e) => setSelectedAsset({ ...selectedAsset, filterNeeded: e.target.value })}
+                            onChange={isEditing ? (e) => setSelectedAsset({ ...selectedAsset, filterNeeded: e.target.value }) : undefined}
                             className='bg-white my-2 w-sm'
                             readOnly={!isEditing}
+                            disabled={!isEditing}
                         />
                     </div>
                     <div className='py-2'>
@@ -390,7 +422,7 @@ const AssetsRight: React.FC = () => {
                             id='attachments'
                             type='file'
                             className='bg-white my-2 w-sm'
-                            readOnly={!isEditing}
+                            disabled={!isEditing}
                         />
                     </div>
                     <div className='py-2'>
@@ -434,9 +466,10 @@ const AssetsRight: React.FC = () => {
                         <Textarea
                             id='notes'
                             value={selectedAsset.notes || ''}
-                            onChange={(e) => setSelectedAsset({ ...selectedAsset, notes: e.target.value })}
+                            onChange={isEditing ? (e) => setSelectedAsset({ ...selectedAsset, notes: e.target.value }) : undefined}
                             className='bg-white my-2 w-sm'
                             readOnly={!isEditing}
+                            disabled={!isEditing}
                         />
                     </div>
                 </div>
