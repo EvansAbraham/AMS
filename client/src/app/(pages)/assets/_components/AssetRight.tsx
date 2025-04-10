@@ -76,6 +76,10 @@ const AssetsRight: React.FC = () => {
     const [localWing, setLocalWing] = useState<string | null>(null);
     const [originalAsset, setOriginalAsset] = useState<Asset | null>(null);
     const [isSubmitting, setIsSubmitting] = useState(false);
+    const [reason, setReason] = useState<string>('');
+    const [additionalNotes, setAdditionalNotes] = useState('');
+
+
 
 
     // Initialize localWing when selectedAsset changes
@@ -135,27 +139,80 @@ const AssetsRight: React.FC = () => {
     };
 
 
+    // const handleSubmit = async () => {
+    //     if (selectedAsset) {
+    //         // If change/install is triggered, make sure a reason is selected
+    //         if (isChangeOrInstall && !reason) {
+    //             alert('Please select a reason for the installation/change.');
+    //             return;
+    //         }
+
+    //         setIsSubmitting(true);
+    //         try {
+    //             const timestamp = new Date().toLocaleString('en-GB');
+    //             const reasonNote = isChangeOrInstall && reason
+    //                 ? `\n[${timestamp}] Reason: ${reason}`
+    //                 : '';
+
+    //             const updateData = {
+    //                 id: selectedAsset.id,
+    //                 assetBarcode: selectedAsset.assetBarcode,
+    //                 status: selectedAsset.status,
+    //                 assetType: selectedAsset.assetType,
+    //                 primaryId: selectedAsset.primaryId,
+    //                 secondaryId: selectedAsset.secondaryId,
+    //                 wingInShort: selectedAsset.wingInShort,
+    //                 room: selectedAsset.room,
+    //                 floorInWords: selectedAsset.floorInWords,
+    //                 roomName: selectedAsset.roomName,
+    //                 notes: `${selectedAsset.notes || ''}${reasonNote}`,
+    //                 filterNeeded: selectedAsset.filterNeeded,
+    //                 filterOn: selectedAsset.filterOn,
+    //                 filterInstalledOn: selectedAsset.filterInstalledOn,
+    //                 filterExpiryDate: selectedAsset.filterExpiryDate,
+    //                 augmentedCare: selectedAsset.augmentedCare
+    //             };
+
+    //             await updateAsset(updateData).unwrap();
+
+    //             setIsEditing(false);
+    //             setIsSubmitting(false);
+    //             setIsChangeOrInstall(false);
+    //             setOriginalAsset(null);
+    //             setReason(''); // Reset reason
+    //         } catch (error) {
+    //             setIsSubmitting(false);
+    //             console.error('Failed to update asset:', error);
+    //         }
+    //     }
+    // };
+
+
     const handleSubmit = async () => {
         if (selectedAsset) {
+            // If change/install is triggered, make sure a reason is selected
+            if (isChangeOrInstall && !reason) {
+                alert('Please select a reason for the installation/change.');
+                return;
+            }
+
             setIsSubmitting(true);
             try {
+                const timestamp = new Date().toLocaleString('en-GB');
+
+                const reasonNote = isChangeOrInstall && reason
+                    ? `\n[${timestamp}] Reason: ${reason}`
+                    : '';
+
+                const manualNote = additionalNotes.trim()
+                    ? `\n[${timestamp}] Note: ${additionalNotes.trim()}`
+                    : '';
+
+                const combinedNotes = `${selectedAsset.notes || ''}${reasonNote}${manualNote}`;
+
                 const updateData = {
-                    id: selectedAsset.id,
-                    assetBarcode: selectedAsset.assetBarcode,
-                    status: selectedAsset.status,
-                    assetType: selectedAsset.assetType,
-                    primaryId: selectedAsset.primaryId,
-                    secondaryId: selectedAsset.secondaryId,
-                    wingInShort: selectedAsset.wingInShort,
-                    room: selectedAsset.room,
-                    floorInWords: selectedAsset.floorInWords,
-                    roomName: selectedAsset.roomName,
-                    notes: selectedAsset.notes,
-                    filterNeeded: selectedAsset.filterNeeded,
-                    filterOn: selectedAsset.filterOn,
-                    filterInstalledOn: selectedAsset.filterInstalledOn,
-                    filterExpiryDate: selectedAsset.filterExpiryDate,
-                    augmentedCare: selectedAsset.augmentedCare
+                    ...selectedAsset,
+                    notes: combinedNotes
                 };
 
                 await updateAsset(updateData).unwrap();
@@ -164,12 +221,15 @@ const AssetsRight: React.FC = () => {
                 setIsSubmitting(false);
                 setIsChangeOrInstall(false);
                 setOriginalAsset(null);
+                setReason(''); // Reset reason
+                setAdditionalNotes(''); // Clear manual note input
             } catch (error) {
                 setIsSubmitting(false);
                 console.error('Failed to update asset:', error);
             }
         }
     };
+
 
 
     const handleCancel = () => {
@@ -218,6 +278,9 @@ const AssetsRight: React.FC = () => {
 
     return (
         <div className='bg-gray-50 flex-grow hidden sm:flex flex-col h-screen p-6'>
+
+
+
             {/* Title and its buttons */}
             <div className='flex justify-between items-start w-full'>
                 <div>
@@ -246,6 +309,9 @@ const AssetsRight: React.FC = () => {
                     />
                 </div>
             )}
+
+
+
             {/* Fields and Content */}
             <ScrollArea className='h-[calc(100vh-100px)] w-full pt-4 overflow-hidden'>
 
@@ -262,7 +328,6 @@ const AssetsRight: React.FC = () => {
                             />
                         </div>
 
-
                         <div className='py-2'>
                             <Label htmlFor='FilterInstallationDate'>Filter Installation Date</Label>
                             <div className="w-sm">
@@ -276,6 +341,7 @@ const AssetsRight: React.FC = () => {
                                 </div>
                             </div>
                         </div>
+
                         <div className='py-2'>
                             <Label htmlFor='FilterExpireDate' className='text-[#071487]'>Filter Expiry Date</Label>
                             <Input
@@ -287,6 +353,24 @@ const AssetsRight: React.FC = () => {
                                 disabled={true}
                             />
                         </div>
+
+                        <div className='py-2'>
+                            <Label htmlFor='reason'>Reason for Change</Label>
+                            <Select onValueChange={setReason} value={reason} disabled={!isEditing}>
+                                <SelectTrigger className='w-sm bg-white my-2'>
+                                    <SelectValue placeholder="Select reason" />
+                                </SelectTrigger>
+                                <SelectContent>
+                                    <SelectItem value="New Installation">New Installation</SelectItem>
+                                    <SelectItem value="Blocked">Blocked</SelectItem>
+                                    <SelectItem value="Remedial">Remedial</SelectItem>
+                                    <SelectItem value="Expired">Expired</SelectItem>
+                                    <SelectItem value="Missing">Missing</SelectItem>
+                                    <SelectItem value="Defective">Defective</SelectItem>
+                                </SelectContent>
+                            </Select>
+                        </div>
+
                     </div>
                 )}
 
@@ -540,12 +624,20 @@ const AssetsRight: React.FC = () => {
                     <div className='py-2'>
                         <Label htmlFor='notes'>Notes</Label>
                         <Textarea
-                            id='notes'
+                            id='additionalNotes'
+                            readOnly
+                            placeholder='Add any extra notes here...'
                             value={selectedAsset.notes || ''}
-                            onChange={isEditing ? (e) => setSelectedAsset({ ...selectedAsset, notes: e.target.value }) : undefined}
+                            className='bg-white my-2 w-sm text-neutral-500'
+                        />
+
+
+                        <Textarea
+                            id='additionalNotes'
+                            placeholder='Add any extra notes here...'
+                            value={additionalNotes}
+                            onChange={(e) => setAdditionalNotes(e.target.value)}
                             className='bg-white my-2 w-sm'
-                            readOnly={!isEditing}
-                            disabled={!isEditing}
                         />
                     </div>
                 </div>

@@ -197,7 +197,7 @@ const AssetsLeft: React.FC = () => {
 
         {!isLoading &&
           filteredAssets.map((asset: Asset) => (
-            <Card key={asset.id} className="p-5 mb-4" onClick={() => handleCardClick(asset)}>
+            <Card key={asset.id} className="p-5 mb-4 cursor-pointer" onClick={() => handleCardClick(asset)}>
               <div className="flex justify-between items-center mb-2">
                 <CardTitle className="text-[#071487]">
                   {asset.assetBarcode || 'No Barcode'}
