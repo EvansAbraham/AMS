@@ -1,4 +1,5 @@
 "use client";
+
 import React, {
   createContext,
   useContext,
@@ -6,7 +7,7 @@ import React, {
   ReactNode,
 } from "react";
 import { useRouter } from "next/navigation";
-import { signIn, signOut, useSession } from "next-auth/react";
+import { signIn, signOut, useSession, getSession } from "next-auth/react";
 
 interface AuthContextType {
   isAuthenticated: boolean;
@@ -21,6 +22,7 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
   const [loading, setLoading] = useState(false);
   const router = useRouter();
   const { status } = useSession();
+
   const isLoading = status === "loading";
   const isAuthenticated =
     status === "authenticated" ||
@@ -32,7 +34,7 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
       setLoading(true);
       console.log(`Attempting to sign in with: ${email}`);
 
-      // (for dummy accounts)
+      // Try credentials login
       const credResult = await signIn("credentials", {
         redirect: false,
         email,
@@ -42,7 +44,7 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
       if (credResult?.error) {
         console.log("Credentials login failed, trying Cognito...");
 
-        // Trying Cognito provider
+        // Try Cognito provider
         const cognitoResult = await signIn("cognito", {
           redirect: false,
         });
@@ -52,10 +54,25 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
         }
       }
 
-      console.log("Sign in successful");
+      // Wait for session to update
+      const session = await getSession();
+
+      if (!session || !session.user) {
+        throw new Error("Session not found after login");
+      }
+
+      // Set flags for middleware
       localStorage.setItem("isAuthenticated", "true");
       document.cookie = `isAuthenticated=true; path=/`;
-      router.push("/dashboard");
+
+      // Redirect based on role
+      if (session.user.role === "admin") {
+        router.push("/dashboard");
+      } else {
+        router.push("/assets");
+      }
+
+      console.log("Sign in successful");
     } catch (error) {
       console.error("Login error:", error);
       throw error;
