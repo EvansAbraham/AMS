@@ -87,6 +87,7 @@ const AssetsRight: React.FC = () => {
         if (selectedAsset?.wingInShort) {
             setLocalWing(selectedAsset.wingInShort);
         }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [selectedAsset?.id]); // Only run when asset ID changes, not on every selectedAsset change
 
     // Get unique floors based on the currently selected wing
