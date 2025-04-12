@@ -1,6 +1,6 @@
 import React from 'react';
 import { getServerSession } from 'next-auth';
-import { options } from '@/app/api/auth/[...nextauth]';
+import { options } from '@/app/api/auth/[...nextauth]/options';
 
 export default async function AddEngineer() {
   const session = await getServerSession(options);
