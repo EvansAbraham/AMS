@@ -112,13 +112,13 @@ export interface Floor {
 }
 
 export const api = createApi({
-    
+
     baseQuery: fetchBaseQuery({ baseUrl: process.env.NEXT_PUBLIC_API_BASE_URL }),
     reducerPath: "api",
-    tagTypes: [ "Assets", "Wings", "Floors", "LAPAS" ],
-    endpoints:(build) => ({
+    tagTypes: ["Assets", "Wings", "Floors", "LAPAS"],
+    endpoints: (build) => ({
         getAssets: build.query<Asset[], string | void>({
-            query: (search) =>({
+            query: (search) => ({
                 url: "/assets",
                 params: search ? { search } : {},
             }),
@@ -127,21 +127,21 @@ export const api = createApi({
 
         getAssetById: build.query<Asset, string>({
             query: (id) => ({
-              url: `/assets/${id}`,
+                url: `/assets/${id}`,
             }),
             providesTags: ["Assets"]
-          }),
+        }),
 
         createAsset: build.mutation<Asset, NewAsset>({
             query: (newAsset) => ({
-              url: "/assets",
-              method: "POST",
-              body: newAsset,
+                url: "/assets",
+                method: "POST",
+                body: newAsset,
             }),
             invalidatesTags: ["Assets"],
-          }),
+        }),
 
-          updateAsset: build.mutation<Asset, Partial<Asset>>({
+        updateAsset: build.mutation<Asset, Partial<Asset>>({
             
             query: (updatedAsset) => ({
                 url: `/assets/${updatedAsset.id}`,
@@ -162,20 +162,20 @@ export const api = createApi({
         getAssetByFloor: build.query<Asset[], string>({
             query: (floorId) => ({
                 url: "/assets",
-                params: { floor_id:floorId }
+                params: { floor_id: floorId }
             }),
             providesTags: ["Assets"]
         }),
 
         getAssetsByWingAndFloor: build.query<Asset[], { wing_in_short?: string, floor_id?: string }>({
             query: ({ wing_in_short, floor_id }) => ({
-              url: "/assets",
-              params: { wing_in_short, floor_id },
+                url: "/assets",
+                params: { wing_in_short, floor_id },
             }),
             providesTags: ["Assets"],
-          }),
+        }),
 
-          getAssetsByStatus: build.query<Asset[], string>({
+        getAssetsByStatus: build.query<Asset[], string>({
             query: (status) => ({
                 url: "/assets",
                 params: { status },
@@ -208,8 +208,8 @@ export const api = createApi({
         getLapaByBarcode: build.query<Asset, string>({
             query: (assetBarcode) => ({
                 url: `/lapa/${assetBarcode}`,
-              }),
-              providesTags: ["LAPAS"]
+            }),
+            providesTags: ["LAPAS"]
         }),
 
         updateLapa: build.mutation<Lapa, { assetBarcode: string; updatedData: UpdateLapa }>({
