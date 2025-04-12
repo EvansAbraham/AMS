@@ -23,7 +23,7 @@ export const parseDateString = (dateString: string | undefined): Date | undefine
 };
 
 
-export const convertDateToReadableFormat = (dateString: string | undefined): String | undefined => {
+export const convertDateToReadableFormat = (dateString: string | undefined): string | undefined => {
   if (!dateString) return undefined;
   const [month, day, year] = dateString.split('/').map(num => parseInt(num));
   const monthNames = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
