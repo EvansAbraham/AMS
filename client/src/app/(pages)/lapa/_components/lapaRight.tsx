@@ -2,7 +2,7 @@
 
 import { Button } from "@/components/ui/button";
 import { Label } from "@/components/ui/label";
-import { Pen, ChevronDown, ChevronUp } from "lucide-react";
+import { Pen, ChevronDown, ChevronUp, X } from "lucide-react";
 import React, { useState } from "react";
 import { Input } from "@/components/ui/input";
 import {
@@ -22,13 +22,110 @@ import {
   AccordionItem,
   AccordionTrigger,
 } from "@/components/ui/accordion";
+import { useLapa } from "@/context/LapaContext";
+import { useUpdateLapaMutation, UpdateLapa, Lapa } from "@/app/state/api";
+import { toast } from "sonner";
 
-const LapaRight = () => {
+const LapaRight: React.FC = () => {
   const [isOpen, setIsOpen] = useState<string | undefined>("item-1");
+  const { selectedLapa } = useLapa();
+  const [isEditMode, setIsEditMode] = useState<boolean>(false);
+  const [formData, setFormData] = useState<Partial<Lapa>>({});
+  const [updateLapa, { isLoading }] = useUpdateLapaMutation();
 
-  const toggleAccordion = () => {
+  const toggleAccordion = (): void => {
     setIsOpen(isOpen ? undefined : "item-1");
   };
+
+  const handleEdit = (): void => {
+    setIsEditMode(true);
+    setFormData({ ...selectedLapa });
+  };
+
+  const handleCancel = (): void => {
+    setIsEditMode(false);
+    setFormData({});
+  };
+
+  const handleSubmit = async (): Promise<void> => {
+    if (!selectedLapa || !selectedLapa.assetBarcode) {
+      toast("Error", {
+        description: "Asset barcode is required to update LAPA data.",
+      });
+      return;
+    }
+
+    try {
+
+      // Create a properly typed UpdateLapa object
+      const updatedData: UpdateLapa = {
+        status: formData.status,
+        wing: formData.wing,
+        location: formData.location,
+        riskAssessmentWoNo: formData.riskAssessmentWoNo,
+        room: formData.room,
+        labName: formData.labName,
+        lApA: formData.lApA,
+        sample: formData.sample,
+        certificateNo: formData.certificateNo,
+        bacteriaVariant: formData.bacteriaVariant,
+        resultPre: formData.resultPre,
+        resultPost: formData.resultPost,
+        reportTemplate: formData.reportTemplate,
+        nextSampleDate: formData.nextSampleDate && typeof formData.nextSampleDate === 'object' && 'toISOString' in formData.nextSampleDate
+          ? (formData.nextSampleDate as Date).toISOString()
+          : formData.nextSampleDate,
+        comments: formData.comments,
+        overallRiskScore: formData.overallRiskScore,
+        assessedRisk: formData.assessedRisk,
+        agreedActions: formData.agreedActions,
+      };
+
+      await updateLapa({
+        assetBarcode: selectedLapa.assetBarcode,
+        updatedData: updatedData,
+      }).unwrap();
+
+      toast("Success", {
+        description: "LAPA data updated successfully.",
+      });
+
+      setIsEditMode(false);
+    } catch (error) {
+      console.error("Failed to update LAPA:", error);
+      toast("Error", {
+        description: "Failed to update LAPA data. Please try again.",
+      });
+    }
+  };
+
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>): void => {
+    const { id, value } = e.target;
+    setFormData((prev) => ({ ...prev, [id]: value }));
+  };
+
+  const handleDateChange = (date: Date | undefined, fieldName: keyof Lapa): void => {
+    setFormData((prev) => ({ ...prev, [fieldName]: date }));
+  };
+
+  if (!selectedLapa) {
+    return (
+      <div className="bg-gray-50 flex-grow hidden sm:flex flex-col h-screen p-6">
+        Select a LAPA to view details.
+      </div>
+    );
+  }
+
+  // Helper function to get current value (either from formData in edit mode or selectedLapa in view mode)
+  const getValue = (fieldName: keyof Lapa): any => {
+    if (isEditMode && formData[fieldName] !== undefined) {
+      return formData[fieldName];
+    }
+    return selectedLapa[fieldName] || "";
+  };
+
+  // List of fields that should remain read-only even in edit mode
+  const readOnlyFields: (keyof Lapa)[] = ["assetBarcode", "status", "certificateNo"];
 
   return (
     <div className="bg-gray-50 flex-grow hidden sm:flex flex-col h-screen p-6">
@@ -36,13 +133,23 @@ const LapaRight = () => {
       <div className="flex justify-between items-start w-full">
         <div>
           <p className="text-md">WO No.</p>
-          <p className="text-2xl font-bold">661642</p>
+          <p className="text-2xl font-bold">{selectedLapa.riskAssessmentWoNo || "N/A"}</p>
         </div>
         <div className="flex gap-2 my-2">
-          <Button variant={"custom"}>Submit</Button>
-          <Button variant={"outline"}>
-            <Pen /> Edit
-          </Button>
+          {isEditMode && (
+            <Button variant={"custom"} onClick={handleSubmit} disabled={isLoading}>
+              {isLoading ? "Submitting..." : "Submit"}
+            </Button>
+          )}
+          {isEditMode ? (
+            <Button variant={"outline"} onClick={handleCancel} disabled={isLoading}>
+              <X /> Cancel
+            </Button>
+          ) : (
+            <Button variant={"outline"} onClick={handleEdit}>
+              <Pen /> Edit
+            </Button>
+          )}
           <Button variant={"ghost"} onClick={toggleAccordion}>
             {isOpen ? <ChevronUp /> : <ChevronDown />}
           </Button>
@@ -67,22 +174,24 @@ const LapaRight = () => {
                   <Label htmlFor="assetBarcode">Asset Barcode</Label>
                   <Input
                     id="assetBarcode"
-                    placeholder="Asset Barcode"
+                    value={getValue("assetBarcode")}
                     className="bg-white my-2 w-sm"
+                    readOnly={true}
+                    onChange={handleChange}
                   />
                 </div>
                 <div className="py-2">
                   <Label htmlFor="status">Status</Label>
-                  <Select>
+
+
+                  <Select onValueChange={(value) => setFormData((prev) => ({ ...prev, status: value }))} value={getValue("status")} disabled={!isEditMode}>
                     <SelectTrigger className="w-sm bg-white my-2">
-                      <SelectValue placeholder="Select Status" />
+                      <SelectValue placeholder="Select status" />
                     </SelectTrigger>
                     <SelectContent>
-                      <SelectGroup>
-                        <SelectItem value="pending">Pending</SelectItem>
-                        <SelectItem value="completed">Completed</SelectItem>
-                        <SelectItem value="in-progress">In Progress</SelectItem>
-                      </SelectGroup>
+                      <SelectItem value="Pending">Pending</SelectItem>
+                      <SelectItem value="In Progress">In Progress</SelectItem>
+                      <SelectItem value="Completed">Completed</SelectItem>
                     </SelectContent>
                   </Select>
                 </div>
@@ -90,43 +199,56 @@ const LapaRight = () => {
                   <Label htmlFor="wing">Wing</Label>
                   <Input
                     id="wing"
-                    placeholder="Wing"
+                    value={getValue("wing")}
                     className="bg-white my-2 w-sm"
+                    readOnly={!isEditMode}
+                    onChange={handleChange}
                   />
                 </div>
                 <div className="py-2">
                   <Label htmlFor="certificateNo">Certificate No</Label>
                   <Input
                     id="certificateNo"
-                    placeholder="Certificate No"
+                    value={getValue("certificateNo")}
                     className="bg-white my-2 w-sm"
+                    readOnly={true}
+                    onChange={handleChange}
                   />
                 </div>
                 <div className="py-2">
                   <Label htmlFor="processNo">Process No</Label>
                   <Input
                     id="processNo"
-                    placeholder="Process No"
+                    value={getValue("processNo")}
                     className="bg-white my-2 w-sm"
+                    readOnly={!isEditMode}
+                    onChange={handleChange}
                   />
                 </div>
                 <div className="py-2">
-                  <Label htmlFor="riskAssessmentWONo">
+                  <Label htmlFor="riskAssessmentWoNo">
                     Risk Assessment WO No.
                   </Label>
                   <Input
-                    id="riskAssessmentWONo"
-                    placeholder="Risk Assessment WO No."
+                    id="riskAssessmentWoNo"
+                    value={getValue("riskAssessmentWoNo")}
                     className="bg-white my-2 w-sm"
+                    readOnly={!isEditMode}
+                    onChange={handleChange}
                   />
                 </div>
                 <div className="py-2">
-                  <Label htmlFor="riskAssessmentWODate">
+                  <Label htmlFor="raCompletedOn">
                     Risk Assessment WO Date
                   </Label>
                   <div className="w-sm">
                     <div className="[&>div>button]:w-full [&>div>button]:bg-white [&>div>button]:h-10 [&>div>button]:my-2">
-                      <DatePicker id="riskAssessmentWODate" />
+                      <DatePicker
+                        id="raCompletedOn"
+                        selected={getValue("raCompletedOn") ? new Date(getValue("raCompletedOn")) : undefined}
+                        disabled={!isEditMode}
+                        onChange={(date) => handleDateChange(date, "raCompletedOn")}
+                      />
                     </div>
                   </div>
                 </div>
@@ -134,33 +256,44 @@ const LapaRight = () => {
                   <Label htmlFor="room">Room</Label>
                   <Input
                     id="room"
-                    placeholder="Room"
+                    value={getValue("room")}
                     className="bg-white my-2 w-sm"
+                    readOnly={!isEditMode}
+                    onChange={handleChange}
                   />
                 </div>
                 <div className="py-2">
                   <Label htmlFor="location">Location</Label>
                   <Input
                     id="location"
-                    placeholder="Location"
+                    value={getValue("location")}
                     className="bg-white my-2 w-sm"
+                    readOnly={!isEditMode}
+                    onChange={handleChange}
                   />
                 </div>
                 <div className="py-2">
-                  <Label htmlFor="remedialWONo">Remedial WO No.</Label>
+                  <Label htmlFor="remedialWoNo">Remedial WO No.</Label>
                   <Input
-                    id="remedialWONo"
-                    placeholder="Remedial WO No."
+                    id="remedialWoNo"
+                    value={getValue("remedialWoNo")}
                     className="bg-white my-2 w-sm"
+                    readOnly={!isEditMode}
+                    onChange={handleChange}
                   />
                 </div>
                 <div className="py-2">
-                  <Label htmlFor="remedialCompletedOn">
+                  <Label htmlFor="remedialDoneOn">
                     Remedial Completed On
                   </Label>
                   <div className="w-sm">
                     <div className="[&>div>button]:w-full [&>div>button]:bg-white [&>div>button]:h-10 [&>div>button]:my-2">
-                      <DatePicker id="remedialCompletedOn" />
+                      <DatePicker
+                        id="remedialDoneOn"
+                        selected={getValue("remedialDoneOn") ? new Date(getValue("remedialDoneOn")) : undefined}
+                        disabled={!isEditMode}
+                        onChange={(date) => handleDateChange(date, "remedialDoneOn")}
+                      />
                     </div>
                   </div>
                 </div>
@@ -170,105 +303,139 @@ const LapaRight = () => {
                   </Label>
                   <Input
                     id="sample"
-                    placeholder="Original/Resample"
+                    value={getValue("sample")}
                     className="bg-white my-2 w-sm"
+                    readOnly={!isEditMode}
+                    onChange={handleChange}
                   />
                 </div>
                 <div className="py-2">
-                  <Label htmlFor="sampleNoPre">Sample No (Pre)</Label>
+                  <Label htmlFor="resultPre">Sample No (Pre)</Label>
                   <Input
-                    id="sampleNoPre"
-                    placeholder="Sample No (Pre)"
+                    id="resultPre"
+                    value={getValue("resultPre")}
                     className="bg-white my-2 w-sm"
+                    readOnly={!isEditMode}
+                    onChange={handleChange}
                   />
                 </div>
                 <div className="py-2">
                   <Label htmlFor="sampleOn">Sample On</Label>
-                  <DatePicker id="sampleOn" />
+                  <DatePicker
+                    id="sampleOn"
+                    selected={getValue("sampleOn") ? new Date(getValue("sampleOn")) : undefined}
+                    disabled={!isEditMode}
+                    onChange={(date) => handleDateChange(date, "sampleOn")}
+                  />
                 </div>
                 <div className="py-2">
-                  <Label htmlFor="nextResampleDate">Next Resample Date</Label>
-                  <DatePicker id="nextResampleDate" />
+                  <Label htmlFor="nextSampleDate">Next Resample Date</Label>
+                  <DatePicker
+                    id="nextSampleDate"
+                    selected={getValue("nextSampleDate") ? new Date(getValue("nextSampleDate")) : undefined}
+                    disabled={!isEditMode}
+                    onChange={(date) => handleDateChange(date, "nextSampleDate")}
+                  />
                 </div>
 
                 {/* Right Column - Assessment Details */}
                 <div className="py-2">
-                  <Label htmlFor="laPA">LA/ PA</Label>
-                  <Select>
-                    <SelectTrigger className="w-sm bg-white my-2">
-                      <SelectValue placeholder="Choose an Option" />
-                    </SelectTrigger>
-                    <SelectContent>
-                      <SelectGroup>
-                        <SelectItem value="la">LA</SelectItem>
-                        <SelectItem value="pa">PA</SelectItem>
-                      </SelectGroup>
-                    </SelectContent>
-                  </Select>
+                  <Label htmlFor="lApA">LA/ PA</Label>
+                  <Input
+                    id="lApA"
+                    value={getValue("lApA")}
+                    className="bg-white my-2 w-sm"
+                    readOnly={!isEditMode}
+                    onChange={handleChange}
+                  />
                 </div>
                 <div className="py-2">
                   <Label htmlFor="bacteriaVariant">Bacteria Variant</Label>
                   <Input
                     id="bacteriaVariant"
-                    placeholder="Bacteria Variant"
+                    value={getValue("bacteriaVariant")}
                     className="bg-white my-2 w-sm"
+                    readOnly={!isEditMode}
+                    onChange={handleChange}
                   />
                 </div>
                 <div className="py-2">
                   <Label htmlFor="resultPre">Result (Pre)</Label>
                   <Input
                     id="resultPre"
-                    placeholder="Result (Pre)"
+                    value={getValue("resultPre")}
                     className="bg-white my-2 w-sm"
+                    readOnly={!isEditMode}
+                    onChange={handleChange}
                   />
                 </div>
                 <div className="py-2">
                   <Label htmlFor="resultPost">Result (Post)</Label>
                   <Input
                     id="resultPost"
-                    placeholder="Result (Post)"
+                    value={getValue("resultPost")}
                     className="bg-white my-2 w-sm"
+                    readOnly={!isEditMode}
+                    onChange={handleChange}
                   />
                 </div>
                 <div className="py-2">
-                  <Label htmlFor="reportTemp">Report Temp</Label>
+                  <Label htmlFor="reportTemplate">Report Temp</Label>
                   <Input
-                    id="reportTemp"
-                    placeholder="Report Temp"
+                    id="reportTemplate"
+                    value={getValue("reportTemplate")}
                     className="bg-white my-2 w-sm"
+                    readOnly={!isEditMode}
+                    onChange={handleChange}
                   />
                 </div>
                 <div className="py-2">
                   <Label htmlFor="temperatureHot">Temperature ( Hot )</Label>
                   <Input
                     id="temperatureHot"
-                    placeholder="Temperature (Hot)"
+                    value={getValue("temperatureHot")}
                     className="bg-white my-2 w-sm"
+                    readOnly={!isEditMode}
+                    onChange={handleChange}
                   />
                 </div>
                 <div className="py-2">
                   <Label htmlFor="temperatureCold">Temperature ( Cold )</Label>
                   <Input
                     id="temperatureCold"
-                    placeholder="Temperature (Cold)"
+                    value={getValue("temperatureCold")}
                     className="bg-white my-2 w-sm"
+                    readOnly={!isEditMode}
+                    onChange={handleChange}
                   />
                 </div>
                 <div className="py-2">
                   <Label htmlFor="labName">Lab Name</Label>
                   <Input
                     id="labName"
-                    placeholder="Lab Name"
+                    value={getValue("labName")}
                     className="bg-white my-2 w-sm"
+                    readOnly={!isEditMode}
+                    onChange={handleChange}
                   />
                 </div>
                 <div className="py-2">
-                  <Label htmlFor="receivedOn">Received On</Label>
-                  <DatePicker id="receivedOn" />
+                  <Label htmlFor="sampleOn">Received On</Label>
+                  <DatePicker
+                    id="sampleOn"
+                    selected={getValue("sampleOn") ? new Date(getValue("sampleOn")) : undefined}
+                    disabled={!isEditMode}
+                    onChange={(date) => handleDateChange(date, "sampleOn")}
+                  />
                 </div>
                 <div className="py-2">
                   <Label htmlFor="notifiedOn">Notified On</Label>
-                  <DatePicker id="notifiedOn" />
+                  <DatePicker
+                    id="notifiedOn"
+                    selected={getValue("notifiedOn") ? new Date(getValue("notifiedOn")) : undefined}
+                    disabled={!isEditMode}
+                    onChange={(date) => handleDateChange(date, "notifiedOn")}
+                  />
                 </div>
                 <div className="py-2">
                   <Label htmlFor="attachments">Attachments</Label>
@@ -276,14 +443,17 @@ const LapaRight = () => {
                     id="attachments"
                     type="file"
                     className="bg-white my-2 w-sm"
+                    disabled={!isEditMode}
                   />
                 </div>
                 <div className="py-2">
-                  <Label htmlFor="filterDetails">Filter Details</Label>
+                  <Label htmlFor="comments">Filter Details</Label>
                   <Textarea
-                    id="filterDetails"
-                    placeholder="Filter Details"
+                    id="comments"
+                    value={getValue("comments")}
                     className="bg-white my-2 w-sm"
+                    readOnly={!isEditMode}
+                    onChange={handleChange}
                   />
                 </div>
 
@@ -294,8 +464,10 @@ const LapaRight = () => {
                   </Label>
                   <Input
                     id="systemContamination"
-                    placeholder="System Contamination"
+                    value={getValue("systemContamination")}
                     className="bg-white my-2 w-sm"
+                    readOnly={!isEditMode}
+                    onChange={handleChange}
                   />
                 </div>
                 <div className="py-2">
@@ -304,56 +476,68 @@ const LapaRight = () => {
                   </Label>
                   <Input
                     id="systemContaminationScore"
-                    placeholder="Score"
+                    value={getValue("systemContaminationScore")}
                     className="bg-white my-2 w-sm"
+                    readOnly={!isEditMode}
+                    onChange={handleChange}
                   />
                 </div>
                 <div className="py-2">
-                  <Label htmlFor="patientSusceptibility">
+                  <Label htmlFor="assessedRisk">
                     Patient Susceptibility
                   </Label>
                   <Input
-                    id="patientSusceptibility"
-                    placeholder="Patient Susceptibility"
+                    id="assessedRisk"
+                    value={getValue("assessedRisk")}
                     className="bg-white my-2 w-sm"
+                    readOnly={!isEditMode}
+                    onChange={handleChange}
                   />
                 </div>
                 <div className="py-2">
-                  <Label htmlFor="patientSusceptibilityScore">
+                  <Label htmlFor="overallRiskScore">
                     Patient Susceptibility Score
                   </Label>
                   <Input
-                    id="patientSusceptibilityScore"
-                    placeholder="Score"
+                    id="overallRiskScore"
+                    value={getValue("overallRiskScore")}
                     className="bg-white my-2 w-sm"
+                    readOnly={!isEditMode}
+                    onChange={handleChange}
                   />
                 </div>
                 <div className="py-2">
-                  <Label htmlFor="systemOperationalConditions">
+                  <Label htmlFor="managedMitigation">
                     System Operational Conditions
                   </Label>
                   <Input
-                    id="systemOperationalConditions"
-                    placeholder="System Operational Conditions"
+                    id="managedMitigation"
+                    value={getValue("managedMitigation")}
                     className="bg-white my-2 w-sm"
+                    readOnly={!isEditMode}
+                    onChange={handleChange}
                   />
                 </div>
                 <div className="py-2">
-                  <Label htmlFor="systemOperationalConditionsScore">
+                  <Label htmlFor="managedMitigationScore">
                     System Operational Conditions Score
                   </Label>
                   <Input
-                    id="systemOperationalConditionsScore"
-                    placeholder="Score"
+                    id="managedMitigationScore"
+                    value={getValue("managedMitigationScore")}
                     className="bg-white my-2 w-sm"
+                    readOnly={!isEditMode}
+                    onChange={handleChange}
                   />
                 </div>
                 <div className="py-2">
                   <Label htmlFor="managedMitigation">Managed Mitigation</Label>
                   <Input
                     id="managedMitigation"
-                    placeholder="Managed Mitigation"
+                    value={getValue("managedMitigation")}
                     className="bg-white my-2 w-sm"
+                    readOnly={!isEditMode}
+                    onChange={handleChange}
                   />
                 </div>
                 <div className="py-2">
@@ -362,32 +546,31 @@ const LapaRight = () => {
                   </Label>
                   <Input
                     id="managedMitigationScore"
-                    placeholder="Score"
+                    value={getValue("managedMitigationScore")}
                     className="bg-white my-2 w-sm"
+                    readOnly={!isEditMode}
+                    onChange={handleChange}
                   />
                 </div>
                 <div className="py-2">
                   <Label htmlFor="overallRiskScore">Overall Risk Score</Label>
                   <Input
                     id="overallRiskScore"
-                    placeholder="Overall Risk Score"
+                    value={getValue("overallRiskScore")}
                     className="bg-white my-2 w-sm"
+                    readOnly={!isEditMode}
+                    onChange={handleChange}
                   />
                 </div>
                 <div className="py-2">
-                  <Label htmlFor="riskLevel">Risk Level</Label>
-                  <Select>
-                    <SelectTrigger className="w-sm bg-white my-2">
-                      <SelectValue placeholder="Select Risk Level" />
-                    </SelectTrigger>
-                    <SelectContent>
-                      <SelectGroup>
-                        <SelectItem value="low">Low</SelectItem>
-                        <SelectItem value="medium">Medium</SelectItem>
-                        <SelectItem value="high">High</SelectItem>
-                      </SelectGroup>
-                    </SelectContent>
-                  </Select>
+                  <Label htmlFor="assessedRisk">Risk Level</Label>
+                  <Input
+                    id="assessedRisk"
+                    value={getValue("assessedRisk")}
+                    className="bg-white my-2 w-sm"
+                    readOnly={!isEditMode}
+                    onChange={handleChange}
+                  />
                 </div>
 
                 {/* Comments and Plans */}
@@ -395,40 +578,50 @@ const LapaRight = () => {
                   <Label htmlFor="assessedRisk">Assessed Risk</Label>
                   <Textarea
                     id="assessedRisk"
-                    placeholder="Assessed Risk"
+                    value={getValue("assessedRisk")}
                     className="bg-white my-2 w-sm"
+                    readOnly={!isEditMode}
+                    onChange={handleChange}
                   />
                 </div>
                 <div className="py-2">
-                  <Label htmlFor="actions">Actions</Label>
+                  <Label htmlFor="remedialActions">Actions</Label>
                   <Textarea
-                    id="actions"
-                    placeholder="Actions"
+                    id="remedialActions"
+                    value={getValue("remedialActions")}
                     className="bg-white my-2 w-sm"
+                    readOnly={!isEditMode}
+                    onChange={handleChange}
                   />
                 </div>
                 <div className="py-2">
                   <Label htmlFor="remedialActions">Remedial Actions</Label>
                   <Textarea
                     id="remedialActions"
-                    placeholder="Remedial Actions"
+                    value={getValue("remedialActions")}
                     className="bg-white my-2 w-sm"
+                    readOnly={!isEditMode}
+                    onChange={handleChange}
                   />
                 </div>
                 <div className="py-2">
                   <Label htmlFor="agreedActions">Agreed Actions</Label>
                   <Textarea
                     id="agreedActions"
-                    placeholder="Agreed Actions"
+                    value={getValue("agreedActions")}
                     className="bg-white my-2 w-sm"
+                    readOnly={!isEditMode}
+                    onChange={handleChange}
                   />
                 </div>
                 <div className="py-2">
-                  <Label htmlFor="mitigationPlan">Mitigation Plan</Label>
+                  <Label htmlFor="additionalComments">Mitigation Plan</Label>
                   <Textarea
-                    id="mitigationPlan"
-                    placeholder="Mitigation Plan"
+                    id="additionalComments"
+                    value={getValue("additionalComments")}
                     className="bg-white my-2 w-sm"
+                    readOnly={!isEditMode}
+                    onChange={handleChange}
                   />
                 </div>
                 <div className="py-2">
@@ -437,16 +630,20 @@ const LapaRight = () => {
                   </Label>
                   <Textarea
                     id="additionalComments"
-                    placeholder="Additional Comments"
+                    value={getValue("additionalComments")}
                     className="bg-white my-2 w-sm"
+                    readOnly={!isEditMode}
+                    onChange={handleChange}
                   />
                 </div>
                 <div className="py-2">
                   <Label htmlFor="comments">Comments</Label>
                   <Textarea
                     id="comments"
-                    placeholder="Comments"
+                    value={getValue("comments")}
                     className="bg-white my-2 w-sm"
+                    readOnly={!isEditMode}
+                    onChange={handleChange}
                   />
                 </div>
               </div>
