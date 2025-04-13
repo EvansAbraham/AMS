@@ -95,7 +95,7 @@ const LapaRight: React.FC = () => {
     setFormData((prev) => ({ ...prev, [id]: value }));
   };
 
-  const handleDateChange = (date: Date | null, fieldName: string): void => {
+  const handleDateChange = (date: Date | undefined, fieldName: string): void => {
     setFormData((prev) => ({ ...prev, [fieldName]: date }));
   };
 
@@ -112,7 +112,7 @@ const LapaRight: React.FC = () => {
     if (isEditMode && formData[fieldName] !== undefined) {
       return formData[fieldName];
     }
-    return selectedLapa[fieldName] || "";
+    return (selectedLapa as LapaData)[fieldName] || "";
   };
 
   // List of fields that should remain read-only even in edit mode
@@ -233,7 +233,7 @@ const LapaRight: React.FC = () => {
                         id="riskAssessmentWODate"
                         selected={getValue("raCompletedOn") ? new Date(getValue("raCompletedOn")) : undefined}
                         disabled={!isEditMode}
-                        onChange={(date: Date | null) => handleDateChange(date, "raCompletedOn")}
+                        onChange={(date) => handleDateChange(date, "raCompletedOn")}
                       />
                     </div>
                   </div>
@@ -278,7 +278,7 @@ const LapaRight: React.FC = () => {
                         id="remedialCompletedOn"
                         selected={getValue("remedialDoneOn") ? new Date(getValue("remedialDoneOn")) : undefined}
                         disabled={!isEditMode}
-                        onChange={(date: Date | null) => handleDateChange(date, "remedialDoneOn")}
+                        onChange={(date) => handleDateChange(date, "remedialDoneOn")}
                       />
                     </div>
                   </div>
@@ -311,7 +311,7 @@ const LapaRight: React.FC = () => {
                     id="sampleOn"
                     selected={getValue("sampleOn") ? new Date(getValue("sampleOn")) : undefined}
                     disabled={!isEditMode}
-                    onChange={(date: Date | null) => handleDateChange(date, "sampleOn")}
+                    onChange={(date) => handleDateChange(date, "sampleOn")}
                   />
                 </div>
                 <div className="py-2">
@@ -320,7 +320,7 @@ const LapaRight: React.FC = () => {
                     id="nextResampleDate"
                     selected={getValue("nextSampleDate") ? new Date(getValue("nextSampleDate")) : undefined}
                     disabled={!isEditMode}
-                    onChange={(date: Date | null) => handleDateChange(date, "nextSampleDate")}
+                    onChange={(date) => handleDateChange(date, "nextSampleDate")}
                   />
                 </div>
 
@@ -411,7 +411,7 @@ const LapaRight: React.FC = () => {
                     id="receivedOn"
                     selected={getValue("sampleOn") ? new Date(getValue("sampleOn")) : undefined}
                     disabled={!isEditMode}
-                    onChange={(date: Date | null) => handleDateChange(date, "sampleOn")}
+                    onChange={(date) => handleDateChange(date, "sampleOn")}
                   />
                 </div>
                 <div className="py-2">
@@ -420,7 +420,7 @@ const LapaRight: React.FC = () => {
                     id="notifiedOn"
                     selected={getValue("notifiedOn") ? new Date(getValue("notifiedOn")) : undefined}
                     disabled={!isEditMode}
-                    onChange={(date: Date | null) => handleDateChange(date, "notifiedOn")}
+                    onChange={(date) => handleDateChange(date, "notifiedOn")}
                   />
                 </div>
                 <div className="py-2">
