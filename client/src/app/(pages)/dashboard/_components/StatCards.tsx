@@ -1,6 +1,6 @@
 import React from 'react';
 import { Card, CardContent } from "@/components/ui/card";
-import { ArrowUpRight, ArrowDownRight, Users, FileText, CheckCircle, Clock } from 'lucide-react';
+import { ArrowUpRight, ArrowDownRight, Filter, Clipboard, CheckCircle, AlertCircle } from 'lucide-react';
 
 interface StatCardProps {
   title: string;
@@ -40,28 +40,28 @@ export const StatCards: React.FC = () => {
   return (
     <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 mb-8">
       <StatCard 
-        title="Total Users" 
-        value="2,845" 
-        change={12.5} 
-        icon={<Users className="h-5 w-5" />} 
+        title="Total Assets" 
+        value="1,245" 
+        change={8.5} 
+        icon={<Filter className="h-5 w-5" />} 
       />
       <StatCard 
-        title="Documents" 
-        value="482" 
-        change={8.2} 
-        icon={<FileText className="h-5 w-5" />} 
+        title="LAPA Assessments" 
+        value="328" 
+        change={12.2} 
+        icon={<Clipboard className="h-5 w-5" />} 
       />
       <StatCard 
-        title="Completed Tasks" 
-        value="1,429" 
-        change={-3.8} 
+        title="Completed Maintenance" 
+        value="892" 
+        change={-2.8} 
         icon={<CheckCircle className="h-5 w-5" />} 
       />
       <StatCard 
-        title="Pending Tasks" 
-        value="258" 
-        change={5.1} 
-        icon={<Clock className="h-5 w-5" />} 
+        title="Pending Inspections" 
+        value="156" 
+        change={4.1} 
+        icon={<AlertCircle className="h-5 w-5" />} 
       />
     </div>
   );

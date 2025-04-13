@@ -65,7 +65,7 @@ export interface LogData {
 
 
 export const monthlyCompletionData: MonthlyCompletionData[] = [
-  { date: "2025-01-31", month: "Jan", completed: 45, notCompleted: 55 },
+  { date: "2025-01-31", month: "Jan", completed: 45, notCompleted: 55 }, 
   { date: "2025-02-29", month: "Feb", completed: 52, notCompleted: 48 },
   { date: "2025-03-31", month: "Mar", completed: 67, notCompleted: 33 },
   { date: "2025-04-07", month: "Apr", completed: 61, notCompleted: 39 },
@@ -76,7 +76,7 @@ export const monthlyCompletionData: MonthlyCompletionData[] = [
 ];
 
 export const taskStatusData: TaskStatusData[] = [
-  { month: "Jan", completed: 55, notCompleted: 20, hold: 15 },
+  { month: "Jan", completed: 55, notCompleted: 20, hold: 15 }, 
   { month: "Feb", completed: 62, notCompleted: 18, hold: 14 },
   { month: "Mar", completed: 48, notCompleted: 25, hold: 18 },
   { month: "Apr", completed: 71, notCompleted: 12, hold: 18 },
@@ -87,22 +87,23 @@ export const taskStatusData: TaskStatusData[] = [
 ];
 
 export const taskBreakdownData: TaskBreakdownData[] = [
-  { status: "Completed", count: 145 },
+  { status: "Completed", count: 145 }, 
   { status: "In Progress", count: 78 },
   { status: "Pending", count: 42 },
   { status: "On Hold", count: 25 },
 ];
 
 export const topTasksData: TopTaskData[] = [
-  { name: "Documentation", value: 85 },
-  { name: "Testing", value: 72 },
-  { name: "Development", value: 65 },
-  { name: "Design", value: 58 },
-  { name: "Research", value: 45 },
-  { name: "Planning", value: 38 },
+  { name: "Filter Replacement", value: 85 },
+  { name: "LAPA Assessment", value: 72 },
+  { name: "Asset Inspection", value: 65 },
+  { name: "Risk Assessment", value: 58 },
+  { name: "Maintenance", value: 45 },
+  { name: "Certification", value: 38 },
 ];
 
 export const visitorData: VisitorData[] = [
+  
   { date: "2025-01-15", visitors: 120, newUsers: 45 },
   { date: "2025-01-31", visitors: 145, newUsers: 52 },
   { date: "2025-02-15", visitors: 132, newUsers: 48 },
@@ -119,69 +120,68 @@ export const visitorData: VisitorData[] = [
 ];
 
 export const documentData: DocumentData[] = [
-  { id: "doc1", name: "Project Overview", type: "Introduction", status: "Completed", target: "All Teams", limit: "N/A", reviewer: "John Smith" },
-  { id: "doc2", name: "Technical Specifications", type: "Technical", status: "In Process", target: "Development", limit: "Apr 15", reviewer: "Jane Doe" },
-  { id: "doc3", name: "User Requirements", type: "Requirements", status: "In Review", target: "Product", limit: "Apr 10", reviewer: "Mike Johnson" },
-  { id: "doc4", name: "Testing Plan", type: "QA", status: "Pending", target: "QA Team", limit: "Apr 20", reviewer: "Sarah Williams" },
-  { id: "doc5", name: "Deployment Strategy", type: "Operations", status: "In Process", target: "DevOps", limit: "Apr 25", reviewer: "David Brown" },
+  { id: "doc1", name: "Asset Maintenance Guide", type: "Manual", status: "Completed", target: "Maintenance Team", limit: "N/A", reviewer: "John Smith" },
+  { id: "doc2", name: "LAPA Assessment Protocol", type: "Protocol", status: "In Process", target: "Assessors", limit: "Apr 15", reviewer: "Jane Doe" },
+  { id: "doc3", name: "Filter Requirements", type: "Technical", status: "In Review", target: "Engineers", limit: "Apr 10", reviewer: "Mike Johnson" },
+  { id: "doc4", name: "Risk Assessment Guide", type: "Guidelines", status: "Pending", target: "Assessment Team", limit: "Apr 20", reviewer: "Sarah Williams" },
+  { id: "doc5", name: "Asset Management Plan", type: "Planning", status: "In Process", target: "Management", limit: "Apr 25", reviewer: "David Brown" },
 ];
 
 export const keyPersonnelData: PersonnelData[] = [
-  { id: "person1", name: "John Smith", role: "Project Manager", expertise: "Agile, SCRUM, Project Planning", contact: "john.smith@example.com" },
-  { id: "person2", name: "Jane Doe", role: "Lead Developer", expertise: "React, Node.js, TypeScript", contact: "jane.doe@example.com" },
-  { id: "person3", name: "Mike Johnson", role: "UX Designer", expertise: "UI/UX, Figma, User Research", contact: "mike.johnson@example.com" },
-  { id: "person4", name: "Sarah Williams", role: "QA Lead", expertise: "Test Automation, Manual Testing", contact: "sarah.williams@example.com" },
-  { id: "person5", name: "David Brown", role: "DevOps Engineer", expertise: "CI/CD, Docker, Kubernetes", contact: "david.brown@example.com" },
-  { id: "person6", name: "Emily Davis", role: "Product Owner", expertise: "Product Management, User Stories", contact: "emily.davis@example.com" },
+  { id: "person1", name: "John Smith", role: "Asset Manager", expertise: "Asset Management, Maintenance Planning", contact: "john.smith@example.com" },
+  { id: "person2", name: "Jane Doe", role: "LAPA Specialist", expertise: "Risk Assessment, LAPA Protocol", contact: "jane.doe@example.com" },
+  { id: "person3", name: "Mike Johnson", role: "Maintenance Lead", expertise: "Asset Maintenance, Filter Systems", contact: "mike.johnson@example.com" },
+  { id: "person4", name: "Sarah Williams", role: "Quality Inspector", expertise: "Quality Control, Compliance", contact: "sarah.williams@example.com" },
+  { id: "person5", name: "David Brown", role: "Technical Engineer", expertise: "Technical Assessment, Systems", contact: "david.brown@example.com" },
+  { id: "person6", name: "Emily Davis", role: "Compliance Manager", expertise: "Regulations, Documentation", contact: "emily.davis@example.com" },
 ];
 
 export const focusDocumentsData: FocusDocumentData[] = [
-  { id: "focus1", title: "System Architecture", description: "Overview of system components and interactions", lastUpdated: "2025-04-01" },
-  { id: "focus2", title: "API Documentation", description: "Detailed API endpoints and usage examples", lastUpdated: "2025-03-28" },
-  { id: "focus3", title: "User Manual", description: "End-user documentation for system features", lastUpdated: "2025-03-25" },
-  { id: "focus4", title: "Security Assessment", description: "Security review and vulnerability analysis", lastUpdated: "2025-04-02" },
+  { id: "focus1", title: "Asset Maintenance Schedule", description: "Upcoming maintenance and filter replacement schedule", lastUpdated: "2025-04-01" },
+  { id: "focus2", title: "Filter Inventory Status", description: "Current inventory levels and reorder requirements", lastUpdated: "2025-03-28" },
+  { id: "focus3", title: "Asset Location Map", description: "Floor-wise mapping of all installed assets", lastUpdated: "2025-03-25" },
+  { id: "focus4", title: "Maintenance Reports", description: "Recent maintenance activities and asset health status", lastUpdated: "2025-04-02" },
 ];
-
 
 export const logs: LogData[] = [
   {
-    test: "User Authentication",
-    location: "Auth Module",
+    test: "LAPA Assessment",
+    location: "MNA-R.300",
     status: "Completed",
     time: "2025-04-07T10:30:00",
-    name: "Jane Doe",
-    message: "Authentication module successfully validated.",
+    name: "John",
+    message: "Filter replacement completed and validated.",
   },
   {
-    test: "Data Import",
-    location: "Integration API",
+    test: "Asset Inspection",
+    location: "MNA-R.301",
     status: "In Progress",
     time: "2025-04-07T11:45:00",
-    name: "Mike Johnson",
-    message: "Import from external system started.",
+    name: "Mike",
+    message: "Regular maintenance check initiated.",
   },
   {
-    test: "Report Generation",
-    location: "Reporting Module",
+    test: "Risk Assessment",
+    location: "MNA-R.303",
     status: "Pending",
     time: "2025-04-07T09:15:00",
-    name: "Sarah Williams",
-    message: "Awaiting data inputs from finance.",
+    name: "Sarah",
+    message: "Awaiting filter replacement parts.",
   },
   {
-    test: "User Profile Update",
-    location: "User Module",
+    test: "Maintenance",
+    location: "MNA-R.304",
     status: "Completed",
     time: "2025-04-06T16:20:00",
-    name: "David Brown",
-    message: "User information updated successfully.",
+    name: "David",
+    message: "Asset information updated successfully.",
   },
   {
-    test: "Payment Processing",
-    location: "Billing Module",
+    test: "Certification",
+    location: "MNA-R.305",
     status: "In Progress",
     time: "2025-04-06T14:10:00",
-    name: "Emily Davis",
-    message: "Transaction queued for settlement.",
+    name: "Emily",
+    message: "LAPA certification in process.",
   },
 ];
