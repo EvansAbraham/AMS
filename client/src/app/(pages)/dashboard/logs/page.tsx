@@ -3,11 +3,10 @@ import React from 'react';
 import { logs } from '../_components/Data';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
-import { useState } from 'react';
-import DashboardLeft from '../_components/dashboardLeft';
+import DashboardLeft from "../_components/dashboardLeft";
 
 const LogsPage = () => {
-  const [expandedLogs, setExpandedLogs] = useState<{ [key: string]: boolean }>({});
+  const [expandedLogs, setExpandedLogs] = React.useState<{ [key: string]: boolean }>({});
 
   const toggleMessage = (index: number) => {
     setExpandedLogs(prev => ({
@@ -17,8 +16,11 @@ const LogsPage = () => {
   };
 
   return (
-    <div className="flex h-screen">
-      <DashboardLeft />
+    <div className="flex flex-col lg:flex-row h-screen bg-gray-50 overflow-hidden">
+      <div className="hidden lg:block lg:w-1/4 h-full">
+        <DashboardLeft isMobile={false} setIsMobile={() => {}} />
+      </div>
+      
       <div className="flex-1 overflow-auto">
         <Card className="m-6 shadow-sm">
           <CardHeader className="pb-3">
@@ -64,14 +66,9 @@ const LogsPage = () => {
                           <Button
                             variant="outline"
                             size="sm"
-                            className={`text-xs px-3 py-1 ${
-                              expandedLogs[index] 
-                                ? "bg-[#071487] text-white hover:bg-[#071487]/90" 
-                                : "border-[#071487] text-[#071487] hover:bg-[#071487]/10"
-                            }`}
                             onClick={() => toggleMessage(index)}
                           >
-                            {expandedLogs[index] ? 'Hide' : 'Show'}
+                            {expandedLogs[index] ? "Hide" : "Show"}
                           </Button>
                         </td>
                       </tr>
