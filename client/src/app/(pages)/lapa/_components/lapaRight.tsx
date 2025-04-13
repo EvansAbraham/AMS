@@ -182,13 +182,18 @@ const LapaRight: React.FC = () => {
                 </div>
                 <div className="py-2">
                   <Label htmlFor="status">Status</Label>
-                  <Input
-                    id="status"
-                    value={getValue("status")}
-                    className="bg-white my-2 w-sm"
-                    readOnly={true}
-                    onChange={handleChange}
-                  />
+
+
+                  <Select onValueChange={(value) => setFormData((prev) => ({ ...prev, status: value }))} value={getValue("status")} disabled={!isEditMode}>
+                    <SelectTrigger className="w-sm bg-white my-2">
+                      <SelectValue placeholder="Select status" />
+                    </SelectTrigger>
+                    <SelectContent>
+                      <SelectItem value="Pending">Pending</SelectItem>
+                      <SelectItem value="In Progress">In Progress</SelectItem>
+                      <SelectItem value="Completed">Completed</SelectItem>
+                    </SelectContent>
+                  </Select>
                 </div>
                 <div className="py-2">
                   <Label htmlFor="wing">Wing</Label>
