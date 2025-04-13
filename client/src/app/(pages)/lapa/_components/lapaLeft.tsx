@@ -12,7 +12,6 @@ import React, { useState } from 'react'
 import Modal from '../../assets/_components/modal'
 import LapaForm from './LapaForm'
 import { Lapa, useGetLapaQuery } from '@/app/state/api';
-import { loadavg } from 'os';
 import { useLapa } from '@/context/LapaContext';
 
 const LapaLeft = () => {
