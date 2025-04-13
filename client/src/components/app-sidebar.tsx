@@ -11,8 +11,10 @@ import {
   SidebarMenuButton,
   SidebarMenuItem,
   SidebarTrigger,
+  SidebarFooter,
 } from "@/components/ui/sidebar";
 import { Separator } from "./ui/separator";
+import { ProfileMenu } from "./profile-menu";
 
 const items = [
   {
@@ -52,7 +54,7 @@ export function AppSidebar() {
 
   return (
     <Sidebar collapsible="icon">
-      <SidebarContent>
+      <SidebarContent className="flex flex-col h-full">
         <SidebarGroup>
           <SidebarGroupContent>
             <div className="flex">
@@ -84,6 +86,9 @@ export function AppSidebar() {
           </SidebarGroupContent>
         </SidebarGroup>
       </SidebarContent>
+      <SidebarFooter className="border-t px-0 py-2 ml-1 ">
+        <ProfileMenu />
+      </SidebarFooter>
     </Sidebar>
   );
 }
