@@ -24,7 +24,10 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
   const { status } = useSession();
 
   const isLoading = status === "loading";
-  const isAuthenticated = status === "authenticated";
+  const isAuthenticated =
+    status === "authenticated" ||
+    (typeof window !== "undefined" &&
+      localStorage.getItem("isAuthenticated") === "true");
 
   const login = async (email: string, password: string) => {
     try {
@@ -39,17 +42,16 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
       });
 
       if (credResult?.error) {
-        throw new Error(credResult.error);
-        // console.log("Credentials login failed, trying Cognito...");
+        console.log("Credentials login failed, trying Cognito...");
 
-        // // Try Cognito provider
-        // const cognitoResult = await signIn("cognito", {
-        //   redirect: false,
-        // });
+        // Try Cognito provider
+        const cognitoResult = await signIn("cognito", {
+          redirect: false,
+        });
 
-        // if (cognitoResult?.error) {
-        //   throw new Error(cognitoResult.error);
-        // }
+        if (cognitoResult?.error) {
+          throw new Error(cognitoResult.error);
+        }
       }
 
       // Wait for session to update
