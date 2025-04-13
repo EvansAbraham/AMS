@@ -1,11 +1,12 @@
 "use client";
 
 import { Menu } from "lucide-react";
-import { Sheet, SheetContent, SheetTrigger, SheetTitle } from "@/components/ui/sheet";
+import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
 import { Button } from "@/components/ui/button";
 import { Clipboard, FileSearch, LayoutDashboard, Upload, UserPlus } from "lucide-react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+import { ProfileMenu } from "./profile-menu";
 
 export function MobileSidebar() {
   const pathname = usePathname();
@@ -52,16 +53,13 @@ export function MobileSidebar() {
       </SheetTrigger>
       <SheetContent 
         side="left" 
-        className="p-0 w-[250px] border-r z-30"
-        onOpenAutoFocus={(e) => e.preventDefault()} 
-        onCloseAutoFocus={(e) => e.preventDefault()} 
+        className="p-0 w-[250px] border-r z-30 flex flex-col"
       >
-        <SheetTitle className="sr-only">Navigation Menu</SheetTitle>
-        <div className="h-full py-4">
+        <div className="flex flex-col h-full">
           <div className="px-4 py-2 mb-4 border-b">
             <h1 className="text-lg font-semibold">Assetra</h1>
           </div>
-          <nav className="space-y-1 px-2">
+          <nav className="space-y-1 px-2 flex-1">
             {items.map((item) => (
               <Link
                 key={item.title}
@@ -78,6 +76,9 @@ export function MobileSidebar() {
               </Link>
             ))}
           </nav>
+          <footer className="mt-auto border-t px-3 py-2">
+            <ProfileMenu />
+          </footer>
         </div>
       </SheetContent>
     </Sheet>

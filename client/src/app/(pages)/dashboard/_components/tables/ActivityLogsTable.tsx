@@ -2,6 +2,7 @@ import React from 'react';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Clock } from 'lucide-react';
+import { useRouter } from 'next/navigation';
 
 interface LogData {
   test: string;
@@ -16,6 +17,12 @@ interface ActivityLogsTableProps {
 }
 
 const ActivityLogsTable: React.FC<ActivityLogsTableProps> = ({ logs }) => {
+  const router = useRouter();
+
+  const handleRowClick = () => {
+    router.push('/dashboard/logs');
+  };
+
   return (
     <Card className="mb-8 shadow-sm">
       <CardHeader className="pb-3">
@@ -24,7 +31,12 @@ const ActivityLogsTable: React.FC<ActivityLogsTableProps> = ({ logs }) => {
             <CardTitle className="text-[#071487] text-lg font-semibold">Recent Activity</CardTitle>
             <CardDescription>Latest system activities and logs</CardDescription>
           </div>
-          <Button variant="outline" size="sm" className="text-xs">
+          <Button 
+            variant="outline" 
+            size="sm" 
+            className="text-xs"
+            onClick={handleRowClick}
+          >
             <Clock className="h-3 w-3 mr-2" />
             View All Logs
           </Button>
@@ -44,7 +56,11 @@ const ActivityLogsTable: React.FC<ActivityLogsTableProps> = ({ logs }) => {
             </thead>
             <tbody>
               {logs.slice(0, 3).map((log, index) => (
-                <tr key={index} className="border-b border-gray-100 hover:bg-gray-50">
+                <tr 
+                  key={index} 
+                  className="border-b border-gray-100 hover:bg-gray-50 cursor-pointer" 
+                  onClick={handleRowClick}
+                >
                   <td className="py-3 px-2 text-sm">{log.test}</td>
                   <td className="py-3 px-2 text-sm hidden md:table-cell">{log.location}</td>
                   <td className="py-3 px-2 text-sm">

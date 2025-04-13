@@ -23,7 +23,7 @@ interface DatePickerProps {
 export function DatePicker({ id, selected, onChange, disabled }: DatePickerProps) {
   const [date, setDate] = React.useState<Date | undefined>(selected)
 
-  // Update internal state if the `selected` prop changes externally
+ 
   React.useEffect(() => {
     setDate(selected)
   }, [selected])
