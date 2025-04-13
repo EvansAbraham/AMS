@@ -11,16 +11,25 @@ import { useRouter } from 'next/navigation'
 import React, { useState } from 'react'
 import Modal from '../../assets/_components/modal'
 import LapaForm from './LapaForm'
+import { Lapa, useGetLapaQuery } from '@/app/state/api';
+import { loadavg } from 'os';
+import { useLapa } from '@/context/LapaContext';
 
 const LapaLeft = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const { data: lapaList, isLoading, isError } = useGetLapaQuery();
+  const {setSelectedLapa} = useLapa();
   const router = useRouter();
 
   const openModal = () => setIsModalOpen(true);
   const closeModal = () => setIsModalOpen(false);
-  
-  const handleCardClick = (id: string) => {
-    router.push(`/lapa/${id}`);
+
+  const handleCardClick = (Lapa: Lapa) => {
+    setSelectedLapa(Lapa);
+    if (window.innerWidth < 640) {
+      router.push(`/lapa/${Lapa.riskAssessmentWoNo}`);
+    }
+    
   };
 
   return (
@@ -34,7 +43,7 @@ const LapaLeft = () => {
 
       {/* Search Bar */}
       <div className="p-1">
-        <Input 
+        <Input
           placeholder="Search..."
         />
       </div>
@@ -50,37 +59,45 @@ const LapaLeft = () => {
           <Button variant={"outline"}><ArrowDownUp /> Sort</Button>
           <Button variant="outline">
             <Link href={"/riskassessment"}>
-              <Cross/>
+              <Cross />
             </Link>
           </Button>
         </div>
       </div>
 
       <ScrollArea className='w-full flex-grow'>
-        <Card 
-          className='p-5 mb-4 cursor-pointer hover:bg-gray-50'
-          onClick={() => handleCardClick('661642')}
-        >
-          <div className='flex justify-between items-center'>
-            <CardTitle className='text-[#071487]'>Asset Barcode - Completed</CardTitle>
-            <div className='flex space-x-2'>
-              <Button variant={"card_button"} className='h-6 w-6 hidden md:flex items-center justify-center'>
-                <ArrowRight/>
-              </Button>
+        {isLoading && <p className="p-4 text-sm text-gray-500">Loading...</p>}
+        {isError && <p className="p-4 text-sm text-red-500">Failed to load LAPAs.</p>}
+        {lapaList?.map((lapa, index) => (
+          <Card
+            key={index}
+            className='p-5 mb-4 cursor-pointer gap-2 hover:bg-gray-50'
+            onClick={() => handleCardClick(lapa)}
+          >
+            <div className='flex justify-between items-center'>
+              <CardTitle className='text-[#071487]'>
+                {lapa.riskAssessmentWoNo || "Unnamed"} - {lapa.status || "Status Unknown"}
+              </CardTitle>
+              <div className='flex space-x-2'>
+                <Button variant={"card_button"} className='h-6 w-6 hidden md:flex items-center justify-center'>
+                  <ArrowRight />
+                </Button>
+              </div>
             </div>
-          </div>
-          <CardContent className='p-0 mt-2'>
-            <h1 className="font-medium">Primary Identifier</h1>
-            <p className="text-sm text-gray-600">Wing Name: Room name</p>
-            <p className="text-sm text-gray-600">Lapa Detections</p>
-          </CardContent>
-        </Card>
+            <CardContent className='p-0'>
+              <h1 className="font-medium">{lapa.assetBarcode}</h1>
+              <p className="text-sm text-gray-600">{lapa.location || "N/A"} - {lapa.room || "N/A"} </p>
+            </CardContent>
+          </Card>
+        ))}
       </ScrollArea>
 
+
+
       {/* Modal for creating new LAPA entry */}
-      <Modal 
-        isOpen={isModalOpen} 
-        onClose={closeModal} 
+      <Modal
+        isOpen={isModalOpen}
+        onClose={closeModal}
         title="Create New LA/PA Detection"
       >
         <LapaForm />

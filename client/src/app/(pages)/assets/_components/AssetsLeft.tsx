@@ -70,7 +70,6 @@ const AssetsLeft: React.FC = () => {
   };
 
   const handleCardClick = (asset: Asset) => {
-    console.log('Card clicked:', asset.filterInstalledOn);
     setSelectedAsset(asset);
 
     if (window.innerWidth < 640) {
