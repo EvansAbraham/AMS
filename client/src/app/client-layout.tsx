@@ -10,11 +10,14 @@ import { Provider } from "react-redux";
 import { store } from "@/app/store";
 import { AssetProvider } from "@/context/AssetContext";
 import { MobileSidebar } from "@/components/mobile-sidebar";
+import { Session } from "next-auth";
 
 export default function ClientLayout({
   children,
+  session
 }: {
   children: React.ReactNode;
+  session: Session | null;
 }) {
   const pathname = usePathname();
   const isAuthPage = pathname === "/auth";
@@ -28,7 +31,7 @@ export default function ClientLayout({
 
   return (
     <Provider store={store}>
-      <SessionProvider>
+      <SessionProvider session={session}>
         <AuthProvider>
           <AssetProvider>
             {isAuthPage ? (
