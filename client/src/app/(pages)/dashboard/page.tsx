@@ -6,7 +6,7 @@ import { useAuth } from "@/context/AuthContext";
 import { useRouter } from "next/navigation";
 
 const DashBoard = () => {
-  const { isAuthenticated, loading } = useAuth(); // Make sure AuthContext provides `loading`
+  const { isAuthenticated, loading } = useAuth();
   const router = useRouter();
 
   useEffect(() => {
@@ -15,16 +15,11 @@ const DashBoard = () => {
     }
   }, [isAuthenticated, loading, router]);
 
-  if (loading) {
-    return <div>Loading...</div>;
-  }
-
-  if (!isAuthenticated) {
-    return <div>Redirecting to login...</div>;
-  }
+ 
+ 
 
   return (
-    <div className="flex pt-16 md:pt-0">
+    <div className="flex flex-col md:flex-row h-screen bg-gray-50 overflow-hidden">
       <DashboardLeft />
       <DashboardRight />
     </div>
