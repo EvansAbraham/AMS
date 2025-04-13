@@ -9,7 +9,6 @@ import {
   Select,
   SelectValue,
   SelectContent,
-  SelectGroup,
   SelectItem,
   SelectTrigger,
 } from "@/components/ui/select";
@@ -117,6 +116,7 @@ const LapaRight: React.FC = () => {
   }
 
   // Helper function to get current value (either from formData in edit mode or selectedLapa in view mode)
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const getValue = (fieldName: keyof Lapa): any => {
     if (isEditMode && formData[fieldName] !== undefined) {
       return formData[fieldName];
@@ -125,6 +125,7 @@ const LapaRight: React.FC = () => {
   };
 
   // List of fields that should remain read-only even in edit mode
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const readOnlyFields: (keyof Lapa)[] = ["assetBarcode", "status", "certificateNo"];
 
   return (
