@@ -13,6 +13,11 @@ export const options: NextAuthOptions = {
       clientId: process.env.COGNITO_CLIENT_ID || "",
       clientSecret: process.env.COGNITO_CLIENT_SECRET || "",
       issuer: process.env.COGNITO_ISSUER,
+      authorization: {
+        params: {
+          redirect_uri: `${process.env.NEXTAUTH_URL}/api/auth/callback/cognito`,
+        },
+      },
     }),
 
     CredentialsProvider({
@@ -68,6 +73,21 @@ export const options: NextAuthOptions = {
     maxAge: 60 * 60,
   },
 
+  cookies: {
+    sessionToken: {
+      name: `__Secure-next-auth.session-token`,
+      options: {
+        httpOnly: true,
+        sameSite: "lax",
+        path: "/",
+        secure: true, // Force HTTPS in production
+        domain: process.env.NEXTAUTH_URL 
+          ? new URL(process.env.NEXTAUTH_URL).hostname.replace('www.', '')
+          : undefined,
+      },
+    },
+  },
+
   callbacks: {
     async jwt({ token, user }) {
       if (user) {
@@ -77,7 +97,12 @@ export const options: NextAuthOptions = {
     },
     async session({ session, token }) {
       if (token.user) {
-        session.user = token.user;
+        session.user = token.user as {
+          id: string;
+          email: string;
+          name?: string;
+          role: "admin" | "user";
+        };
       }
       return session;
     },
@@ -90,4 +115,5 @@ export const options: NextAuthOptions = {
   },
 
   secret: process.env.NEXTAUTH_SECRET,
+  useSecureCookies: true,
 };
