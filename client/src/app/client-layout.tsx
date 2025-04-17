@@ -5,11 +5,11 @@ import { AppSidebar } from "@/components/app-sidebar";
 import { AuthProvider } from "@/context/AuthContext";
 import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
-import { SessionProvider } from "next-auth/react";
 import { Provider } from "react-redux";
 import { store } from "@/app/store";
 import { AssetProvider } from "@/context/AssetContext";
 import { MobileSidebar } from "@/components/mobile-sidebar";
+import AuthSessionProvider from "./session-provider";
 
 export default function ClientLayout({
   children,
@@ -28,7 +28,7 @@ export default function ClientLayout({
 
   return (
     <Provider store={store}>
-      <SessionProvider>
+      <AuthSessionProvider>
         <AuthProvider>
           <AssetProvider>
             {isAuthPage ? (
@@ -48,7 +48,7 @@ export default function ClientLayout({
             )}
           </AssetProvider>
         </AuthProvider>
-      </SessionProvider>
+      </AuthSessionProvider>
     </Provider>
   );
 }
