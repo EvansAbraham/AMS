@@ -73,6 +73,7 @@ export const options: NextAuthOptions = {
       if (user) {
         token.user = user;
       }
+      console.log("JWT callback token:", token);
       return token;
     },
     async session({ session, token }) {
@@ -80,12 +81,13 @@ export const options: NextAuthOptions = {
         if (token?.user) {
           session.user = token.user;
         }
+        console.log("Session callback:", session);
         return session;
       } catch (error) {
         console.error("Error during session callback:", error);
         throw error;
       }
-    },
+    }
   },
 
   cookies: {

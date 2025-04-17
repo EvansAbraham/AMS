@@ -7,7 +7,7 @@ import React, {
   ReactNode,
 } from "react";
 import { useRouter } from "next/navigation";
-import { signIn, signOut, useSession } from "next-auth/react";
+import { getSession, signIn, signOut, useSession } from "next-auth/react";
 
 interface AuthContextType {
   isAuthenticated: boolean;
@@ -29,48 +29,50 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
     (typeof window !== "undefined" &&
       localStorage.getItem("isAuthenticated") === "true");
 
-  const { data: session } = useSession();
   const login = async (email: string, password: string) => {
     try {
       setLoading(true);
       console.log(`Attempting to sign in with: ${email}`);
-
+  
       // Try credentials login
       const credResult = await signIn("credentials", {
         redirect: false,
         email,
         password,
       });
-
+  
       if (credResult?.error) {
         console.log("Credentials login failed, trying Cognito...");
-
+  
         // Try Cognito provider
         const cognitoResult = await signIn("cognito", {
           redirect: false,
         });
-
+  
         if (cognitoResult?.error) {
           throw new Error(cognitoResult.error);
         }
       }
-
-      // Wait for session to update
-      if (!session || !session.user) {
+  
+      // Wait for session to update after sign-in
+      const session = await getSession();
+      console.log("Session after login:", session); // Add logging
+  
+      if (!session?.user) {
         throw new Error("Session not found after login");
       }
-
+  
       // Set flags for middleware
       localStorage.setItem("isAuthenticated", "true");
       document.cookie = `isAuthenticated=true; path=/`;
-
+  
       // Redirect based on role
       if (session.user.role === "admin") {
         router.push("/dashboard");
       } else {
         router.push("/assets");
       }
-
+  
       console.log("Sign in successful");
     } catch (error) {
       console.error("Login error:", error);
@@ -79,6 +81,7 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
       setLoading(false);
     }
   };
+  
 
   const logout = async () => {
     try {
