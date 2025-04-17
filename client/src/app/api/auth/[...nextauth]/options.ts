@@ -83,6 +83,18 @@ export const options: NextAuthOptions = {
     },
   },
 
+  cookies: {
+    sessionToken: {
+      name: `next-auth.session-token`,
+      options: {
+        httpOnly: true,
+        secure: process.env.NODE_ENV === "production",
+        sameSite: "lax",
+        path: "/",
+      },
+    },
+  },
+
   pages: {
     signIn: "/auth",
     signOut: "/auth",
