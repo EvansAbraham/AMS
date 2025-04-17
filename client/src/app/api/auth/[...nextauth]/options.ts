@@ -76,10 +76,15 @@ export const options: NextAuthOptions = {
       return token;
     },
     async session({ session, token }) {
-      if (token.user) {
-        session.user = token.user;
+      try {
+        if (token?.user) {
+          session.user = token.user;
+        }
+        return session;
+      } catch (error) {
+        console.error("Error during session callback:", error);
+        throw error;
       }
-      return session;
     },
   },
 
