@@ -7,7 +7,7 @@ import React, {
   ReactNode,
 } from "react";
 import { useRouter } from "next/navigation";
-import { signIn, signOut, useSession, getSession } from "next-auth/react";
+import { signIn, signOut, useSession } from "next-auth/react";
 
 interface AuthContextType {
   isAuthenticated: boolean;
@@ -29,6 +29,7 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
     (typeof window !== "undefined" &&
       localStorage.getItem("isAuthenticated") === "true");
 
+  const { data: session } = useSession();
   const login = async (email: string, password: string) => {
     try {
       setLoading(true);
@@ -55,13 +56,6 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
       }
 
       // Wait for session to update
-      let session = null;
-      for (let i = 0; i < 10; i++) {
-        session = await getSession();
-        if (session && session.user) break;
-        await new Promise((res) => setTimeout(res, 300));
-      }
-
       if (!session || !session.user) {
         throw new Error("Session not found after login");
       }
