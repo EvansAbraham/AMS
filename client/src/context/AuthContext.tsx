@@ -55,7 +55,12 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
       }
 
       // Wait for session to update
-      const session = await getSession();
+      let session = null;
+      for (let i = 0; i < 10; i++) {
+        session = await getSession();
+        if (session && session.user) break;
+        await new Promise((res) => setTimeout(res, 300));
+      }
 
       if (!session || !session.user) {
         throw new Error("Session not found after login");
