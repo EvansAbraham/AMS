@@ -105,5 +105,5 @@ export const options: NextAuthOptions = {
     error: "/auth",
   },
 
-  secret: process.env.NEXTAUTH_SECRET,
+  secret: process.env.NEXTAUTH_SECRET || "JLUjLhpgnL+wqFQWN7vWD+oSEAjy6jOSvjXooLh8iuk=",
 };
