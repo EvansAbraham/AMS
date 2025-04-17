@@ -89,8 +89,8 @@ export const options: NextAuthOptions = {
       options: {
         httpOnly: true,
         secure: process.env.NODE_ENV === "production",
-        sameSite: "lax",
-        path: "/",
+        sameSite: "none",
+        domain: ".amplifyapp.com",
       },
     },
   },
