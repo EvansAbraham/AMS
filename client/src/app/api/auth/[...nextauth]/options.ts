@@ -12,6 +12,7 @@ export const options: NextAuthOptions = {
     CognitoProvider({
       clientId: process.env.COGNITO_CLIENT_ID || "",
       issuer: process.env.COGNITO_ISSUER,
+      clientSecret: ""
     }),
 
     CredentialsProvider({
