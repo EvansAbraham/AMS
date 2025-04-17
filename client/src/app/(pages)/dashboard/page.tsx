@@ -1,17 +1,18 @@
 "use client";
+
 import React, { useEffect, useState } from "react";
 import DashboardLeft from "./_components/dashboardLeft";
 import DashboardRight from "./_components/dashboardRight";
 import { useAuth } from "@/context/AuthContext";
 import { useRouter } from "next/navigation";
-import { getServerSession } from "next-auth";
-import { options } from "@/app/api/auth/[...nextauth]/options";
+import { useSession } from "next-auth/react";
 
 const DashBoard = () => {
   const { isAuthenticated, loading } = useAuth();
   const router = useRouter();
   const [activeTab, setActiveTab] = useState("outline");
-  const [sessionError, setSessionError] = useState<string | null>(null); // Explicitly defining type
+  const [sessionError, setSessionError] = useState<string | null>(null);
+  const { data: session, status } = useSession();
 
   useEffect(() => {
     if (!loading && !isAuthenticated) {
@@ -20,14 +21,14 @@ const DashBoard = () => {
   }, [isAuthenticated, loading, router]);
 
   useEffect(() => {
-    const checkSession = async () => {
-      const session = await getServerSession(options);
-      if (!session || session.user?.role !== "admin") {
-        setSessionError("You do not have permission to view this page.");
-      }
-    };
-    checkSession();
-  }, []);
+    if (status === "authenticated" && session.user?.role !== "admin") {
+      setSessionError("You do not have permission to view this page.");
+    }
+  }, [status, session]);
+
+  if (status === "loading" || loading) {
+    return <div>Loading...</div>;
+  }
 
   if (sessionError) {
     return (
