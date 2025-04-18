@@ -1,13 +1,13 @@
 const awsConfig = {
   Auth: {
-    region: "us-east-1",
-    userPoolId: "us-east-1_zDBRQDCox",
-    userPoolWebClientId: "3029s4phrqmadatv56ssoq4335",
+    region: "eu-west-2",
+    userPoolId: "eu-west-2_8wSj0Ydvl",
+    userPoolWebClientId: "2v0ommbuufhovsc466krc6vhbm",
     oauth: {
-      domain: "https://us-east-1zdbrqdcox.auth.us-east-1.amazoncognito.com",
+      domain: "https://eu-west-28wsj0ydvl.auth.eu-west-2.amazoncognito.com",
       scope: ["phone", "openid", "email"],
-      redirectSignIn: "http://localhost:3000/api/auth/callback/cognito",
-      redirectSignOut: "http://localhost:3000/auth",
+      redirectSignIn: "https://master.d3tc1sivtcnky8.amplifyapp.com/api/auth/callback/cognito",
+      redirectSignOut: "https://master.d3tc1sivtcnky8.amplifyapp.com/auth",
       responseType: "code",
     },
   },
