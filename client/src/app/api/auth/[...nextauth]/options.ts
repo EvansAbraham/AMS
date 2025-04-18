@@ -87,6 +87,19 @@ export const options: NextAuthOptions = {
         console.error("Error during session callback:", error);
         throw error;
       }
+    },
+    // Add redirect callback to ensure all redirects stay on your production domain
+    async redirect({ url, baseUrl }) {
+      // Handle relative URLs - redirect to the base URL
+      if (url.startsWith("/")) {
+        return `${baseUrl}${url}`;
+      }
+      // Only allow redirects to your base URL or subdomains for security
+      else if (new URL(url).origin === baseUrl) {
+        return url;
+      }
+      // Fallback to base URL for any other case
+      return baseUrl;
     }
   },
 

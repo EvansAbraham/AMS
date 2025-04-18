@@ -58,21 +58,34 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
       const session = await getSession();
       console.log("Session after login:", session); // Add logging
   
-      if (!session?.user) {
-        throw new Error("Session not found after login");
-      }
+      // if (!session?.user) {
+      //   throw new Error("Session not found after login");
+      // }
   
+      // // Redirect based on role
+      // if (session.user.role === "admin") {
+      //   router.push("/dashboard");
+      // } else {
+      //   router.push("/assets");
+      // }
+
+      let redirectPath;
+      if (session?.user?.role === "admin") {
+        redirectPath = "/dashboard";
+      } else {
+        redirectPath = "/assets";
+      }
+
       // Set flags for middleware
       localStorage.setItem("isAuthenticated", "true");
       document.cookie = `isAuthenticated=true; path=/`;
-  
-      // Redirect based on role
-      if (session.user.role === "admin") {
-        router.push("/dashboard");
-      } else {
-        router.push("/assets");
-      }
-  
+
+      const callbackUrl = new URL(redirectPath, window.location.origin).toString();
+      console.log("Redirecting to:", callbackUrl);
+    
+      // Manually navigate to the correct page
+      router.push(callbackUrl);
+      
       console.log("Sign in successful");
     } catch (error) {
       console.error("Login error:", error);
