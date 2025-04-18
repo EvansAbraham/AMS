@@ -6,7 +6,7 @@ export async function middleware(request: NextRequest) {
 
   const isAuthenticated =
     request.cookies.has("isAuthenticated") ||
-    (await request.headers.get("x-is-authenticated")) === "true";
+    request.headers.get("x-is-authenticated") === "true";
 
   const publicRoutes = ["/auth"];
   const isPublicRoute = publicRoutes.includes(path);
