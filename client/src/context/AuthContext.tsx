@@ -36,7 +36,7 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
   
       // Try credentials login
       const credResult = await signIn("credentials", {
-        redirect: false,
+        redirect: true,
         email,
         password,
       });
@@ -46,7 +46,7 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
   
         // Try Cognito provider
         const cognitoResult = await signIn("cognito", {
-          redirect: false,
+          redirect: true,
         });
   
         if (cognitoResult?.error) {
